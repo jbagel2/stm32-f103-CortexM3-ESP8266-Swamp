@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m3 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F103CB -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -DSTM32F103CBT6 -I..\..\..\..\..\ARMDevelopment\STM32 Projects\F103\stm32-f103-CortexM3-ESP8266-SwampController\Server -I..\..\..\..\..\ARMDevelopment\STM32 Projects\F103\stm32-f103-CortexM3-ESP8266-SwampController\CustomStructs -I..\..\..\..\..\ARMDevelopment\STM32 Libraries\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries -I..\..\..\..\..\ARMDevelopment\STM32 Projects\F103\stm32-f103-CortexM3-ESP8266-SwampController -I..\..\..\..\..\ARMDevelopment\STM32 Projects\F103\stm32-f103-CortexM3-ESP8266-SwampController\esp8266\include -I..\..\..\..\..\ARMDevelopment\STM32 Projects\F103\stm32-f103-CortexM3-ESP8266-SwampController\Config -I..\..\..\..\..\ARMDevelopment\STM32 Projects\F103\stm32-f103-CortexM3-ESP8266-SwampController\semihosting -I..\..\..\..\..\ARMDevelopment\STM32 Projects\F103\stm32-f103-CortexM3-ESP8266-SwampController\cmsis -I..\..\..\..\..\ARMDevelopment\STM32 Projects\F103 -I..\..\..\..\..\ARMDevelopment\STM32 Libraries\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver -I..\..\..\..\..\ARMDevelopment\STM32 Projects\F103\stm32-f103-CortexM3-ESP8266-SwampController\esp8266 -I..\..\..\..\..\ARMDevelopment\STM32 Projects\F103\stm32-f103-CortexM3-ESP8266-SwampController\cmsis_boot -I..\..\..\..\..\ARMDevelopment\STM32 Libraries\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\inc">
+      <target file="stm32f10x_crc.o" lastModified="14cfe520fd4">
+         <source file="..\..\..\..\..\..\STM32 Libraries\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_crc.c" lastModified="12ea1181f20"/>
+      </target>
+      <target file="stm32f10x_rcc.o" lastModified="14cfe52108c">
+         <source file="..\..\..\..\..\..\STM32 Libraries\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c" lastModified="12ea1181f20"/>
+      </target>
+      <target file="stm32f10x_pwr.o" lastModified="14cfe520e79">
+         <source file="..\..\..\..\..\..\STM32 Libraries\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_pwr.c" lastModified="12ea1181f20"/>
+      </target>
+      <target file="printf.o" lastModified="14cfe52102e">
+         <source file="..\..\..\stdio\printf.c" lastModified="14cfda531fe"/>
+      </target>
+      <target file="misc.o" lastModified="14cfe5212b9">
+         <source file="..\..\..\..\..\..\STM32 Libraries\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c" lastModified="12ea1181f20"/>
+      </target>
+      <target file="time.o" lastModified="14cfe5211d1">
+         <source file="..\..\..\CustomStructs\time.c" lastModified="14cfde9e428"/>
+      </target>
+      <target file="esp8266.o" lastModified="14cfe5214bc">
+         <source file="..\..\..\esp8266\source\esp8266.c" lastModified="14cfdccb8d1"/>
+      </target>
+      <target file="startup_stm32f10x_md.o" lastModified="14cfe520e36">
+         <source file="..\..\..\cmsis_boot\startup\startup_stm32f10x_md.c" lastModified="14cfda24b02"/>
+      </target>
+      <target file="WebServerConfig.o" lastModified="14cfe5212e1">
+         <source file="..\..\..\Server\WebServerConfig.c" lastModified="14cdea52d31"/>
+      </target>
+      <target file="stm32f10x_gpio.o" lastModified="14cfe520eca">
+         <source file="..\..\..\..\..\..\STM32 Libraries\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c" lastModified="12ea7bb9d70"/>
+      </target>
+      <target file="stm32f10x_rtc.o" lastModified="14cfe520c48">
+         <source file="..\..\..\..\..\..\STM32 Libraries\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rtc.c" lastModified="12ea1181f20"/>
+      </target>
+      <target file="stm32f10x_exti.o" lastModified="14cfe5210cf">
+         <source file="..\..\..\..\..\..\STM32 Libraries\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_exti.c" lastModified="12ea1181f20"/>
+      </target>
+      <target file="system_stm32f10x.o" lastModified="14cfe520e09">
+         <source file="..\..\..\cmsis_boot\system_stm32f10x.c" lastModified="14cfda24b09"/>
+      </target>
+      <target file="sh_cmd.o" lastModified="14cfe5211db">
+         <source file="..\..\..\semihosting\sh_cmd.s" lastModified="14cfda531f7"/>
+      </target>
+      <target file="stm32f10x_sdio.o" lastModified="14cfe52122e">
+         <source file="..\..\..\..\..\..\STM32 Libraries\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_sdio.c" lastModified="12ea1181f20"/>
+      </target>
+      <target file="stm32f10x_tim.o" lastModified="14cfe520d7f">
+         <source file="..\..\..\..\..\..\STM32 Libraries\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_tim.c" lastModified="12ea1181f20"/>
+      </target>
+      <target file="stm32f10x_adc.o" lastModified="14cfe521134">
+         <source file="..\..\..\..\..\..\STM32 Libraries\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_adc.c" lastModified="12ea1181f20"/>
+      </target>
+      <target file="USART3_Config.o" lastModified="14cfe520dc7">
+         <source file="..\..\..\Config\USART3_Config.c" lastModified="14cfdafd5bd"/>
+      </target>
+      <target file="semihosting.o" lastModified="14cfe520cd2">
+         <source file="..\..\..\semihosting\semihosting.c" lastModified="14cfda531f6"/>
+      </target>
+      <target file="stm32f10x_dma.o" lastModified="14cfe521278">
+         <source file="..\..\..\..\..\..\STM32 Libraries\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_dma.c" lastModified="12ea1181f20"/>
+      </target>
+      <target file="WebServer.o" lastModified="14cfe520f95">
+         <source file="..\..\..\Server\WebServer.c" lastModified="14cdea52d30"/>
+      </target>
+      <target file="stm32f10x_usart.o" lastModified="14cfe521191">
+         <source file="..\..\..\..\..\..\STM32 Libraries\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c" lastModified="12ea1181f20"/>
+      </target>
+      <target file="main.o" lastModified="14cfe520f1f">
+         <source file="..\..\..\main.c" lastModified="14cfe52069f"/>
+      </target>
+   </processor>
+</history>

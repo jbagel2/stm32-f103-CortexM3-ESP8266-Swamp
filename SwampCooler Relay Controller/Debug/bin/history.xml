@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="4.9.3 -mcpu=cortex-m3 -mthumb -g -nostartfiles -Map=SwampCooler Relay Controller.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\SwampCooler Relay Controller -TC:\CooCox\CoIDE\configuration\ProgramData\SwampCooler Relay Controller/arm-gcc-link.ld -g">
+      <target file="SwampCooler Relay Controller.elf" lastModified="14cfe521690">
+         <source file="..\obj\stm32f10x_rtc.o" lastModified="14cfe520c48"/>
+         <source file="..\obj\semihosting.o" lastModified="14cfe520cd2"/>
+         <source file="..\obj\stm32f10x_tim.o" lastModified="14cfe520d7f"/>
+         <source file="..\obj\USART3_Config.o" lastModified="14cfe520dc7"/>
+         <source file="..\obj\system_stm32f10x.o" lastModified="14cfe520e09"/>
+         <source file="..\obj\startup_stm32f10x_md.o" lastModified="14cfe520e36"/>
+         <source file="..\obj\stm32f10x_pwr.o" lastModified="14cfe520e79"/>
+         <source file="..\obj\stm32f10x_gpio.o" lastModified="14cfe520eca"/>
+         <source file="..\obj\main.o" lastModified="14cfe520f1f"/>
+         <source file="..\obj\WebServer.o" lastModified="14cfe520f95"/>
+         <source file="..\obj\stm32f10x_crc.o" lastModified="14cfe520fd4"/>
+         <source file="..\obj\printf.o" lastModified="14cfe52102e"/>
+         <source file="..\obj\stm32f10x_rcc.o" lastModified="14cfe52108c"/>
+         <source file="..\obj\stm32f10x_exti.o" lastModified="14cfe5210cf"/>
+         <source file="..\obj\stm32f10x_adc.o" lastModified="14cfe521134"/>
+         <source file="..\obj\stm32f10x_usart.o" lastModified="14cfe521191"/>
+         <source file="..\obj\time.o" lastModified="14cfe5211d1"/>
+         <source file="..\obj\sh_cmd.o" lastModified="14cfe5211db"/>
+         <source file="..\obj\stm32f10x_sdio.o" lastModified="14cfe52122e"/>
+         <source file="..\obj\stm32f10x_dma.o" lastModified="14cfe521278"/>
+         <source file="..\obj\misc.o" lastModified="14cfe5212b9"/>
+         <source file="..\obj\WebServerConfig.o" lastModified="14cfe5212e1"/>
+         <source file="..\obj\esp8266.o" lastModified="14cfe5214bc"/>
+      </target>
+   </processor>
+</history>
