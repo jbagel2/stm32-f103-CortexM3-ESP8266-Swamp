@@ -20,9 +20,15 @@ volatile uint32_t TxWaitForResponse_TimeStmp = 0;
 //extern volatile char USART3_RxBuffer_Buffer[RxBuffSize];
 extern volatile char USART3_RxBuffer[RxBuffSize];
 
-uint32_t dimmingValueToValidate = 30000; //Just a starting value that is outside the allowed
+uint8_t pumpModeToValidate = -1; //Just a starting value that is outside the allowed
+uint8_t fanModeToValidate = -1;
 
-extern volatile uint32_t dimmingValue;
+extern uint8_t pumpMode_Current;
+extern uint8_t fanLow_Current;
+extern uint8_t fanHigh_Current;
+extern uint8_t temp_Current;
+extern uint8_t humid_Current;
+
 extern uint32_t lastDMABuffPoll;
 
 
@@ -301,8 +307,8 @@ IPD_Data Wifi_CheckDMABuff_ForIPDData()
 						//TODO: Need to add a level of error detection/correction as data may be missing the
 					if(strstr(currentIPD.RequestType, "POST"))
 					{
-						//if URI contains dimming (the test for now)
-						if(strstr(currentIPD.URI, "dimming"))
+						//if URI contains swamp (the test for now)
+						if(strstr(currentIPD.URI, "pump"))
 						{
 							if(strstr(currentIPD.URI, "?"))//If query String is found
 							{
@@ -316,29 +322,66 @@ IPD_Data Wifi_CheckDMABuff_ForIPDData()
 								else
 								{
 								queryString1 = strtok(NULL, "=");
-								if(strstr(currentIPD.URI, "&"))
-								{
-									queryValue1 = strtok(NULL, "&");
-								}
-								else
-								{
-									queryValue1 = strtok(NULL, "\0");
-								}
-								}
-								currentIPD.Valid = 1;
-							}
+								//if(strstr(currentIPD.URI, "&"))
+								//{
+								queryValue1 = strtok(NULL, "&");
+								//if(queryValue1 == '\0')
+								//{
 
-							dimmingValueToValidate = atoi(queryValue1);
-							if(dimmingValueToValidate <= 13000)
+								queryString2 = strtok(NULL, "=");
+								if(queryString2 != '\0')
+								{
+									queryValue2 = strtok(NULL, "&");
+								}
+							}
+							currentIPD.Valid = 1;
+						}
+
+
+
+
+							pumpModeToValidate = atoi(queryValue1);
+							if(pumpModeToValidate == 0 || pumpModeToValidate == 1)
 							{
-								dimmingValue = dimmingValueToValidate;
 
-								RefreshCustomRESTResponseDimmer("172.20.112.136", "192.168.4.1", dimmingValue);
+								pumpMode_Current = pumpModeToValidate;
+
+
+							}
+							if(queryValue2)
+							{
+								fanModeToValidate = atoi(queryValue2);
+								switch (fanModeToValidate) {
+									case 2:
+										fanLow_Current = 1;
+										fanHigh_Current = 1;
+										break;
+									case 1:
+										fanLow_Current = 1;
+										fanHigh_Current = 0;
+										break;
+									case 0:
+										fanLow_Current = 0;
+										fanHigh_Current = 0;
+										break;
+									default:
+										break;
+								}
+							}
+
+
+							RefreshCustomRESTResponseSwamp("172.20.112.136", "192.168.4.1", pumpMode_Current, (fanLow_Current + fanHigh_Current),temp_Current, humid_Current);
+
+							//if(dimmingValueToValidate <= 13000)
+							//{
+								//dimmingValue = dimmingValueToValidate;
+
+							//	RefreshCustomRESTResponseSwamp("172.20.112.136", "192.168.4.1", dimmingValue);
 								//SendRESTResponse(currentIPD.ConnectionNum, RESTResponse_Headers_Test_OK, customRESTResponse);
-							}
-							else {
-								RefreshCustomRESTResponse("172.20.112.136", "192.168.4.1", "dimmingValue", "InvalidValue");
-							}
+							//}
+							//else {
+							//	RefreshCustomRESTResponse("172.20.112.136", "192.168.4.1", "dimmingValue", "InvalidValue");
+							//}
 								currentIPD.Valid = 1;
 						}
 					}

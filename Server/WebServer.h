@@ -13,7 +13,7 @@
 #include "esp8266.h"
 #include "CustomStructs/GeneralMacros.h"
 
-typedef KeyValuePair_StringString Header;
+typedef KeyValuePair_String_String Header;
 
 const typedef enum {GET=0,POST,PUT,DELETE}Http_Method_Enum; // The rest call types that we know what to do with
 const char *HTTP_Method[4];

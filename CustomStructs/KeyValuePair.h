@@ -16,14 +16,21 @@ typedef struct
 	char *key;
 	char *value;
 
-}KeyValuePair_StringString;
+}KeyValuePair_String_String;
 
 typedef struct
 {
 	char *key;
 	uint16_t value;
 
-}KeyValuePair_StringUint16_t;
+}KeyValuePair_String_Uint16_t;
+
+typedef struct
+{
+	char *key;
+	uint32_t value;
+
+}KeyValuePair_String_Uint32_t;
 
 typedef struct
 {

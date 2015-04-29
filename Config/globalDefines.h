@@ -9,7 +9,7 @@
  * ie..(buffer sizes, timeout values, delay values)
  */
 
-
+#define NODE_ID "SWAMP_RELAY"
 #define ESP_ResponseTimeout_ms 6000
 #define ESP_USART USART3
 #define ESP_CHPD_Control_GPIO GPIOB
