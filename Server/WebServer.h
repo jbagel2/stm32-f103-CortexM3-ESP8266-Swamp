@@ -8,10 +8,14 @@
 #ifndef _WEBSERVER_H_
 #define _WEBSERVER_H_
 
-#include "CustomStructs/KeyValuePair.h"
+//#include "CustomStructs/KeyValuePair.h"
+#include "json/json.h"
 #include "WebServerConfig.h"
 #include "esp8266.h"
 #include "CustomStructs/GeneralMacros.h"
+
+
+char customRESTResponse[400];
 
 typedef KeyValuePair_String_String Header;
 

@@ -1,31 +1,33 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
    <processor signature="4.9.3 -mcpu=cortex-m3 -mthumb -g -nostartfiles -Map=SwampCooler Relay Controller.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\SwampCooler Relay Controller -TC:\CooCox\CoIDE\configuration\ProgramData\SwampCooler Relay Controller/arm-gcc-link.ld -g">
-      <target file="SwampCooler Relay Controller.elf" lastModified="14d03b4fe9c">
-         <source file="..\obj\stm32f10x_rtc.o" lastModified="14d03b4f454"/>
-         <source file="..\obj\semihosting.o" lastModified="14d03b4f4da"/>
-         <source file="..\obj\stm32f10x_tim.o" lastModified="14d03b4f58c"/>
-         <source file="..\obj\USART3_Config.o" lastModified="14d03b4f5d6"/>
-         <source file="..\obj\system_stm32f10x.o" lastModified="14d03b4f618"/>
-         <source file="..\obj\startup_stm32f10x_md.o" lastModified="14d03b4f646"/>
-         <source file="..\obj\stm32f10x_pwr.o" lastModified="14d03b4f68a"/>
-         <source file="..\obj\stm32f10x_gpio.o" lastModified="14d03b4f6dc"/>
-         <source file="..\obj\main.o" lastModified="14d03b4f737"/>
-         <source file="..\obj\WebServer.o" lastModified="14d03b4f79f"/>
-         <source file="..\obj\stm32f10x_crc.o" lastModified="14d03b4f7e6"/>
-         <source file="..\obj\printf.o" lastModified="14d03b4f83c"/>
-         <source file="..\obj\stm32f10x_rcc.o" lastModified="14d03b4f899"/>
-         <source file="..\obj\stm32f10x_exti.o" lastModified="14d03b4f8dd"/>
-         <source file="..\obj\stm32f10x_adc.o" lastModified="14d03b4f942"/>
-         <source file="..\obj\stm32f10x_usart.o" lastModified="14d03b4f9a0"/>
-         <source file="..\obj\time.o" lastModified="14d03b4f9e0"/>
-         <source file="..\obj\sh_cmd.o" lastModified="14d03b4f9ea"/>
-         <source file="..\obj\json.o" lastModified="14d03b4fa12"/>
-         <source file="..\obj\stm32f10x_sdio.o" lastModified="14d03b4fa67"/>
-         <source file="..\obj\stm32f10x_dma.o" lastModified="14d03b4fab2"/>
-         <source file="..\obj\misc.o" lastModified="14d03b4faf3"/>
-         <source file="..\obj\WebServerConfig.o" lastModified="14d03b4fb1c"/>
-         <source file="..\obj\esp8266.o" lastModified="14d03b4fcc5"/>
+      <target file="SwampCooler Relay Controller.elf" lastModified="14d2099921d">
+         <source file="..\obj\stm32f10x_rtc.o" lastModified="14d20998643"/>
+         <source file="..\obj\semihosting.o" lastModified="14d209986d2"/>
+         <source file="..\obj\stm32f10x_tim.o" lastModified="14d20998786"/>
+         <source file="..\obj\USART3_Config.o" lastModified="14d209987ce"/>
+         <source file="..\obj\system_stm32f10x.o" lastModified="14d2099880b"/>
+         <source file="..\obj\startup_stm32f10x_md.o" lastModified="14d2099883d"/>
+         <source file="..\obj\stm32f10x_pwr.o" lastModified="14d2099887e"/>
+         <source file="..\obj\stm32f10x_gpio.o" lastModified="14d209988d0"/>
+         <source file="..\obj\main.o" lastModified="14d2099892f"/>
+         <source file="..\obj\WebServer.o" lastModified="14d20998996"/>
+         <source file="..\obj\stm32f10x_crc.o" lastModified="14d209989d5"/>
+         <source file="..\obj\swamp_functions.o" lastModified="14d20998a5b"/>
+         <source file="..\obj\printf.o" lastModified="14d20998ab7"/>
+         <source file="..\obj\stm32f10x_rcc.o" lastModified="14d20998b13"/>
+         <source file="..\obj\stm32f10x_exti.o" lastModified="14d20998b57"/>
+         <source file="..\obj\stm32f10x_adc.o" lastModified="14d20998bbb"/>
+         <source file="..\obj\stm32f10x_usart.o" lastModified="14d20998c1a"/>
+         <source file="..\obj\time.o" lastModified="14d20998c5b"/>
+         <source file="..\obj\sh_cmd.o" lastModified="14d20998c66"/>
+         <source file="..\obj\json.o" lastModified="14d20998c8e"/>
+         <source file="..\obj\stm32f10x_sdio.o" lastModified="14d20998ce2"/>
+         <source file="..\obj\stm32f10x_dma.o" lastModified="14d20998d2b"/>
+         <source file="..\obj\dht22.o" lastModified="14d20998d51"/>
+         <source file="..\obj\misc.o" lastModified="14d20998d91"/>
+         <source file="..\obj\WebServerConfig.o" lastModified="14d20998dba"/>
+         <source file="..\obj\esp8266.o" lastModified="14d2099904b"/>
       </target>
    </processor>
 </history>

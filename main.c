@@ -2,9 +2,10 @@
 #include "time.h"
 #include "USART3_Config.h"
 
+
 #include "esp8266/include/esp8266.h"
 #include "Server/WebServer.h"
-
+#include "swamp_controls/swamp_functions.h"
 /*
  * Swamp Cooler Relay controller
  *
@@ -38,51 +39,30 @@
 
 
 
-#define ESP_RX_DMA_BUF_POLL_Interval_ms 1000
+
+//#define ESP_RX_DMA_BUF_POLL_Interval_ms 1000
 
 
-typedef enum
-{
-	Fan_OFF,
-	Fan_Low,
-	Fan_High
-}Fan_Mode;
 
-typedef enum
-{
-	OFF,
-	ON
-}On_Off;
 
 
 volatile char USART3_RxBuffer[RxBuffSize];
+extern char customRESTResponse[400];
 
-GPIO_InitTypeDef Relay_ESP8266_Config;
 IPD_Data currentIPD;
 
-uint8_t pumpMode_Current = 0;
-uint8_t fanLow_Current = 0;
-uint8_t fanHigh_Current = 0;
-uint8_t temp_Current = 70;
-uint8_t humid_Current = 15;
-
-
-uint32_t testTimeStamp = 0;
+//uint32_t testTimeStamp = 0;
 uint32_t debounceCurrent = 0;
 uint32_t debounceTime_ms = 300;
 uint32_t lastDMABuffPoll = 0;
-char customRESTResponse[400];
+
 
 uint32_t mj = 0;
 
 
 void RefreshCustomRESTResponse(char *IPWAN, char *IPLAN, char *nodeKeyName, char *nodeValue);
 
-void RelayStartMode()
-{
-	GPIOB->BSRR = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14; //Make sure all relays are off at startup
-}
-
+//sends configured system clock (divided by 2)
 void SetSystemClockOut()
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -97,6 +77,7 @@ void SetSystemClockOut()
 	RCC_MCOConfig(RCC_MCO_PLLCLK_Div2);
 }
 
+/*
 void RelayGPIOConfig()
 {
 	Relay_ESP8266_Config.GPIO_Mode = GPIO_Mode_Out_OD; // For PNP Transistor base sink
@@ -104,8 +85,9 @@ void RelayGPIOConfig()
 	Relay_ESP8266_Config.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14;
 	GPIO_Init(GPIOB, &Relay_ESP8266_Config);
 }
+*/
 
-void MapleButtonConfig()
+void DEBUG_DevBoardButtonConfig()
 {
 	GPIO_InitTypeDef ButtonConfig;
 	ButtonConfig.GPIO_Mode = GPIO_Mode_IN_FLOATING;
@@ -114,49 +96,45 @@ void MapleButtonConfig()
 	GPIO_Init(GPIOB, &ButtonConfig);
 }
 
-void PumpControl(On_Off mode)
-{
-	switch (mode) {
-		case ON:
-		GPIOB->BRR = GPIO_Pin_12;
-			break;
-		case OFF:
-		GPIOB->BSRR = GPIO_Pin_12;
-			break;
-		default:
-		GPIOB->BSRR = GPIO_Pin_12;
-			break;
-	}
-}
 
-void FanControl(Fan_Mode mode)
-{
-
-}
 
 int main(void)
 {
-
+	//Start SysTick and set to millisecond resolution
 	Init_Time(MILLISEC);
+
+	//Enable USART3 and attach DMA Circular buffer for Rx
 	Init_USART3_DMA(2000000,USART3_RxBuffer, RxBuffSize);
+
+	//Configure CH_PD pin for ESP Power Control and Set Wifi as "Initialized"
 	Wifi_Init();
+
+	//Force CH_PD Pin Low to make sure ESP has a clean boot up (a few lines down)
 	Wifi_OFF();
 
-	void MapleButtonConfig();
-	RelayGPIOConfig();
-	RelayStartMode();
+
+	//*********DEBUG ONLY********** Configures Devboard button for manual command toggling.
+	void DEBUG_DevBoardButtonConfig();
+	//RelayGPIOConfig();
+	Swamp_Init();
 	//SetSystemClockOut();
 	Wifi_ON();
 
+	//Just a static wait for now (Will add a DMA buffer parse for "ready"), for the ESP8266 boot-up
 	for (mj=0;mj<130500;mj++);
 
+	//Connect to a given Wifi Network
 	Wifi_SendCommand(WIFI_JOIN_NONYA);
+
+	//Start the ESP hosted IPD Server
 	StartServer(1,80);
+
+	//Has the ESP Dump the current connection info to USART (IP as AP and Client (and MACs))
 	Wifi_SendCommand(WIFI_GET_CURRENT_IP);
 
-	testTimeStamp = Millis();
     while(1)
     {
+    	//*********DEBUG ONLY********** Waits for DevBoard button press
     	if(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_8) && ((Millis() - debounceCurrent) >= debounceTime_ms))
     	{
     		debounceCurrent = Millis();
@@ -164,33 +142,26 @@ int main(void)
     		PumpControl(pumpMode_Current);
     	}
 
+    	//Checks (polls) the DMA buffer every {DMA_Rx_Buff_Poll_Int_ms} milliseconds
     	if((Millis() - lastDMABuffPoll) >= DMA_Rx_Buff_Poll_Int_ms)
     			{
     				lastDMABuffPoll = Millis();
+    				//If IPD data is found it is converted to a IPD_Data object (basically an HTTP Request object)
     				currentIPD = Wifi_CheckDMABuff_ForIPDData();
+    				//If it is valid (if it passed the object complete validation)
     				if(currentIPD.Valid == 1)
     				{
-    					SendRESTResponse(currentIPD.ConnectionNum, RESTResponse_Headers_Test_OK, customRESTResponse);
+    					//Sets the pump mode to the requested
     					PumpControl(pumpMode_Current);
+    					//Sets the fan mode to the requested
+    					FanControl(fanMode_Current);
+    					//Sends updated REST response with updated system status
+    					SendRESTResponse(currentIPD.ConnectionNum, RESTResponse_Headers_Test_OK, customRESTResponse);
+
     				}
     			}
     }
 }
 
-void RefreshCustomRESTResponseSwamp(char *IPWAN, char *IPLAN, uint8_t pumpState, uint8_t fanState, uint8_t currentTemp, uint8_t currentHumid)
-{
-#ifndef NODE_ID
-#error NODE_ID not defined, Please define NODE_ID as char*
-#endif
-snprintf(customRESTResponse, ARRAYSIZE(customRESTResponse),"{\"ID\":\"%s\",\"NodeStatus\":{\"pumpState\":\"%d\",\"fanState\":\"%d\",\"currentTemp\":\"%d\",\"currentHumid\":\"%d\",},\"GeneralStatus\":{\"CurrentIP_WAN\":\"%s\",\"currentIP_LAN\":\"%s\",\"self_check_result\":\"OK\"}} ",NODE_ID, pumpState, fanState, currentTemp, currentHumid, IPWAN, IPLAN);
-}
-
-void RefreshCustomRESTResponse(char *IPWAN, char *IPLAN, char *nodeKeyName, char *nodeValue)
-{
-#ifndef NODE_ID
-#error NODE_ID not defined, Please define NODE_ID as char*
-#endif
-snprintf(customRESTResponse, ARRAYSIZE(customRESTResponse),"{\"ID\":\"%s\",\"Status\":{\"%s\":\"%s\",\"CurrentIP_WAN\":\"%s\",\"currentIP_LAN\":\"%s\",\"self_check_result\":\"OK\"}} ",NODE_ID, nodeKeyName, nodeValue, IPWAN, IPLAN);
-}
 
 

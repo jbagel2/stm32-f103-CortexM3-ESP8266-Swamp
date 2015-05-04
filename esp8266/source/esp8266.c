@@ -6,6 +6,7 @@
  ********************************************************/
 
 #include "esp8266.h"
+#include "swamp_controls/swamp_functions.h"
 
 
 char *ESP_IPD_Data_Buffer_Pntr;
@@ -23,9 +24,10 @@ extern volatile char USART3_RxBuffer[RxBuffSize];
 uint8_t pumpModeToValidate = -1; //Just a starting value that is outside the allowed
 uint8_t fanModeToValidate = -1;
 
-extern uint8_t pumpMode_Current;
-extern uint8_t fanLow_Current;
-extern uint8_t fanHigh_Current;
+extern On_Off pumpMode_Current;
+extern Fan_Mode fanMode_Current;
+extern On_Off fanLow_Current;
+extern On_Off fanHigh_Current;
 extern uint8_t temp_Current;
 extern uint8_t humid_Current;
 
