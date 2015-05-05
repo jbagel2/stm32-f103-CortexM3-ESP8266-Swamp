@@ -1,6 +1,7 @@
 #include "globalDefines.h"
 #include "time.h"
 #include "USART3_Config.h"
+#include "stm32f10x_flash.h"
 
 
 #include "esp8266/include/esp8266.h"
@@ -56,11 +57,31 @@ uint32_t debounceCurrent = 0;
 uint32_t debounceTime_ms = 300;
 uint32_t lastDMABuffPoll = 0;
 
-
 uint32_t mj = 0;
 
 
 void RefreshCustomRESTResponse(char *IPWAN, char *IPLAN, char *nodeKeyName, char *nodeValue);
+
+
+void Configure_HSI_Clock()
+{
+	FLASH_SetLatency(FLASH_ACR_LATENCY_2);
+
+	RCC_HSICmd(ENABLE);
+	RCC_HSEConfig(DISABLE);
+	RCC_PLLConfig(RCC_PLLSource_HSI_Div2,RCC_CFGR_PLLMULL16);
+	RCC_PLLCmd(ENABLE);
+	while(RCC_GetFlagStatus(RCC_FLAG_PLLRDY) == RESET) {}
+	RCC_SYSCLKConfig(RCC_SYSCLKSource_PLLCLK);
+
+	RCC_HCLKConfig(RCC_SYSCLK_Div1);
+	RCC_PCLK1Config(RCC_HCLK_Div1);
+	RCC_PCLK2Config(RCC_HCLK_Div1);
+	RCC_ADCCLKConfig(RCC_PCLK2_Div2);
+
+
+}
+
 
 //sends configured system clock (divided by 2)
 void SetSystemClockOut()
@@ -100,6 +121,7 @@ void DEBUG_DevBoardButtonConfig()
 
 int main(void)
 {
+	Configure_HSI_Clock();
 	//Start SysTick and set to millisecond resolution
 	Init_Time(MILLISEC);
 
@@ -114,7 +136,7 @@ int main(void)
 
 
 	//*********DEBUG ONLY********** Configures Devboard button for manual command toggling.
-	void DEBUG_DevBoardButtonConfig();
+	//void DEBUG_DevBoardButtonConfig();
 	//RelayGPIOConfig();
 	Swamp_Init();
 	//SetSystemClockOut();
@@ -134,6 +156,7 @@ int main(void)
 
     while(1)
     {
+    	/*
     	//*********DEBUG ONLY********** Waits for DevBoard button press
     	if(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_8) && ((Millis() - debounceCurrent) >= debounceTime_ms))
     	{
@@ -141,6 +164,7 @@ int main(void)
     		pumpMode_Current ^= (1<<0);
     		PumpControl(pumpMode_Current);
     	}
+    	*/
 
     	//Checks (polls) the DMA buffer every {DMA_Rx_Buff_Poll_Int_ms} milliseconds
     	if((Millis() - lastDMABuffPoll) >= DMA_Rx_Buff_Poll_Int_ms)

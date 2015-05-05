@@ -24,12 +24,12 @@ extern volatile char USART3_RxBuffer[RxBuffSize];
 uint8_t pumpModeToValidate = -1; //Just a starting value that is outside the allowed
 uint8_t fanModeToValidate = -1;
 
-extern On_Off pumpMode_Current;
-extern Fan_Mode fanMode_Current;
-extern On_Off fanLow_Current;
-extern On_Off fanHigh_Current;
-extern uint8_t temp_Current;
-extern uint8_t humid_Current;
+//extern On_Off pumpMode_Current;
+//extern Fan_Mode fanMode_Current;
+//extern On_Off fanLow_Current;
+//extern On_Off fanHigh_Current;
+//extern uint8_t temp_Current;
+//extern uint8_t humid_Current;
 
 extern uint32_t lastDMABuffPoll;
 
@@ -55,7 +55,7 @@ const char *ATCommandsArray[18] = {"AT",
 	"AT+GMR",
 	"AT+CWMODE?",
 	"AT+CWMODE=3",
-	"AT+CWJAP=\"SSID\",\"PASSWORD\"",
+	"AT+CWJAP=\"Nonya\",\"porsche911\"",
 	"AT+CWJAP?",
 	"AT+RST",
 	"AT+CIPMUX=1",
@@ -357,14 +357,17 @@ IPD_Data Wifi_CheckDMABuff_ForIPDData()
 									case 2:
 										fanLow_Current = 1;
 										fanHigh_Current = 1;
+										fanMode_Current = 2;
 										break;
 									case 1:
 										fanLow_Current = 1;
 										fanHigh_Current = 0;
+										fanMode_Current = 1;
 										break;
 									case 0:
 										fanLow_Current = 0;
 										fanHigh_Current = 0;
+										fanMode_Current = 0;
 										break;
 									default:
 										break;
@@ -374,28 +377,11 @@ IPD_Data Wifi_CheckDMABuff_ForIPDData()
 
 							RefreshCustomRESTResponseSwamp("172.20.112.136", "192.168.4.1", pumpMode_Current, (fanLow_Current + fanHigh_Current),temp_Current, humid_Current);
 
-							//if(dimmingValueToValidate <= 13000)
-							//{
-								//dimmingValue = dimmingValueToValidate;
-
-							//	RefreshCustomRESTResponseSwamp("172.20.112.136", "192.168.4.1", dimmingValue);
-								//SendRESTResponse(currentIPD.ConnectionNum, RESTResponse_Headers_Test_OK, customRESTResponse);
-							//}
-							//else {
-							//	RefreshCustomRESTResponse("172.20.112.136", "192.168.4.1", "dimmingValue", "InvalidValue");
-							//}
-								currentIPD.Valid = 1;
+							currentIPD.Valid = 1;
 						}
 					}
 					//printf("Incoming webrequest\r\n");
 				}
-				//DMA_Rx_Buff_Index = strlen(USART3_RxBuffer);
-				//tstBuff = mempcpy(USART3_RxBuffer_Buffer, USART3_RxBuffer, RxBuffSize);
-				//DMA_Rx_Buff_Index = tstBuff - &USART3_RxBuffer_Buffer[0];
-				//tstBuff = memmem(USART3_RxBuffer,sizeof(USART3_RxBuffer),"OK\r\n",4);
-				//ClearArray_Size(USART3_RxBuffer, sizeof(USART3_RxBuffer));
-
-		//	}
 
 				return currentIPD;
 }

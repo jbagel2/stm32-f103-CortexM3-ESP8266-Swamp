@@ -8,16 +8,20 @@
 <perspectiveBar/>
 <page focus="true" label="Workspace - CooCox CoBuilder">
 <editors>
-<editorArea activeWorkbook="org.eclipse.ui.internal.EditorStack@1c23a11">
+<editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="org.eclipse.ui.internal.EditorStack@1c23a11">
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
 </presentation>
 </folder>
 </info>
-<info part="DefaultEditorWorkbook" ratio="0.5037453" ratioLeft="807" ratioRight="795" relationship="2" relative="org.eclipse.ui.internal.EditorStack@1c23a11">
+<info part="DefaultEditorWorkbook" ratio="0.31563202" ratioLeft="422" ratioRight="915" relationship="2" relative="org.eclipse.ui.internal.EditorStack@1c23a11">
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
@@ -36,7 +40,6 @@
 <part id="13"/>
 <part id="14"/>
 <part id="15"/>
-<part id="16"/>
 </presentation>
 </folder>
 </info>
@@ -45,29 +48,41 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/customStructs/KeyValuePair.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="463" selectionTopPixel="36"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/main.c" title="main.c" tooltip="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/main.c" workbook="org.eclipse.ui.internal.EditorStack@1c23a11">
+<editor focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/main.c" title="main.c" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/main.c" workbook="org.eclipse.ui.internal.EditorStack@1c23a11">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="734" selectionTopPixel="716"/>
+<editorState selectionHorizontalPixel="96" selectionLength="15" selectionOffset="4501" selectionTopPixel="2655"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x.h" partName="stm32f10x.h" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/cmsis_boot/stm32f10x.h" title="stm32f10x.h" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/cmsis_boot/stm32f10x.h" workbook="org.eclipse.ui.internal.EditorStack@1c23a11">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/cmsis_boot/stm32f10x.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="61708"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x_conf.h" partName="stm32f10x_conf.h" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/cmsis_boot/stm32f10x_conf.h" title="stm32f10x_conf.h" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/cmsis_boot/stm32f10x_conf.h" workbook="org.eclipse.ui.internal.EditorStack@1c23a11">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/cmsis_boot/stm32f10x_conf.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="734"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f10x.h" partName="system_stm32f10x.h" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/cmsis_boot/system_stm32f10x.h" title="system_stm32f10x.h" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/cmsis_boot/system_stm32f10x.h" workbook="org.eclipse.ui.internal.EditorStack@1c23a11">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/cmsis_boot/system_stm32f10x.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="1006"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f10x.c" partName="system_stm32f10x.c" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/cmsis_boot/system_stm32f10x.c" title="system_stm32f10x.c" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/cmsis_boot/system_stm32f10x.c" workbook="org.eclipse.ui.internal.EditorStack@1c23a11">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/cmsis_boot/system_stm32f10x.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="12353" selectionTopPixel="5190"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="USART3_Config.h" partName="USART3_Config.h" path="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/Config/USART3_Config.h" title="USART3_Config.h" tooltip="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/Config/USART3_Config.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/config/USART3_Config.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="27" selectionOffset="66" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="USART3_Config.c" partName="USART3_Config.c" path="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/Config/USART3_Config.c" title="USART3_Config.c" tooltip="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/Config/USART3_Config.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/config/USART3_Config.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1713" selectionTopPixel="840"/>
-</editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="GeneralMacros.h" partName="GeneralMacros.h" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/CustomStructs/GeneralMacros.h" title="GeneralMacros.h" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/CustomStructs/GeneralMacros.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/customStructs/GeneralMacros.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="esp8266.h" partName="esp8266.h" path="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/esp8266/include/esp8266.h" title="esp8266.h" tooltip="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/esp8266/include/esp8266.h" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="esp8266.h" partName="esp8266.h" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/esp8266/include/esp8266.h" title="esp8266.h" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/esp8266/include/esp8266.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/esp8266/include/esp8266.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2027" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="15" selectionOffset="1183" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="esp8266.c" partName="esp8266.c" path="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/esp8266/source/esp8266.c" title="esp8266.c" tooltip="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/esp8266/source/esp8266.c" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="esp8266.c" partName="esp8266.c" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/esp8266/source/esp8266.c" title="esp8266.c" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/esp8266/source/esp8266.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/esp8266/source/esp8266.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10576" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="9740" selectionTopPixel="5778"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="globalDefines.h" partName="globalDefines.h" path="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/Config/globalDefines.h" title="globalDefines.h" tooltip="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/Config/globalDefines.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/config/globalDefines.h"/>
@@ -77,17 +92,17 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/customStructs/time.c"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="403" selectionTopPixel="71"/>
 </editor>
-<editor focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="WebServer.h" partName="WebServer.h" path="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/Server/WebServer.h" title="WebServer.h" tooltip="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/Server/WebServer.h" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="WebServer.h" partName="WebServer.h" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/Server/WebServer.h" title="WebServer.h" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/Server/WebServer.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/webserver/include/WebServer.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="28" selectionOffset="430" selectionTopPixel="68"/>
+<editorState selectionHorizontalPixel="0" selectionLength="18" selectionOffset="435" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="WebServerConfig.h" partName="WebServerConfig.h" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/Server/WebServerConfig.h" title="WebServerConfig.h" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/Server/WebServerConfig.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/webserver/include/WebServerConfig.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="WebServer.c" partName="WebServer.c" path="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/Server/WebServer.c" title="WebServer.c" tooltip="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/Server/WebServer.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="WebServer.c" partName="WebServer.c" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/Server/WebServer.c" title="WebServer.c" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/Server/WebServer.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/webserver/source/WebServer.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="356" selectionOffset="263" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="47" selectionTopPixel="26"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="json.h" partName="json.h" path="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/json/json.h" title="json.h" tooltip="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/json/json.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/json/json.h"/>
@@ -97,17 +112,13 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/json/json.c"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="124" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f10x_md.c" partName="startup_stm32f10x_md.c" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/cmsis_boot/startup/startup_stm32f10x_md.c" title="startup_stm32f10x_md.c" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/cmsis_boot/startup/startup_stm32f10x_md.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/cmsis_boot/startup/startup_stm32f10x_md.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10032" selectionTopPixel="2958"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="swamp_functions.h" partName="swamp_functions.h" path="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/swamp_controls/swamp_functions.h" title="swamp_functions.h" tooltip="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/swamp_controls/swamp_functions.h" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="swamp_functions.h" partName="swamp_functions.h" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/swamp_controls/swamp_functions.h" title="swamp_functions.h" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/swamp_controls/swamp_functions.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/swamp_controls/swamp_functions.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="303" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="474" selectionTopPixel="207"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="swamp_functions.c" partName="swamp_functions.c" path="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/swamp_controls/swamp_functions.c" title="swamp_functions.c" tooltip="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/swamp_controls/swamp_functions.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="swamp_functions.c" partName="swamp_functions.c" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/swamp_controls/swamp_functions.c" title="swamp_functions.c" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/swamp_controls/swamp_functions.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/swamp_controls/swamp_functions.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="41" selectionOffset="69" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="948" selectionTopPixel="178"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="dht22.c" partName="dht22.c" path="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/sensors/DHT22/dht22.c" title="dht22.c" tooltip="D:/Google Drive/ARM Development/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-Swamp/sensors/DHT22/dht22.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/sensors/DHT22/dht22.c"/>
@@ -117,9 +128,38 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/sensors/DHT22/dht22.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f10x_md.c" partName="startup_stm32f10x_md.c" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/cmsis_boot/startup/startup_stm32f10x_md.c" title="startup_stm32f10x_md.c" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/cmsis_boot/startup/startup_stm32f10x_md.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/cmsis_boot/startup/startup_stm32f10x_md.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
 </editors>
 <views>
 <view id="org.eclipse.debug.ui.MemoryView" partName="Memory">
+<viewState/>
+</view>
+<view id="org.coocox.codebugger.trace.ui.traceview" partName="Semihosting">
+<viewState/>
+</view>
+<view id="org.eclipse.debug.ui.DebugView" partName="Debug">
+<viewState/>
+</view>
+<view id="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" partName="Memory Browser">
+<viewState>
+<MemoryBroser ComboItemsValue=";" FocuseTabIndex="0" TabsValue="" TextValue="" horizontalPosition="0" verticalPosition="0"/>
+</viewState>
+</view>
+<view id="org.coocox.coassistant.view.CoAssistantView_debug" partName="Peripherals">
+<viewState horizontalPosition="0" verticalPosition="0">
+<selection>
+<element name="RCC"/>
+</selection>
+<registerValues baseAddress="Base Address: 0x40021000" description="Description:  Reset and clock control(Low-, medium-, high- and XL-density)"/>
+</viewState>
+</view>
+<view id="org.eclipse.debug.ui.VariableView" partName="Variables">
+<viewState/>
+</view>
+<view id="org.coocox.component.ui.ComponentView" partName="Components">
 <viewState/>
 </view>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
@@ -136,6 +176,9 @@
 <element path="/SwampCooler Relay Controller/json"/>
 <element path="/SwampCooler Relay Controller/sensors"/>
 <element path="/SwampCooler Relay Controller/sensors/DHT22"/>
+<element path="/SwampCooler Relay Controller/Std_Periph"/>
+<element path="/SwampCooler Relay Controller/Std_Periph/include"/>
+<element path="/SwampCooler Relay Controller/Std_Periph/source"/>
 <element path="/SwampCooler Relay Controller/stdio"/>
 <element path="/SwampCooler Relay Controller/swamp_controls"/>
 <element path="/SwampCooler Relay Controller/webserver"/>
@@ -143,20 +186,11 @@
 <element path="/SwampCooler Relay Controller/webserver/source"/>
 </expanded>
 <selection>
-<element path="/SwampCooler Relay Controller/main.c"/>
+<element path="/SwampCooler Relay Controller/esp8266/source/esp8266.c"/>
 </selection>
 </viewState>
 </view>
-<view id="org.coocox.component.ui.ComponentView" partName="Components">
-<viewState/>
-</view>
 <view id="org.eclipse.debug.ui.RegisterView" partName="Registers">
-<viewState/>
-</view>
-<view id="org.coocox.codebugger.trace.ui.traceview" partName="Semihosting">
-<viewState/>
-</view>
-<view id="org.eclipse.debug.ui.DebugView" partName="Debug">
 <viewState/>
 </view>
 <view id="org.eclipse.cdt.ui.callHierarchy" partName="Call Hierarchy">
@@ -165,26 +199,19 @@
 <view id="org.eclipse.ui.console.ConsoleView" partName="Console">
 <viewState/>
 </view>
-<view id="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" partName="Memory Browser">
-<viewState>
-<MemoryBroser ComboItemsValue=";" FocuseTabIndex="0" TabsValue="" TextValue="" horizontalPosition="0" verticalPosition="0"/>
-</viewState>
-</view>
-<view id="org.coocox.coassistant.view.CoAssistantView_debug" partName="Peripherals">
-<viewState horizontalPosition="0" verticalPosition="0">
-<selection>&#x0A;<element name="GPIOB"/>
-</selection>
-<registerValues baseAddress="Base Address: 0x40010C00" description="Description:  General Purpose I/O B"/>
-</viewState>
-</view>
 <view id="org.eclipse.cdt.dsf.debug.ui.disassembly.view" partName="Disassembly">
 <viewState disassembly.syncActiveContext="true" disassembly.trackExpression="false"/>
 </view>
-<view id="org.eclipse.debug.ui.VariableView" partName="Variables">
-<viewState/>
+<view id="org.coocox.coassistant.view.CoAssistantView" partName="Peripherals">
+<viewState horizontalPosition="0" verticalPosition="10">
+<selection>
+<element name="RCC"/>
+</selection>
+<registerValues baseAddress="Base Address: 0x40021000" description="Description:  Reset and clock control(Low-, medium-, high- and XL-density)"/>
+</viewState>
 </view>
 </views>
-<perspectives activePart="org.eclipse.ui.console.ConsoleView" activePerspective="org.coocox.builder.perspective.CoBuilder">
+<perspectives activePart="org.eclipse.cdt.ui.editor.CEditor" activePerspective="org.coocox.builder.perspective.CoBuilder">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.coocox.builder.ui.PerspectiveCoBuilder" id="org.coocox.builder.perspective.CoBuilder" label="CooCox CoBuilder"/>
 <alwaysOnActionSet id="org.coocox.component.ui.actionSet"/>
@@ -218,6 +245,7 @@
 <view id="org.coocox.builder.ui.views.ProjectView"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.cdt.ui.callHierarchy"/>
+<view id="org.coocox.coassistant.view.CoAssistantView"/>
 <fastViewBars/>
 <layout>
 <mainWindow>
@@ -245,15 +273,17 @@
 </presentation>
 </folder>
 </info>
-<info part="org.coocox.builder.ui.exampleView" ratio="0.2005277" ratioLeft="304" ratioRight="1212" relationship="2" relative="org.eclipse.ui.internal.ViewStack@5e18b"/>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@15b7cba" ratio="0.71983916" ratioLeft="1074" ratioRight="418" relationship="2" relative="org.coocox.builder.ui.exampleView">
-<folder appearance="2" expanded="2">
+<info part="org.coocox.builder.ui.exampleView" ratio="0.2332696" ratioLeft="244" ratioRight="802" relationship="2" relative="org.eclipse.ui.internal.ViewStack@5e18b"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@15b7cba" ratio="0.8809993" ratioLeft="1340" ratioRight="181" relationship="2" relative="org.coocox.builder.ui.exampleView">
+<folder activePageID="org.coocox.coassistant.view.CoAssistantView" appearance="2" expanded="2">
+<page content="org.coocox.coassistant.view.CoAssistantView" label="Peripherals"/>
 <page content="org.coocox.component.ui.Help" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
-<page content="org.coocox.coassistant.view.CoAssistantView" label="LabelNotFound"/>
 <page content="org.coocox.builder.ui.MoreExampleView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.44952178" ratioLeft="423" ratioRight="518" relationship="4" relative="org.coocox.builder.ui.exampleView"/>
@@ -310,8 +340,8 @@
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <hide_toolbar_item_id id="org.coocox.builder.ui.build"/>
 <hide_toolbar_item_id id="org.coocox.welcome.ui.action.welcome"/>
-<hide_toolbar_item_id id="org.coocox.component.ui.ShowRepositoryAction"/>
 <hide_toolbar_item_id id="org.coocox.codebugger.configuration.coideProgramDownloadAction"/>
+<hide_toolbar_item_id id="org.coocox.component.ui.ShowRepositoryAction"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.debug.ui.DebugView"/>
 <view id="org.coocox.codebugger.trace.ui.traceview"/>
@@ -325,30 +355,43 @@
 <view id="org.coocox.builder.ui.views.ProjectView"/>
 <fastViewBars/>
 <viewLayoutRec closeable="false" id="org.eclipse.debug.ui.DebugView"/>
-<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="org.eclipse.ui.internal.ViewStack@b979aa">&#x0A;<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">&#x0A;<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<layout>
+<mainWindow>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@b979aa">
+<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">
+<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="1398" ratioRight="466" relationship="2" relative="org.eclipse.ui.internal.ViewStack@b979aa">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="1398" ratioRight="466" relationship="2" relative="org.eclipse.ui.internal.ViewStack@b979aa">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@4353c3" ratio="0.71041214" ratioLeft="655" ratioRight="267" relationship="4" relative="org.eclipse.ui.internal.ViewStack@b979aa">&#x0A;<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@4353c3" ratio="0.71041214" ratioLeft="655" ratioRight="267" relationship="4" relative="org.eclipse.ui.internal.ViewStack@b979aa">
+<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
 <part id="1"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@112d38a" ratio="0.43837085" ratioLeft="409" ratioRight="524" relationship="2" relative="org.eclipse.ui.internal.ViewStack@4353c3">&#x0A;<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">&#x0A;<page content="org.coocox.codebugger.trace.ui.traceview" label="Semihosting"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@112d38a" ratio="0.43837085" ratioLeft="409" ratioRight="524" relationship="2" relative="org.eclipse.ui.internal.ViewStack@4353c3">
+<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">
+<page content="org.coocox.codebugger.trace.ui.traceview" label="Semihosting"/>
 <page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
 <page content="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" label="Memory Browser"/>
 <page content="org.eclipse.cdt.ui.callHierarchy" label="Call Hierarchy"/>
 <page content="org.eclipse.debug.ui.MemoryView" label="Memory"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
 <part id="1"/>
 <part id="2"/>
 <part id="3"/>
@@ -356,17 +399,20 @@
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@817de5" ratio="0.84565914" ratioLeft="789" ratioRight="144" relationship="2" relative="org.eclipse.ui.internal.ViewStack@b979aa">&#x0A;<folder activePageID="org.coocox.coassistant.view.CoAssistantView_debug" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.debug.ui.RegisterView" label="Registers"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@817de5" ratio="0.8878343" ratioLeft="1029" ratioRight="130" relationship="2" relative="org.eclipse.ui.internal.ViewStack@b979aa">
+<folder activePageID="org.coocox.coassistant.view.CoAssistantView_debug" appearance="2" expanded="2">
+<page content="org.eclipse.debug.ui.RegisterView" label="Registers"/>
 <page content="org.coocox.coassistant.view.CoAssistantView_debug" label="Peripherals"/>
 <page content="org.eclipse.cdt.dsf.debug.ui.disassembly.view" label="Disassembly"/>
 <page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
 <part id="1"/>
 <part id="2"/>
 </presentation>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.17436975" ratioLeft="249" ratioRight="1179" relationship="2" relative="org.eclipse.ui.internal.ViewStack@b979aa"/>
+<info part="org.eclipse.ui.editorss" ratio="0.18604651" ratioLeft="168" ratioRight="735" relationship="2" relative="org.eclipse.ui.internal.ViewStack@b979aa"/>
 </mainWindow>
 </layout>
 </perspective>
@@ -375,166 +421,161 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SwampCooler Relay Controller/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SwampCooler Relay Controller/esp8266/source/esp8266.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SwampCooler Relay Controller/swamp_controls/swamp_functions.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SwampCooler Relay Controller/swamp_controls/swamp_functions.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SwampCooler Relay Controller/config/globalDefines.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SwampCooler Relay Controller/config/USART3_Config.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SwampCooler Relay Controller/config/USART3_Config.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SwampCooler Relay Controller/json/json.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SwampCooler Relay Controller/esp8266/source/esp8266.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SwampCooler Relay Controller/esp8266/include/esp8266.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SwampCooler Relay Controller/webserver/source/WebServer.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SwampCooler Relay Controller/webserver/include/WebServer.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SwampCooler Relay Controller/cmsis_boot/startup/startup_stm32f10x_md.c"/>
 </editors>
-<item historyLabel="swamp_functions.h" index="1">
-<position info="not_deleted" x="97" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4481" y="0"/>
 </item>
-<item historyLabel="swamp_functions.c" index="2">
-<position info="not_deleted" x="112" y="85"/>
+<item historyLabel="swamp_functions.c" index="3">
+<position info="not_deleted" x="774" y="0"/>
+</item>
+<item historyLabel="swamp_functions.c" index="3">
+<position info="not_deleted" x="847" y="0"/>
+</item>
+<item historyLabel="swamp_functions.c" index="3">
+<position info="not_deleted" x="861" y="0"/>
+</item>
+<item historyLabel="swamp_functions.c" index="3">
+<position info="not_deleted" x="948" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="736" y="0"/>
-</item>
-<item historyLabel="swamp_functions.c" index="2">
-<position info="not_deleted" x="108" y="0"/>
+<position info="not_deleted" x="4481" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1426" y="0"/>
+<position info="not_deleted" x="4587" y="0"/>
 </item>
-<item historyLabel="swamp_functions.c" index="2">
-<position info="not_deleted" x="373" y="0"/>
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="9194" y="16"/>
 </item>
-<item historyLabel="USART3_Config.h" index="4">
-<position info="not_deleted" x="66" y="27"/>
+<item historyLabel="swamp_functions.h" index="2">
+<position info="not_deleted" x="314" y="16"/>
 </item>
-<item historyLabel="USART3_Config.c" index="5">
-<position info="not_deleted" x="1713" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4418" y="0"/>
 </item>
-<item historyLabel="swamp_functions.c" index="2">
-<position info="not_deleted" x="373" y="0"/>
+<item historyLabel="swamp_functions.h" index="2">
+<position info="not_deleted" x="314" y="16"/>
 </item>
-<item historyLabel="swamp_functions.h" index="1">
+<item historyLabel="swamp_functions.c" index="3">
+<position info="not_deleted" x="948" y="0"/>
+</item>
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="9194" y="16"/>
+</item>
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="9894" y="16"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4418" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4194" y="28"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4414" y="16"/>
+</item>
+<item historyLabel="esp8266.c" index="1">
 <position/>
 </item>
-<item historyLabel="swamp_functions.c" index="2">
-<position info="not_deleted" x="69" y="41"/>
+<item historyLabel="swamp_functions.h" index="2">
+<position info="not_deleted" x="314" y="16"/>
 </item>
-<item historyLabel="json.c" index="6">
-<position info="not_deleted" x="124" y="0"/>
+<item historyLabel="esp8266.c" index="1">
+<position/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3258" y="35"/>
+<item historyLabel="esp8266.h" index="4">
+<position info="not_deleted" x="1183" y="15"/>
 </item>
-<item historyLabel="swamp_functions.h" index="1">
-<position info="not_deleted" x="528" y="0"/>
+<item historyLabel="swamp_functions.h" index="2">
+<position info="not_deleted" x="314" y="16"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3258" y="35"/>
-</item>
-<item historyLabel="esp8266.c" index="7">
-<position info="not_deleted" x="9712" y="0"/>
-</item>
-<item historyLabel="esp8266.c" index="7">
-<position info="not_deleted" x="10791" y="3"/>
+<item historyLabel="swamp_functions.h" index="2">
+<position info="not_deleted" x="474" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="191" y="0"/>
+<position info="not_deleted" x="4414" y="16"/>
 </item>
-<item historyLabel="esp8266.c" index="7">
-<position info="not_deleted" x="1045" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2522" y="0"/>
 </item>
-<item historyLabel="swamp_functions.h" index="1">
-<position info="not_deleted" x="528" y="0"/>
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="9063" y="0"/>
 </item>
-<item historyLabel="globalDefines.h" index="3">
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="9111" y="0"/>
+</item>
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="9186" y="0"/>
+</item>
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="9248" y="0"/>
+</item>
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="9823" y="0"/>
+</item>
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="9980" y="0"/>
+</item>
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="10079" y="0"/>
+</item>
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="10103" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2522" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4299" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4393" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4481" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4587" y="0"/>
+</item>
+<item historyLabel="startup_stm32f10x_md.c" index="5">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="esp8266.c" index="7">
-<position info="not_deleted" x="1045" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4587" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="191" y="0"/>
+<position info="not_deleted" x="2522" y="0"/>
 </item>
-<item historyLabel="globalDefines.h" index="3">
-<position info="not_deleted" x="508" y="23"/>
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="9063" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="2310" y="0"/>
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="9111" y="0"/>
 </item>
-<item historyLabel="esp8266.c" index="7">
-<position info="not_deleted" x="1785" y="9"/>
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="9186" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="2719" y="0"/>
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="9248" y="0"/>
 </item>
-<item historyLabel="esp8266.c" index="7">
-<position info="not_deleted" x="1952" y="0"/>
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="9282" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="2303" y="0"/>
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="9330" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position/>
-</item>
-<item historyLabel="swamp_functions.h" index="1">
-<position info="not_deleted" x="321" y="16"/>
-</item>
-<item historyLabel="swamp_functions.h" index="1">
-<position info="not_deleted" x="423" y="0"/>
-</item>
-<item historyLabel="swamp_functions.h" index="1">
-<position/>
-</item>
-<item historyLabel="esp8266.c" index="7">
-<position info="not_deleted" x="844" y="0"/>
-</item>
-<item historyLabel="swamp_functions.h" index="1">
-<position info="not_deleted" x="303" y="0"/>
+<item historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="9386" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="4159" y="2"/>
+<position info="not_deleted" x="4501" y="15"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3662" y="28"/>
-</item>
-<item historyLabel="esp8266.c" index="7">
-<position info="not_deleted" x="844" y="0"/>
-</item>
-<item historyLabel="esp8266.c" index="7">
-<position info="not_deleted" x="9719" y="30"/>
-</item>
-<item historyLabel="esp8266.c" index="7">
-<position info="not_deleted" x="10576" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="4194" y="0"/>
-</item>
-<item historyLabel="esp8266.c" index="7">
-<position info="not_deleted" x="10576" y="0"/>
-</item>
-<item historyLabel="esp8266.h" index="8">
-<position info="not_deleted" x="2027" y="0"/>
-</item>
-<item historyLabel="WebServer.c" index="9">
-<position info="not_deleted" x="1536" y="0"/>
-</item>
-<item historyLabel="WebServer.c" index="9">
-<position info="not_deleted" x="1042" y="0"/>
-</item>
-<item historyLabel="WebServer.c" index="9">
-<position info="not_deleted" x="263" y="356"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="4194" y="0"/>
-</item>
-<item historyLabel="WebServer.h" index="10">
-<position info="not_deleted" x="430" y="28"/>
-</item>
-<item active="true" historyLabel="main.c" index="0">
-<position info="not_deleted" x="888" y="0"/>
+<item active="true" historyLabel="esp8266.c" index="1">
+<position info="not_deleted" x="9807" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -543,50 +584,47 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="dht22.h" tooltip="SwampCooler Relay Controller/sensors/DHT22/dht22.h">
-<persistable path="/SwampCooler Relay Controller/sensors/DHT22/dht22.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f10x_md.c" tooltip="SwampCooler Relay Controller/cmsis_boot/startup/startup_stm32f10x_md.c">
+<persistable path="/SwampCooler Relay Controller/cmsis_boot/startup/startup_stm32f10x_md.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="dht22.c" tooltip="SwampCooler Relay Controller/sensors/DHT22/dht22.c">
-<persistable path="/SwampCooler Relay Controller/sensors/DHT22/dht22.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f10x.c" tooltip="SwampCooler Relay Controller/cmsis_boot/system_stm32f10x.c">
+<persistable path="/SwampCooler Relay Controller/cmsis_boot/system_stm32f10x.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="swamp_functions.c" tooltip="SwampCooler Relay Controller/swamp_controls/swamp_functions.c">
-<persistable path="/SwampCooler Relay Controller/swamp_controls/swamp_functions.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f10x.h" tooltip="SwampCooler Relay Controller/cmsis_boot/system_stm32f10x.h">
+<persistable path="/SwampCooler Relay Controller/cmsis_boot/system_stm32f10x.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="swamp_functions.h" tooltip="SwampCooler Relay Controller/swamp_controls/swamp_functions.h">
-<persistable path="/SwampCooler Relay Controller/swamp_controls/swamp_functions.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x_conf.h" tooltip="SwampCooler Relay Controller/cmsis_boot/stm32f10x_conf.h">
+<persistable path="/SwampCooler Relay Controller/cmsis_boot/stm32f10x_conf.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="WebServer.h" tooltip="Wifi_Dimmer/Server/WebServer.h">
-<persistable path="/Wifi_Dimmer/Server/WebServer.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x.h" tooltip="SwampCooler Relay Controller/cmsis_boot/stm32f10x.h">
+<persistable path="/SwampCooler Relay Controller/cmsis_boot/stm32f10x.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f10x_md.c" tooltip="Wifi_Dimmer/cmsis_boot/startup/startup_stm32f10x_md.c">
-<persistable path="/Wifi_Dimmer/cmsis_boot/startup/startup_stm32f10x_md.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="json.c" tooltip="SwampCooler Relay Controller/json/json.c">
+<persistable path="/SwampCooler Relay Controller/json/json.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="localSite.c" tooltip="Wifi_Dimmer/localSite/localSite.c">
-<persistable path="/Wifi_Dimmer/localSite/localSite.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="json.h" tooltip="SwampCooler Relay Controller/json/json.h">
+<persistable path="/SwampCooler Relay Controller/json/json.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="localSite.h" tooltip="Wifi_Dimmer/localSite/localSite.h">
-<persistable path="/Wifi_Dimmer/localSite/localSite.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="WebServer.c" tooltip="SwampCooler Relay Controller/webserver/source/WebServer.c">
+<persistable path="/SwampCooler Relay Controller/webserver/source/WebServer.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="RestApi_Core.c" tooltip="Wifi_Dimmer/RestApi/RestApi_Core.c">
-<persistable path="/Wifi_Dimmer/RestApi/RestApi_Core.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="WebServerConfig.h" tooltip="SwampCooler Relay Controller/webserver/include/WebServerConfig.h">
+<persistable path="/SwampCooler Relay Controller/webserver/include/WebServerConfig.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="globalDefines.h" tooltip="Wifi_Dimmer/DimmerConfig/globalDefines.h">
-<persistable path="/Wifi_Dimmer/DimmerConfig/globalDefines.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="WebServer.h" tooltip="SwampCooler Relay Controller/webserver/include/WebServer.h">
+<persistable path="/SwampCooler Relay Controller/webserver/include/WebServer.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="USART1_Config.h" tooltip="Wifi_Dimmer/Config/USART1_Config.h">
-<persistable path="/Wifi_Dimmer/Config/USART1_Config.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="time.c" tooltip="SwampCooler Relay Controller/customStructs/time.c">
+<persistable path="/SwampCooler Relay Controller/customStructs/time.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="Wifi.h" tooltip="Wifi_Dimmer/Wifi.h">
-<persistable path="/Wifi_Dimmer/Wifi.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="globalDefines.h" tooltip="SwampCooler Relay Controller/config/globalDefines.h">
+<persistable path="/SwampCooler Relay Controller/config/globalDefines.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="esp8266.c" tooltip="Wifi_Dimmer/esp8266/source/esp8266.c">
-<persistable path="/Wifi_Dimmer/esp8266/source/esp8266.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="esp8266.c" tooltip="SwampCooler Relay Controller/esp8266/source/esp8266.c">
+<persistable path="/SwampCooler Relay Controller/esp8266/source/esp8266.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="esp8266.h" tooltip="Wifi_Dimmer/esp8266/include/esp8266.h">
-<persistable path="/Wifi_Dimmer/esp8266/include/esp8266.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="WebServerConfig.c" tooltip="Wifi_Dimmer/Server/WebServerConfig.c">
-<persistable path="/Wifi_Dimmer/Server/WebServerConfig.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="esp8266.h" tooltip="SwampCooler Relay Controller/esp8266/include/esp8266.h">
+<persistable path="/SwampCooler Relay Controller/esp8266/include/esp8266.h"/>
 </file>
 </mruList>
 </workbench>

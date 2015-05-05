@@ -16,7 +16,7 @@ void Swamp_relay_GPIO_Init()
 void Swamp_Init()
 {
 	Swamp_relay_GPIO_Init();
-	GPIOB->BRR = PUMP_PIN | FAN_LOW_PIN | FAN_HIGH_PIN; //Make sure all relays are off at startup
+	GPIOB->BSRR = PUMP_PIN | FAN_LOW_PIN | FAN_HIGH_PIN; //Make sure all relays are off at startup
 }
 
 
@@ -39,16 +39,16 @@ void FanControl(Fan_Mode mode)
 {
 	switch (mode){
 	case Fan_Low:
-
+		FanLOW();
 		break;
 	case Fan_High:
-
+		FanHIGH();
 		break;
 	case Fan_OFF:
-
+		FanOFF();
 		break;
 	default:
-
+		FanOFF();
 		break;
 	}
 }

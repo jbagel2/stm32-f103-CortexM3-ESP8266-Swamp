@@ -25,12 +25,12 @@ typedef enum
 }On_Off;
 
 
-static On_Off pumpMode_Current = OFF;
-static Fan_Mode fanMode_Current = Fan_OFF;
-static On_Off fanLow_Current = OFF;
-static On_Off fanHigh_Current = OFF;
-static uint8_t temp_Current = 70; //Static for testing
-static uint8_t humid_Current = 15; //Static for testing
+On_Off pumpMode_Current;
+Fan_Mode fanMode_Current;
+On_Off fanLow_Current;
+On_Off fanHigh_Current;
+uint8_t temp_Current; //Static for testing
+uint8_t humid_Current; //Static for testing
 
 
 
