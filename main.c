@@ -156,16 +156,6 @@ int main(void)
 
     while(1)
     {
-    	/*
-    	//*********DEBUG ONLY********** Waits for DevBoard button press
-    	if(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_8) && ((Millis() - debounceCurrent) >= debounceTime_ms))
-    	{
-    		debounceCurrent = Millis();
-    		pumpMode_Current ^= (1<<0);
-    		PumpControl(pumpMode_Current);
-    	}
-    	*/
-
     	//Checks (polls) the DMA buffer every {DMA_Rx_Buff_Poll_Int_ms} milliseconds
     	if((Millis() - lastDMABuffPoll) >= DMA_Rx_Buff_Poll_Int_ms)
     			{

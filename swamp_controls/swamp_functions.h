@@ -35,10 +35,13 @@ uint8_t humid_Current; //Static for testing
 
 
 void Swamp_Init();
+void Refresh_States();
 void PumpControl(On_Off mode);
 void FanControl(Fan_Mode mode);
 
 //May want to keep these private eventually
+void PumpOFF();
+void PumpON();
 void FanOFF();
 void FanLOW();
 void FanHIGH();

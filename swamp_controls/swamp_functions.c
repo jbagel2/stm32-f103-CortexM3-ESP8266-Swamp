@@ -1,4 +1,8 @@
-
+/*
+ * Pump -> PB12
+ * Fan Low -> PB13
+ * Fan High -> PB14
+*/
 
 #include "swamp_functions.h"
 
@@ -19,18 +23,25 @@ void Swamp_Init()
 	GPIOB->BSRR = PUMP_PIN | FAN_LOW_PIN | FAN_HIGH_PIN; //Make sure all relays are off at startup
 }
 
+void Refresh_States()
+{
+	PumpControl(pumpMode_Current);
+	FanControl(fanMode_Current);
+}
+
+//---------- Control request evaluation -----------
 
 void PumpControl(On_Off mode)
 {
 	switch (mode) {
 		case ON:
-		GPIOB->BRR = PUMP_PIN;
+			PumpON();
 			break;
 		case OFF:
-		GPIOB->BSRR = PUMP_PIN;
+			PumpOFF();
 			break;
 		default:
-		GPIOB->BSRR = PUMP_PIN;
+			PumpOFF();
 			break;
 	}
 }
@@ -52,21 +63,43 @@ void FanControl(Fan_Mode mode)
 		break;
 	}
 }
+//---------- ---------------------- ------------
+
+//---------- Relay Control Section ------------
+
+void PumpON()
+{
+	GPIOB->BRR = PUMP_PIN;
+	pumpMode_Current = ON;
+}
+
+void PumpOFF()
+{
+	GPIOB->BSRR = PUMP_PIN;
+	pumpMode_Current = OFF;
+}
 
 void FanOFF()
 {
 	GPIOB->BSRR = FAN_LOW_PIN;
 	GPIOB->BSRR = FAN_HIGH_PIN;
+	fanMode_Current = Fan_OFF;
 }
 
 void FanLOW()
 {
 	GPIOB->BSRR = FAN_LOW_PIN;
 	GPIOB->BRR = FAN_HIGH_PIN;
+	fanMode_Current = Fan_Low;
 }
 
 void FanHIGH()
 {
 	GPIOB->BRR = FAN_LOW_PIN;
 	GPIOB->BRR = FAN_HIGH_PIN;
+	fanMode_Current = Fan_High;
 }
+
+//---------- ---------------------- ------------
+
+

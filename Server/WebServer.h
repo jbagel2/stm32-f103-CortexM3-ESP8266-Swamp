@@ -19,16 +19,16 @@ char customRESTResponse[400];
 
 typedef KeyValuePair_String_String Header;
 
-const typedef enum {GET=0,POST,PUT,DELETE}Http_Method_Enum; // The rest call types that we know what to do with
+const typedef enum {REQUEST_TYPE_ERROR = 0,GET,POST,PUT,DELETE}Http_Method_Enum; // The rest call types that we know what to do with
 const char *HTTP_Method[4];
 
 #define HttpMethod(methodEnum) (HTTP_Method[(methodEnum)]) // Converts the enum to its corresponding string representation
-
+#define HeaderKey(headerType) (RequestHeaders_Array[(headerType)]) // Testing macro to retrieve headerArray value
 
 const typedef enum {ContentType,ContentLength,Accept,AcceptEncoding,Host,UserAgent}RequestHeaders_Types;
 const char *RequestHeaders_Array[6];
 
-#define HeaderKey(headerType) (RequestHeaders_Array[(headerType)]) // Testing macro to retrieve headerArray value
+
 
 typedef struct
 {

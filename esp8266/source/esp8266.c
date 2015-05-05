@@ -6,6 +6,7 @@
  ********************************************************/
 
 #include "esp8266.h"
+#include "WebServer.h"
 #include "swamp_controls/swamp_functions.h"
 
 
@@ -281,6 +282,34 @@ IPD_Data ProcessIPD_Data(char *IPD_Buffer)
 
 }
 
+//Find first array index that contains the stringToFind
+uint16_t IndexOf(char *arrayToSearch[], uint16_t arraySize,char *stringToFind)
+{
+	uint16_t correctedSize = arraySize / sizeof(int); //NEED TO EVALUATE IF sizeof(int) evaluates as expected
+	uint16_t i = 0;
+	for(i; i < correctedSize ;i++)
+	{
+		if(strstr(arrayToSearch[i],stringToFind))
+		{
+			return i;
+		}
+	}
+	return NULL;
+}
+
+//Extracts the enum for the HTTPRequest type of the request
+Http_Method_Enum IsRequestType(IPD_Data *request)
+{
+	uint16_t enumValue = IndexOf(HTTP_Method, sizeof(HTTP_Method),request->RequestType);
+	if(enumValue != NULL)
+	{
+		Http_Method_Enum method = enumValue;
+		return method;
+	}
+	return REQUEST_TYPE_ERROR;
+}
+
+
 IPD_Data Wifi_CheckDMABuff_ForIPDData()
 {
 	currentIPD.Valid = 0;
@@ -307,7 +336,7 @@ IPD_Data Wifi_CheckDMABuff_ForIPDData()
 					currentIPD = ProcessIPD_Data(ESP_IPD_DataBuffer);
 
 						//TODO: Need to add a level of error detection/correction as data may be missing the
-					if(strstr(currentIPD.RequestType, "POST"))
+					if(strstr(currentIPD.RequestType, HttpMethod(POST)))
 					{
 						//if URI contains swamp (the test for now)
 						if(strstr(currentIPD.URI, "pump"))

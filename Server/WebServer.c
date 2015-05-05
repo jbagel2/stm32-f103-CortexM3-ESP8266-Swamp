@@ -26,7 +26,7 @@ void ClearArray_Size(char buffer[], uint16_t size);
 uint32_t wi= 0;
 
 
-const char *HTTP_Method[4] = {"GET","POST","PUT","DELETE"}; // Array is used for string compare or value of for the Http_Call_Type ENUM
+const char *HTTP_Method[4] = {"ERROR","GET","POST","PUT","DELETE"}; // Array is used for string compare or value of for the Http_Call_Type ENUM
 const char *RequestHeaders_Array[6] = {"Content-Type: ","Content-Length: ","Accept: ", "Accept-Encoding: ", "Host: ", "User-Agent: "};
 
 void buildHeader(Header *newHeaderOut, RequestHeaders_Types type, char *headerValue)
