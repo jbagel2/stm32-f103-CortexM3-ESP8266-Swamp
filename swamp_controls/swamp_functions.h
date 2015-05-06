@@ -5,7 +5,7 @@
 #define __SWAMP_CONTROLS_H__
 
 #include "stm32f10x_gpio.h"
-
+#include "KeyValuePair.h"
 
 #define FAN_HIGH_PIN GPIO_Pin_14
 #define FAN_LOW_PIN GPIO_Pin_13

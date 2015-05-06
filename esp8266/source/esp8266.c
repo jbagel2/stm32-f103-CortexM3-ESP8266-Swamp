@@ -298,9 +298,9 @@ uint16_t IndexOf(char *arrayToSearch[], uint16_t arraySize,char *stringToFind)
 }
 
 //Extracts the enum for the HTTPRequest type of the request
-Http_Method_Enum IsRequestType(IPD_Data *request)
+Http_Method_Enum IsRequestType(IPD_Data request)
 {
-	uint16_t enumValue = IndexOf(HTTP_Method, sizeof(HTTP_Method),request->RequestType);
+	uint16_t enumValue = IndexOf(HTTP_Method, sizeof(HTTP_Method),request.RequestType);
 	if(enumValue != NULL)
 	{
 		Http_Method_Enum method = enumValue;
@@ -335,8 +335,100 @@ IPD_Data Wifi_CheckDMABuff_ForIPDData()
 					//now we process since DMA isn't going to stomp on us.
 					currentIPD = ProcessIPD_Data(ESP_IPD_DataBuffer);
 
+					Http_Method_Enum requestType = IsRequestType(currentIPD);
+
+					if(requestType == POST)
+					{
+						char *newStart = strchr(currentIPD.URI,'/');
+						if(newStart)
+						{
+							//If the URI starts with a '/' we get rid of it by moving the pointer up by one mem address
+							currentIPD.URI = newStart + 1;
+						}
+						//Make sure its actually a query
+						if(strstr(currentIPD.URI, "?"))
+						{
+						//Check for multiple query strings
+						uint8_t multiQuery = strstr(currentIPD.URI, "&");
+						if(multiQuery)
+						{
+							//TODO: Replace temp queryStringArray size of 4
+							KeyValuePair_String_Uint16_t queryStrings[4];
+							uint8_t qsc = 0;
+
+							//Get rid of the start '?' char
+							URI = strtok(currentIPD.URI,"?");
+							for(qsc; qsc < 4; qsc++)
+							{
+								KeyValuePair_String_Uint16_t thisQuery;
+								thisQuery.key = "\0";
+								thisQuery.value = -1;
+								if(qsc == 0)
+								{thisQuery.key = strtok(URI,"=");} else{ thisQuery.key = strtok(NULL,"=");}
+								if(thisQuery.key=="\0" || thisQuery.key == NULL)
+								{
+									if(qsc > 0)
+									{
+										currentIPD.Valid = 1;
+										RefreshCustomRESTResponseSwamp("172.20.112.136", "192.168.4.1", pumpMode_Current, fanMode_Current,temp_Current, humid_Current);
+									}
+									return currentIPD;
+								}
+								else {
+									queryValue1 = strtok(NULL, "&");
+									thisQuery.value = atoi(queryValue1);
+									//TODO: Need to evaluate what are valid values.
+									if(thisQuery.value < 3)
+									{
+										Update_State_Variables(thisQuery);
+										currentIPD.Valid = 1;
+										queryStrings[qsc] = thisQuery;
+									}
+								}
+
+
+								RefreshCustomRESTResponseSwamp("172.20.112.136", "192.168.4.1", pumpMode_Current, fanMode_Current,temp_Current, humid_Current);
+							}
+
+						}
+						else {
+							KeyValuePair_String_Uint16_t thisQuery;
+							URI = strtok(currentIPD.URI,"?");
+							thisQuery.key = "\0";
+							thisQuery.value = -1;
+
+							thisQuery.key = strtok(URI,"=");
+							queryValue1 = strtok(NULL, "&");
+							thisQuery.value = atoi(queryValue1);
+							//TODO: Need to evaluate what are valid values.
+							if(thisQuery.value < 3)
+							{
+								Update_State_Variables(thisQuery);
+
+								currentIPD.Valid = 1;
+							}
+						}
+						RefreshCustomRESTResponseSwamp("172.20.112.136", "192.168.4.1", pumpMode_Current, fanMode_Current,temp_Current, humid_Current);
+
+						}
+
+
+					}
+					else if (requestType == GET)
+					{
+						//TODO: Still need to add parsing of start up ESP data (ip's, MAC, and ready flag )
+						RefreshCustomRESTResponseSwamp("172.20.112.136", "192.168.4.1", pumpMode_Current, fanMode_Current,temp_Current, humid_Current);
+						currentIPD.Valid = 1;
+						return currentIPD;
+
+
+					}
+
+
+
+					//BELOW IS ORIGINAL UNTOUCHED REQUEST PROCESSING
 						//TODO: Need to add a level of error detection/correction as data may be missing the
-					if(strstr(currentIPD.RequestType, HttpMethod(POST)))
+					/*if(strstr(currentIPD.RequestType, HttpMethod(POST)))
 					{
 						//if URI contains swamp (the test for now)
 						if(strstr(currentIPD.URI, "pump"))
@@ -347,8 +439,24 @@ IPD_Data Wifi_CheckDMABuff_ForIPDData()
 								if(strstr(URI,"="))//If URI was sent prepended with a '/' this will be true
 								{
 									queryString1 = strtok(URI, "=");
+									queryValue1 = strtok(NULL, "&");
 
-									queryValue1 = strtok(NULL, "\0");
+
+									if(queryValue1 == '\0')
+									{
+										queryValue1 = strtok(NULL, "\0");
+									}
+									else
+									{
+										queryString2 = strtok(NULL, "=");
+										queryValue2 = strtok(NULL, "\0");
+										//if(queryString2 != '\0')
+										//{
+										//	queryValue2 = strtok(NULL, "\0");
+										//}
+									}
+
+
 								}
 								else
 								{
@@ -408,7 +516,7 @@ IPD_Data Wifi_CheckDMABuff_ForIPDData()
 
 							currentIPD.Valid = 1;
 						}
-					}
+					}*/
 					//printf("Incoming webrequest\r\n");
 				}
 

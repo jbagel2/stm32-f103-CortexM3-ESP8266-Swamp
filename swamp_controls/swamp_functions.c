@@ -29,6 +29,19 @@ void Refresh_States()
 	FanControl(fanMode_Current);
 }
 
+void Update_State_Variables(KeyValuePair_String_Uint16_t newStates)
+{
+
+	if(strstr(newStates.key, "pump"))
+	{
+		pumpMode_Current = newStates.value;
+	}
+	else if(strstr(newStates.key, "fan"))
+	{
+		fanMode_Current = newStates.value;
+	}
+}
+
 //---------- Control request evaluation -----------
 
 void PumpControl(On_Off mode)
@@ -88,14 +101,14 @@ void FanOFF()
 
 void FanLOW()
 {
-	GPIOB->BSRR = FAN_LOW_PIN;
-	GPIOB->BRR = FAN_HIGH_PIN;
+	GPIOB->BRR = FAN_LOW_PIN;
+	GPIOB->BSRR = FAN_HIGH_PIN;
 	fanMode_Current = Fan_Low;
 }
 
 void FanHIGH()
 {
-	GPIOB->BRR = FAN_LOW_PIN;
+	GPIOB->BSRR = FAN_LOW_PIN;
 	GPIOB->BRR = FAN_HIGH_PIN;
 	fanMode_Current = Fan_High;
 }

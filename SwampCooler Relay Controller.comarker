@@ -1,43 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <breakpoints>
 <breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/SwampCooler Relay Controller/main.c" type="1"/>
-<marker lineNumber="169" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
+<resource path="/SwampCooler Relay Controller/swamp_controls/swamp_functions.c" type="1"/>
+<marker lineNumber="35" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="message" value="Line breakpoint: swamp_functions.c [line: 35]"/>
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="C:\ARMDevelopment\STM32 Projects\F103\stm32-f103-CortexM3-ESP8266-SwampController\swamp_controls\swamp_functions.c"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: main.c [line: 180]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/SwampCooler Relay Controller/main.c"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="C:\ARMDevelopment\STM32 Projects\F103\stm32-f103-CortexM3-ESP8266-SwampController\main.c"/>
 <attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 <attrib name="org.eclipse.debug.core.enabled" value="true"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/SwampCooler Relay Controller/esp8266/source/esp8266.c" type="1"/>
-<marker lineNumber="374" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
 <attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: esp8266.c [line: 345]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/SwampCooler Relay Controller/esp8266/source/esp8266.c"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="C:\ARMDevelopment\STM32 Projects\F103\stm32-f103-CortexM3-ESP8266-SwampController\esp8266\source\esp8266.c"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
 </marker>
 </breakpoint>
 </breakpoints>
