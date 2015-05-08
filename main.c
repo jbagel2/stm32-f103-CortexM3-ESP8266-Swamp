@@ -57,7 +57,7 @@ uint32_t debounceCurrent = 0;
 uint32_t debounceTime_ms = 300;
 uint32_t lastDMABuffPoll = 0;
 uint32_t lastESPResetPoll = 0;
-#define ESP_RESET_CHECK_INTERVAL 120000 //2 minutes
+#define ESP_RESET_CHECK_INTERVAL 20000 //20 seconds
 
 uint32_t mj = 0;
 
@@ -156,8 +156,12 @@ int main(void)
 	//Has the ESP Dump the current connection info to USART (IP as AP and Client (and MACs))
 	Wifi_SendCommand(WIFI_GET_CURRENT_IP);
 
+	uint8_t readyFound = 0;
+
     while(1)
     {
+
+    	Wifi_CheckDMABuff_ForCIFSRData();
     	//Checks (polls) the DMA buffer every {DMA_Rx_Buff_Poll_Int_ms} milliseconds
     	if((Millis() - lastDMABuffPoll) >= DMA_Rx_Buff_Poll_Int_ms)
     			{
@@ -180,13 +184,19 @@ int main(void)
     	if((Millis() - lastESPResetPoll) >= ESP_RESET_CHECK_INTERVAL)
     	{
     		lastESPResetPoll = Millis();
-    		if(Wifi_CheckDMABuff_ForReady)
+    		readyFound = Wifi_CheckDMABuff_ForReady();
+
+    		if(readyFound)
     		{
     			StartServer(1,80);
     			Wifi_SendCommand(WIFI_GET_CURRENT_IP);
     		}
+
+
+    		//Check for ip and mac address data (and update the current settings if found.)
+
     	}
-    	//Check for existing connections to close
+
     }
 }
 

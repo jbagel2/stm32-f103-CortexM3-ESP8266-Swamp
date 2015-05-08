@@ -85,6 +85,7 @@ void Wifi_CloseConnection(uint8_t connectionNum);
 void Wifi_SendCustomCommand(char *customMessage);
 void Wifi_SendCustomCommand_External_Wait(char *customMessage);
 void Wifi_SendCommand(Wifi_Commands command );
+void Wifi_CheckDMABuff_ForCIFSRData();
 uint8_t Wifi_CheckDMABuff_ForReady();
 IPD_Data Wifi_CheckDMABuff_ForIPDData();
 void ConnectToAP(char *apName, char *password);

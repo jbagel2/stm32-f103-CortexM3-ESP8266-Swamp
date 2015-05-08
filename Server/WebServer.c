@@ -83,7 +83,7 @@ void SendRESTResponse(uint8_t connectionNum, const char *responseHeaders, const 
 
 	fullLength = headLength + (((strlen(RequestHeaders_Array[ContentLength]))+bodyLengthLength)+4) + bodyLength +1;
 	fullCommandLen = fullLength;
-	sprintf(webResponse, "AT+CIPSEND=%d,%d\r\n", connectionNum, fullLength);
+	sprintf(webResponse, "AT+CIPSEND=%d,%d\r", connectionNum, fullLength);
 	fullCommandLen += strlen(webResponse);
 
 	//void Wifi_ReadyWaitForAnswer();

@@ -148,6 +148,7 @@ char *WaitForAnswer_cmd_Buffer;
 char *WaitForAnswer_ans_Buffer;
 ///Will parse the USART buffer periodically (based on #defined poll interval) for the echo of cmdToWaitFor
 ///in the response from the ESP8266 module.
+//NEED TO PULL OUT CIFSR STUFF so it doesnt just get deleted
 void Wifi_WaitForAnswerCMD(char *cmdToWaitFor, uint16_t cmdSize)
 {
 
@@ -252,7 +253,15 @@ void Wifi_SendCommand(Wifi_Commands command )
 
 	USART_SendData(ESP_USART,'\n');
 
-	Wifi_WaitForAnswerCMD(ATCommandsArray[command], strlen(ATCommandsArray[command]));
+	if(command == WIFI_GET_CURRENT_IP)
+	{
+		Wifi_WaitForAnswerCMD("OK\r\n", 4);
+	}
+	else
+	{
+		Wifi_WaitForAnswerCMD(ATCommandsArray[command], strlen(ATCommandsArray[command]));
+	}
+
 	//for (wi=0;wi<735000;wi++);
 
 }
@@ -329,6 +338,39 @@ uint8_t Wifi_CheckDMABuff_ForReady()
 		foundReady = 1;
 	}
 	return foundReady;
+}
+
+char *APIP;
+char *APMAC;
+char *STAIP;
+char *STAMAC;
+
+void Wifi_CheckDMABuff_ForCIFSRData()
+{
+
+	ESP_Ready_Buffer_Pntr = memmem(USART3_RxBuffer,RxBuffSize,"+CIFSR:APIP",11);
+	if(ESP_Ready_Buffer_Pntr){
+		strcpy(ESP_Ready_Buffer,ESP_Ready_Buffer_Pntr);
+		DMA_Cmd(DMA1_Channel3,DISABLE);
+
+		//Wipes the received message from the DMA buffer (using the pointer to the data)
+		//This makes sure the data doesn't get mistaken for a new request, on the next buffer polling.
+		ClearArray_Size(ESP_Ready_Buffer_Pntr,strlen(ESP_Ready_Buffer_Pntr));
+		DMA_Initialize(USART3_RxBuffer, RxBuffSize);
+
+		strtok(ESP_Ready_Buffer, ","); //Discard the '+CIFSR:APIP'
+		APIP = strtok(NULL, "\r");
+		strtok(NULL, ","); //Discard the '+CIFSR:APMAC'
+		APMAC = strtok(NULL, "\r");
+		strtok(NULL, ","); //Discard the '+CIFSR:STAIP'
+		STAIP = strtok(NULL, "\r");
+		strtok(NULL, ","); //Discard the '+CIFSR:STAMAC'
+		STAMAC = strtok(NULL, "\r");
+		if(STAMAC != 0x0)
+		{
+
+		}
+	}
 
 }
 
