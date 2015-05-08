@@ -39,7 +39,7 @@ void buildHeader(Header *newHeaderOut, RequestHeaders_Types type, char *headerVa
 
 
 const char *RESTResponse_Headers_Test_OK = //Just here for testing as this is just a static OK 200 response
-		" HTTP/1.1 200 OK\r\n"
+		"HTTP/1.1 200 OK\r\n"
 		"Content-Type: application/json\r\n"
 		"Connection: close\r\n";
 		// Needs to include Content-Length:XX
@@ -81,7 +81,7 @@ void SendRESTResponse(uint8_t connectionNum, const char *responseHeaders, const 
 	sprintf(bodyLengthSizeString, "%d", bodyLength);
 	bodyLengthLength = strlen(bodyLengthSizeString);
 
-	fullLength = headLength + (((strlen(RequestHeaders_Array[ContentLength]))+bodyLengthLength)+4) + bodyLength+1;
+	fullLength = headLength + (((strlen(RequestHeaders_Array[ContentLength]))+bodyLengthLength)+4) + bodyLength +1;
 	fullCommandLen = fullLength;
 	sprintf(webResponse, "AT+CIPSEND=%d,%d\r\n", connectionNum, fullLength);
 	fullCommandLen += strlen(webResponse);
@@ -92,13 +92,13 @@ void SendRESTResponse(uint8_t connectionNum, const char *responseHeaders, const 
 	Wifi_SendCustomCommand_External_Wait(webResponse);
 
 	ClearArray_Size(webResponse,strlen(webResponse));
-	sprintf(webResponse,"%s%s%d\r\n\r\n%s",responseHeaders,RequestHeaders_Array[ContentLength],bodyLength + 1,responseBody);
+	sprintf(webResponse,"%s%s%d\r\n\r\n%s",responseHeaders,RequestHeaders_Array[ContentLength],bodyLength + 1 ,responseBody);
 	//strcat(webResponse, data);
 
 	Wifi_SendCustomCommand_External_Wait(webResponse);
 
 	Wifi_WaitForAnswer_SEND_OK(fullCommandLen);
-
+	//Wifi_CloseConnection(connectionNum);
 	ClearArray_Size(webResponse,strlen(webResponse));
 
 	//for (wi=0;wi<70500;wi++);

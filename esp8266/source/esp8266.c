@@ -13,6 +13,9 @@
 char *ESP_IPD_Data_Buffer_Pntr;
 char ESP_IPD_DataBuffer[RxBuffSize];
 
+char *ESP_Ready_Buffer_Pntr;
+char ESP_Ready_Buffer[RxBuffSize];
+
 
 char commandToSend[70];
 volatile uint8_t waitingForReponse = 0;
@@ -50,7 +53,8 @@ IPD_Data ProcessIPD_Data(char *IPD_Buffer);
 
 
 
-const char *ATCommandsArray[18] = {"AT",
+const char *ATCommandsArray[18] = {
+	"AT",
 	"AT+CIPSTATUS",
 	"AT+CWLAP",
 	"AT+GMR",
@@ -67,7 +71,8 @@ const char *ATCommandsArray[18] = {"AT",
 	"AT+CWLIF",
 	"AT+CWQAP",
 	"AT+CWSAP=",
-	"ATE0"};
+	"ATE0",
+	"AT+CIPCLOSE="};
 
 
 const char *ESP_Responses[10] =
@@ -195,7 +200,7 @@ void Wifi_WaitForAnswer_SEND_OK(uint16_t cmdSize)
 char closeConnectionBuffer[15];
 void Wifi_CloseConnection(uint8_t connectionNum)
 {
-	sprintf(closeConnectionBuffer, "AT+CIPCLOSE=%d\r\n",connectionNum);
+	sprintf(closeConnectionBuffer, "AT+CIPCLOSE=%d",connectionNum);
 	Wifi_SendCustomCommand(closeConnectionBuffer);
 }
 
@@ -307,6 +312,24 @@ Http_Method_Enum IsRequestType(IPD_Data request)
 		return method;
 	}
 	return REQUEST_TYPE_ERROR;
+}
+
+uint8_t Wifi_CheckDMABuff_ForReady()
+{
+	uint8_t foundReady = 0;
+	ESP_Ready_Buffer_Pntr = memmem(USART3_RxBuffer,RxBuffSize,"ready",5);
+	if(ESP_Ready_Buffer_Pntr){
+		strcpy(ESP_Ready_Buffer,ESP_Ready_Buffer_Pntr);
+		DMA_Cmd(DMA1_Channel3,DISABLE);
+
+		//Wipes the received message from the DMA buffer (using the pointer to the data)
+		//This makes sure the data doesn't get mistaken for a new request, on the next buffer polling.
+		ClearArray_Size(ESP_Ready_Buffer_Pntr,strlen(ESP_Ready_Buffer_Pntr));
+		DMA_Initialize(USART3_RxBuffer, RxBuffSize);
+		foundReady = 1;
+	}
+	return foundReady;
+
 }
 
 

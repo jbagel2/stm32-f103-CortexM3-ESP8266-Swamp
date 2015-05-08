@@ -39,6 +39,8 @@ pumpMode_Current    0x1               ..\obj\main.o
 microseconds        0x4               ..\obj\semihosting.o
 commandToSend       0x46              ..\obj\esp8266.o
 fanHigh_Current     0x1               ..\obj\main.o
+ESP_Ready_Buffer_Pntr
+                    0x4               ..\obj\esp8266.o
 queryValue2         0x4               ..\obj\esp8266.o
 queryValue1         0x4               ..\obj\esp8266.o
 customRESTResponse  0x190             ..\obj\main.o
@@ -66,6 +68,7 @@ WaitForAnswer_ans_Buffer
 humid_Current       0x1               ..\obj\main.o
 temp_Current        0x1               ..\obj\main.o
 dimmingString       0x4               ..\obj\esp8266.o
+ESP_Ready_Buffer    0x3e8             ..\obj\esp8266.o
 ESP_IPD_Data_Buffer_Pntr
                     0x4               ..\obj\esp8266.o
 
@@ -871,6 +874,8 @@ Discarded input sections
                 0x00000000       0x2c ..\obj\esp8266.o
  .text.Wifi_SendCustomCommand
                 0x00000000       0x18 ..\obj\esp8266.o
+ .text.Wifi_CheckDMABuff_ForReady
+                0x00000000       0x84 ..\obj\esp8266.o
  .text.ConnectToAP
                 0x00000000       0x2c ..\obj\esp8266.o
  .text.StartLocalAP
@@ -929,7 +934,7 @@ Linker script and memory map
 
                 0x20005000                _eram = 0x20005000
 
-.text           0x08000000     0x398c
+.text           0x08000000     0x39bc
  *(.isr_vector)
  .isr_vector    0x08000000      0x10c ..\obj\startup_stm32f10x_md.o
                 0x08000000                g_pfnVectors
@@ -1012,228 +1017,228 @@ Linker script and memory map
  .text.Configure_HSI_Clock
                 0x0800062c       0x54 ..\obj\main.o
                 0x0800062c                Configure_HSI_Clock
- .text.main     0x08000680       0xec ..\obj\main.o
+ .text.main     0x08000680      0x120 ..\obj\main.o
                 0x08000680                main
  .text.RefreshCustomRESTResponseSwamp
-                0x0800076c       0x50 ..\obj\WebServer.o
-                0x0800076c                RefreshCustomRESTResponseSwamp
+                0x080007a0       0x50 ..\obj\WebServer.o
+                0x080007a0                RefreshCustomRESTResponseSwamp
  .text.SendRESTResponse
-                0x080007bc      0x134 ..\obj\WebServer.o
-                0x080007bc                SendRESTResponse
+                0x080007f0      0x134 ..\obj\WebServer.o
+                0x080007f0                SendRESTResponse
  .text.StartServer
-                0x080008f0       0x80 ..\obj\WebServer.o
-                0x080008f0                StartServer
+                0x08000924       0x80 ..\obj\WebServer.o
+                0x08000924                StartServer
  .text.Swamp_relay_GPIO_Init
-                0x08000970       0x28 ..\obj\swamp_functions.o
-                0x08000970                Swamp_relay_GPIO_Init
+                0x080009a4       0x28 ..\obj\swamp_functions.o
+                0x080009a4                Swamp_relay_GPIO_Init
  .text.Swamp_Init
-                0x08000998       0x18 ..\obj\swamp_functions.o
-                0x08000998                Swamp_Init
+                0x080009cc       0x18 ..\obj\swamp_functions.o
+                0x080009cc                Swamp_Init
  .text.Update_State_Variables
-                0x080009b0       0x54 ..\obj\swamp_functions.o
-                0x080009b0                Update_State_Variables
+                0x080009e4       0x54 ..\obj\swamp_functions.o
+                0x080009e4                Update_State_Variables
  .text.PumpControl
-                0x08000a04       0x2c ..\obj\swamp_functions.o
-                0x08000a04                PumpControl
+                0x08000a38       0x2c ..\obj\swamp_functions.o
+                0x08000a38                PumpControl
  .text.FanControl
-                0x08000a30       0x38 ..\obj\swamp_functions.o
-                0x08000a30                FanControl
- .text.PumpON   0x08000a68       0x24 ..\obj\swamp_functions.o
-                0x08000a68                PumpON
- .text.PumpOFF  0x08000a8c       0x24 ..\obj\swamp_functions.o
-                0x08000a8c                PumpOFF
- .text.FanOFF   0x08000ab0       0x2c ..\obj\swamp_functions.o
-                0x08000ab0                FanOFF
- .text.FanLOW   0x08000adc       0x2c ..\obj\swamp_functions.o
-                0x08000adc                FanLOW
- .text.FanHIGH  0x08000b08       0x2c ..\obj\swamp_functions.o
-                0x08000b08                FanHIGH
- .text.PutChar  0x08000b34       0x20 ..\obj\printf.o
-                0x08000b34                PutChar
+                0x08000a64       0x38 ..\obj\swamp_functions.o
+                0x08000a64                FanControl
+ .text.PumpON   0x08000a9c       0x24 ..\obj\swamp_functions.o
+                0x08000a9c                PumpON
+ .text.PumpOFF  0x08000ac0       0x24 ..\obj\swamp_functions.o
+                0x08000ac0                PumpOFF
+ .text.FanOFF   0x08000ae4       0x2c ..\obj\swamp_functions.o
+                0x08000ae4                FanOFF
+ .text.FanLOW   0x08000b10       0x2c ..\obj\swamp_functions.o
+                0x08000b10                FanLOW
+ .text.FanHIGH  0x08000b3c       0x2c ..\obj\swamp_functions.o
+                0x08000b3c                FanHIGH
+ .text.PutChar  0x08000b68       0x20 ..\obj\printf.o
+                0x08000b68                PutChar
  .text.PutString
-                0x08000b54       0x3c ..\obj\printf.o
-                0x08000b54                PutString
+                0x08000b88       0x3c ..\obj\printf.o
+                0x08000b88                PutString
  .text.PutUnsignedInt
-                0x08000b90       0xa0 ..\obj\printf.o
-                0x08000b90                PutUnsignedInt
+                0x08000bc4       0xa0 ..\obj\printf.o
+                0x08000bc4                PutUnsignedInt
  .text.PutSignedInt
-                0x08000c30      0x104 ..\obj\printf.o
-                0x08000c30                PutSignedInt
- .text.PutHexa  0x08000d34       0xd8 ..\obj\printf.o
-                0x08000d34                PutHexa
+                0x08000c64      0x104 ..\obj\printf.o
+                0x08000c64                PutSignedInt
+ .text.PutHexa  0x08000d68       0xd8 ..\obj\printf.o
+                0x08000d68                PutHexa
  .text.vsnprintf
-                0x08000e0c      0x25c ..\obj\printf.o
-                0x08000e0c                vsnprintf
+                0x08000e40      0x25c ..\obj\printf.o
+                0x08000e40                vsnprintf
  .text.snprintf
-                0x08001068       0x30 ..\obj\printf.o
-                0x08001068                snprintf
+                0x0800109c       0x30 ..\obj\printf.o
+                0x0800109c                snprintf
  .text.vsprintf
-                0x08001098       0x24 ..\obj\printf.o
-                0x08001098                vsprintf
- .text.sprintf  0x080010bc       0x2c ..\obj\printf.o
-                0x080010bc                sprintf
+                0x080010cc       0x24 ..\obj\printf.o
+                0x080010cc                vsprintf
+ .text.sprintf  0x080010f0       0x2c ..\obj\printf.o
+                0x080010f0                sprintf
  .text.RCC_HSEConfig
-                0x080010e8       0x5c ..\obj\stm32f10x_rcc.o
-                0x080010e8                RCC_HSEConfig
+                0x0800111c       0x5c ..\obj\stm32f10x_rcc.o
+                0x0800111c                RCC_HSEConfig
  .text.RCC_HSICmd
-                0x08001144       0x20 ..\obj\stm32f10x_rcc.o
-                0x08001144                RCC_HSICmd
+                0x08001178       0x20 ..\obj\stm32f10x_rcc.o
+                0x08001178                RCC_HSICmd
  .text.RCC_PLLConfig
-                0x08001164       0x3c ..\obj\stm32f10x_rcc.o
-                0x08001164                RCC_PLLConfig
+                0x08001198       0x3c ..\obj\stm32f10x_rcc.o
+                0x08001198                RCC_PLLConfig
  .text.RCC_PLLCmd
-                0x080011a0       0x20 ..\obj\stm32f10x_rcc.o
-                0x080011a0                RCC_PLLCmd
+                0x080011d4       0x20 ..\obj\stm32f10x_rcc.o
+                0x080011d4                RCC_PLLCmd
  .text.RCC_SYSCLKConfig
-                0x080011c0       0x38 ..\obj\stm32f10x_rcc.o
-                0x080011c0                RCC_SYSCLKConfig
+                0x080011f4       0x38 ..\obj\stm32f10x_rcc.o
+                0x080011f4                RCC_SYSCLKConfig
  .text.RCC_HCLKConfig
-                0x080011f8       0x38 ..\obj\stm32f10x_rcc.o
-                0x080011f8                RCC_HCLKConfig
+                0x0800122c       0x38 ..\obj\stm32f10x_rcc.o
+                0x0800122c                RCC_HCLKConfig
  .text.RCC_PCLK1Config
-                0x08001230       0x38 ..\obj\stm32f10x_rcc.o
-                0x08001230                RCC_PCLK1Config
+                0x08001264       0x38 ..\obj\stm32f10x_rcc.o
+                0x08001264                RCC_PCLK1Config
  .text.RCC_PCLK2Config
-                0x08001268       0x38 ..\obj\stm32f10x_rcc.o
-                0x08001268                RCC_PCLK2Config
+                0x0800129c       0x38 ..\obj\stm32f10x_rcc.o
+                0x0800129c                RCC_PCLK2Config
  .text.RCC_ADCCLKConfig
-                0x080012a0       0x38 ..\obj\stm32f10x_rcc.o
-                0x080012a0                RCC_ADCCLKConfig
+                0x080012d4       0x38 ..\obj\stm32f10x_rcc.o
+                0x080012d4                RCC_ADCCLKConfig
  .text.RCC_GetClocksFreq
-                0x080012d8      0x164 ..\obj\stm32f10x_rcc.o
-                0x080012d8                RCC_GetClocksFreq
+                0x0800130c      0x164 ..\obj\stm32f10x_rcc.o
+                0x0800130c                RCC_GetClocksFreq
  .text.RCC_AHBPeriphClockCmd
-                0x0800143c       0x3c ..\obj\stm32f10x_rcc.o
-                0x0800143c                RCC_AHBPeriphClockCmd
+                0x08001470       0x3c ..\obj\stm32f10x_rcc.o
+                0x08001470                RCC_AHBPeriphClockCmd
  .text.RCC_APB2PeriphClockCmd
-                0x08001478       0x3c ..\obj\stm32f10x_rcc.o
-                0x08001478                RCC_APB2PeriphClockCmd
+                0x080014ac       0x3c ..\obj\stm32f10x_rcc.o
+                0x080014ac                RCC_APB2PeriphClockCmd
  .text.RCC_APB1PeriphClockCmd
-                0x080014b4       0x3c ..\obj\stm32f10x_rcc.o
-                0x080014b4                RCC_APB1PeriphClockCmd
+                0x080014e8       0x3c ..\obj\stm32f10x_rcc.o
+                0x080014e8                RCC_APB1PeriphClockCmd
  .text.RCC_GetFlagStatus
-                0x080014f0       0x74 ..\obj\stm32f10x_rcc.o
-                0x080014f0                RCC_GetFlagStatus
+                0x08001524       0x74 ..\obj\stm32f10x_rcc.o
+                0x08001524                RCC_GetFlagStatus
  .text.USART_Init
-                0x08001564      0x174 ..\obj\stm32f10x_usart.o
-                0x08001564                USART_Init
+                0x08001598      0x174 ..\obj\stm32f10x_usart.o
+                0x08001598                USART_Init
  .text.USART_Cmd
-                0x080016d8       0x40 ..\obj\stm32f10x_usart.o
-                0x080016d8                USART_Cmd
+                0x0800170c       0x40 ..\obj\stm32f10x_usart.o
+                0x0800170c                USART_Cmd
  .text.USART_DMACmd
-                0x08001718       0x48 ..\obj\stm32f10x_usart.o
-                0x08001718                USART_DMACmd
+                0x0800174c       0x48 ..\obj\stm32f10x_usart.o
+                0x0800174c                USART_DMACmd
  .text.USART_SendData
-                0x08001760       0x24 ..\obj\stm32f10x_usart.o
-                0x08001760                USART_SendData
+                0x08001794       0x24 ..\obj\stm32f10x_usart.o
+                0x08001794                USART_SendData
  .text.USART_GetFlagStatus
-                0x08001784       0x38 ..\obj\stm32f10x_usart.o
-                0x08001784                USART_GetFlagStatus
+                0x080017b8       0x38 ..\obj\stm32f10x_usart.o
+                0x080017b8                USART_GetFlagStatus
  .text.NVIC_SetPriority
-                0x080017bc       0x54 ..\obj\time.o
+                0x080017f0       0x54 ..\obj\time.o
  .text.SysTick_Config
-                0x08001810       0x44 ..\obj\time.o
+                0x08001844       0x44 ..\obj\time.o
  .text.Init_Time
-                0x08001854       0x2c ..\obj\time.o
-                0x08001854                Init_Time
- .text.Millis   0x08001880       0x18 ..\obj\time.o
-                0x08001880                Millis
+                0x08001888       0x2c ..\obj\time.o
+                0x08001888                Init_Time
+ .text.Millis   0x080018b4       0x18 ..\obj\time.o
+                0x080018b4                Millis
  .text.SysTick_Handler
-                0x08001898       0x1c ..\obj\time.o
-                0x08001898                SysTick_Handler
- .text          0x080018b4       0x28 ..\obj\sh_cmd.o
-                0x080018b4                SH_DoCommand
-                0x080018c6                HardFault_Handler
+                0x080018cc       0x1c ..\obj\time.o
+                0x080018cc                SysTick_Handler
+ .text          0x080018e8       0x28 ..\obj\sh_cmd.o
+                0x080018e8                SH_DoCommand
+                0x080018fa                HardFault_Handler
  .text.FLASH_SetLatency
-                0x080018dc       0x38 ..\obj\stm32f10x_flash.o
-                0x080018dc                FLASH_SetLatency
+                0x08001910       0x38 ..\obj\stm32f10x_flash.o
+                0x08001910                FLASH_SetLatency
  .text.DMA_DeInit
-                0x08001914      0x178 ..\obj\stm32f10x_dma.o
-                0x08001914                DMA_DeInit
+                0x08001948      0x178 ..\obj\stm32f10x_dma.o
+                0x08001948                DMA_DeInit
  .text.DMA_Init
-                0x08001a8c       0x7c ..\obj\stm32f10x_dma.o
-                0x08001a8c                DMA_Init
- .text.DMA_Cmd  0x08001b08       0x38 ..\obj\stm32f10x_dma.o
-                0x08001b08                DMA_Cmd
+                0x08001ac0       0x7c ..\obj\stm32f10x_dma.o
+                0x08001ac0                DMA_Init
+ .text.DMA_Cmd  0x08001b3c       0x38 ..\obj\stm32f10x_dma.o
+                0x08001b3c                DMA_Cmd
  .text.DMA_ClearFlag
-                0x08001b40       0x34 ..\obj\stm32f10x_dma.o
-                0x08001b40                DMA_ClearFlag
+                0x08001b74       0x34 ..\obj\stm32f10x_dma.o
+                0x08001b74                DMA_ClearFlag
  .text.NVIC_Init
-                0x08001b74       0xc4 ..\obj\misc.o
-                0x08001b74                NVIC_Init
+                0x08001ba8       0xc4 ..\obj\misc.o
+                0x08001ba8                NVIC_Init
  .text.Wifi_Init
-                0x08001c38       0x28 ..\obj\esp8266.o
-                0x08001c38                Wifi_Init
+                0x08001c6c       0x28 ..\obj\esp8266.o
+                0x08001c6c                Wifi_Init
  .text.Wifi_OFF
-                0x08001c60       0x18 ..\obj\esp8266.o
-                0x08001c60                Wifi_OFF
- .text.Wifi_ON  0x08001c78       0x18 ..\obj\esp8266.o
-                0x08001c78                Wifi_ON
+                0x08001c94       0x18 ..\obj\esp8266.o
+                0x08001c94                Wifi_OFF
+ .text.Wifi_ON  0x08001cac       0x18 ..\obj\esp8266.o
+                0x08001cac                Wifi_ON
  .text.ClearArray_Size
-                0x08001c90       0x20 ..\obj\esp8266.o
-                0x08001c90                ClearArray_Size
+                0x08001cc4       0x20 ..\obj\esp8266.o
+                0x08001cc4                ClearArray_Size
  .text.Wifi_ReadyWaitForAnswer
-                0x08001cb0       0x20 ..\obj\esp8266.o
-                0x08001cb0                Wifi_ReadyWaitForAnswer
+                0x08001ce4       0x20 ..\obj\esp8266.o
+                0x08001ce4                Wifi_ReadyWaitForAnswer
  .text.Wifi_WaitForAnswerCMD
-                0x08001cd0       0xc0 ..\obj\esp8266.o
-                0x08001cd0                Wifi_WaitForAnswerCMD
+                0x08001d04       0xc0 ..\obj\esp8266.o
+                0x08001d04                Wifi_WaitForAnswerCMD
  .text.Wifi_WaitForAnswer_SEND_OK
-                0x08001d90       0xe8 ..\obj\esp8266.o
-                0x08001d90                Wifi_WaitForAnswer_SEND_OK
+                0x08001dc4       0xe8 ..\obj\esp8266.o
+                0x08001dc4                Wifi_WaitForAnswer_SEND_OK
  .text.Wifi_SendCustomCommand_External_Wait
-                0x08001e78       0x74 ..\obj\esp8266.o
-                0x08001e78                Wifi_SendCustomCommand_External_Wait
+                0x08001eac       0x74 ..\obj\esp8266.o
+                0x08001eac                Wifi_SendCustomCommand_External_Wait
  .text.Wifi_SendCommand
-                0x08001eec       0xa4 ..\obj\esp8266.o
-                0x08001eec                Wifi_SendCommand
+                0x08001f20       0xa4 ..\obj\esp8266.o
+                0x08001f20                Wifi_SendCommand
  .text.ProcessIPD_Data
-                0x08001f90       0xac ..\obj\esp8266.o
-                0x08001f90                ProcessIPD_Data
- .text.IndexOf  0x0800203c       0x50 ..\obj\esp8266.o
-                0x0800203c                IndexOf
+                0x08001fc4       0xac ..\obj\esp8266.o
+                0x08001fc4                ProcessIPD_Data
+ .text.IndexOf  0x08002070       0x50 ..\obj\esp8266.o
+                0x08002070                IndexOf
  .text.IsRequestType
-                0x0800208c       0x44 ..\obj\esp8266.o
-                0x0800208c                IsRequestType
+                0x080020c0       0x44 ..\obj\esp8266.o
+                0x080020c0                IsRequestType
  .text.Wifi_CheckDMABuff_ForIPDData
-                0x080020d0      0x394 ..\obj\esp8266.o
-                0x080020d0                Wifi_CheckDMABuff_ForIPDData
- .text.atoi     0x08002464        0x8 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-atoi.o)
-                0x08002464                atoi
+                0x08002104      0x394 ..\obj\esp8266.o
+                0x08002104                Wifi_CheckDMABuff_ForIPDData
+ .text.atoi     0x08002498        0x8 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-atoi.o)
+                0x08002498                atoi
  .text.critical_factorization
-                0x0800246c       0xb8 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memmem.o)
+                0x080024a0       0xb8 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memmem.o)
  .text.two_way_long_needle
-                0x08002524      0x1f4 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memmem.o)
- .text.memmem   0x08002718      0x1bc c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memmem.o)
-                0x08002718                memmem
- .text.memset   0x080028d4       0x9c c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
-                0x080028d4                memset
- .text.strchr   0x08002970       0xcc c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strchr.o)
-                0x08002970                strchr
- .text.strcpy   0x08002a3c       0xbc c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strcpy.o)
-                0x08002a3c                strcpy
- .text.strlen   0x08002af8       0x5c c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strlen.o)
-                0x08002af8                strlen
+                0x08002558      0x1f4 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memmem.o)
+ .text.memmem   0x0800274c      0x1bc c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memmem.o)
+                0x0800274c                memmem
+ .text.memset   0x08002908       0x9c c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
+                0x08002908                memset
+ .text.strchr   0x080029a4       0xcc c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strchr.o)
+                0x080029a4                strchr
+ .text.strcpy   0x08002a70       0xbc c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strcpy.o)
+                0x08002a70                strcpy
+ .text.strlen   0x08002b2c       0x5c c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strlen.o)
+                0x08002b2c                strlen
  .text.critical_factorization
-                0x08002b54       0xb8 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strstr.o)
+                0x08002b88       0xb8 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strstr.o)
  .text.two_way_long_needle
-                0x08002c0c      0x1f8 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strstr.o)
- .text.strstr   0x08002e04      0x220 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strstr.o)
-                0x08002e04                strstr
- .text.strtok   0x08003024       0x10 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strtok.o)
-                0x08003024                strtok
+                0x08002c40      0x1f8 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strstr.o)
+ .text.strstr   0x08002e38      0x220 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strstr.o)
+                0x08002e38                strstr
+ .text.strtok   0x08003058       0x10 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strtok.o)
+                0x08003058                strtok
  .text.__strtok_r
-                0x08003034       0x64 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strtok_r.o)
-                0x08003034                __strtok_r
+                0x08003068       0x64 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strtok_r.o)
+                0x08003068                __strtok_r
  .text._strtol_r
-                0x08003098      0x11c c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strtol.o)
-                0x08003098                _strtol_r
- .text.strtol   0x080031b4       0x18 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strtol.o)
-                0x080031b4                strtol
- .text.memchr   0x080031cc       0x94 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memchr.o)
-                0x080031cc                memchr
- .text.memcmp   0x08003260       0x64 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memcmp.o)
-                0x08003260                memcmp
+                0x080030cc      0x11c c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strtol.o)
+                0x080030cc                _strtol_r
+ .text.strtol   0x080031e8       0x18 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strtol.o)
+                0x080031e8                strtol
+ .text.memchr   0x08003200       0x94 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memchr.o)
+                0x08003200                memchr
+ .text.memcmp   0x08003294       0x64 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memcmp.o)
+                0x08003294                memcmp
  *(.init)
  *(.fini)
  *crtbegin.o(.ctors)
@@ -1247,44 +1252,44 @@ Linker script and memory map
  *(SORT(.dtors.*))
  *(.dtors)
  *(.rodata*)
- .rodata        0x080032c4      0x3c4 ..\obj\WebServer.o
-                0x08003520                DimmingInputPage
- .rodata        0x08003688        0xc ..\obj\swamp_functions.o
- .rodata        0x08003694      0x1f4 ..\obj\esp8266.o
+ .rodata        0x080032f8      0x3c4 ..\obj\WebServer.o
+                0x08003554                DimmingInputPage
+ .rodata        0x080036bc        0xc ..\obj\swamp_functions.o
+ .rodata        0x080036c8      0x1f0 ..\obj\esp8266.o
  .rodata._ctype_
-                0x08003888      0x104 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-ctype_.o)
-                0x08003888                _ctype_
+                0x080038b8      0x104 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-ctype_.o)
+                0x080038b8                _ctype_
  *(.eh_fram e*)
 
-.glue_7         0x0800398c        0x0
+.glue_7         0x080039bc        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x0800398c        0x0
+.glue_7t        0x080039bc        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x0800398c        0x0
+.vfp11_veneer   0x080039bc        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x0800398c        0x0
+.v4_bx          0x080039bc        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x0800398c        0x0
+.iplt           0x080039bc        0x0
  .iplt          0x00000000        0x0 ..\obj\stm32f10x_rtc.o
 
-.rel.dyn        0x0800398c        0x0
+.rel.dyn        0x080039bc        0x0
  .rel.iplt      0x00000000        0x0 ..\obj\stm32f10x_rtc.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0800398c                __exidx_start = .
+                0x080039bc                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x0800398c                __exidx_end = .
-                0x0800398c                __etext = .
-                0x0800398c                _sidata = __etext
+                0x080039bc                __exidx_end = .
+                0x080039bc                __etext = .
+                0x080039bc                _sidata = __etext
 
-.data           0x20000000      0x504 load address 0x0800398c
+.data           0x20000000      0x504 load address 0x080039bc
                 0x20000000                __data_start__ = .
                 0x20000000                _sdata = __data_start__
  *(vtable)
@@ -1329,87 +1334,90 @@ Linker script and memory map
                 0x20000504                __data_end__ = .
                 0x20000504                _edata = __data_end__
 
-.igot.plt       0x20000504        0x0 load address 0x08003e90
+.igot.plt       0x20000504        0x0 load address 0x08003ec0
  .igot.plt      0x00000000        0x0 ..\obj\stm32f10x_rtc.o
 
-.bss            0x20000504      0xc4c load address 0x08003e90
+.bss            0x20000504     0x103c load address 0x08003ec0
                 0x20000504                . = ALIGN (0x4)
                 0x20000504                __bss_start__ = .
                 0x20000504                _sbss = __bss_start__
  *(.bss*)
- .bss           0x20000504        0xc ..\obj\main.o
+ .bss           0x20000504       0x10 ..\obj\main.o
                 0x20000504                debounceCurrent
                 0x20000508                lastDMABuffPoll
-                0x2000050c                mj
- .bss           0x20000510       0x10 ..\obj\WebServer.o
-                0x20000510                wi
-                0x20000514                headLength
-                0x20000516                bodyLength
-                0x20000518                bodyLengthLength
-                0x2000051a                fullLength
-                0x2000051c                fullCommandLen
- .bss           0x20000520        0x4 ..\obj\time.o
-                0x20000520                millis
- .bss           0x20000524       0x10 ..\obj\esp8266.o
-                0x20000524                waitingForReponse
-                0x20000525                OKFound
-                0x20000526                ERRORFound
-                0x20000528                TxWaitForResponse_TimeStmp
-                0x2000052c                incommingDimmingValue
-                0x20000530                pointerRange
+                0x2000050c                lastESPResetPoll
+                0x20000510                mj
+ .bss           0x20000514       0x10 ..\obj\WebServer.o
+                0x20000514                wi
+                0x20000518                headLength
+                0x2000051a                bodyLength
+                0x2000051c                bodyLengthLength
+                0x2000051e                fullLength
+                0x20000520                fullCommandLen
+ .bss           0x20000524        0x4 ..\obj\time.o
+                0x20000524                millis
+ .bss           0x20000528       0x10 ..\obj\esp8266.o
+                0x20000528                waitingForReponse
+                0x20000529                OKFound
+                0x2000052a                ERRORFound
+                0x2000052c                TxWaitForResponse_TimeStmp
+                0x20000530                incommingDimmingValue
+                0x20000534                pointerRange
  *(COMMON)
- COMMON         0x20000534       0x18 ..\obj\USART3_Config.o
-                0x20000534                GPIOB_Config_USART3
-                0x20000538                USART3_Config
-                0x20000548                USART3_Interrupt_Config
- COMMON         0x2000054c      0x59b ..\obj\main.o
-                0x2000054c                fanMode_Current
-                0x2000054d                pumpMode_Current
-                0x2000054e                fanHigh_Current
-                0x20000550                customRESTResponse
-                0x200006e0                currentIPD
-                0x200006fc                USART3_RxBuffer
-                0x20000ae4                fanLow_Current
-                0x20000ae5                humid_Current
-                0x20000ae6                temp_Current
- *fill*         0x20000ae7        0x1 
- COMMON         0x20000ae8       0xd0 ..\obj\WebServer.o
-                0x20000ae8                bodyLengthSizeString
-                0x20000aec                data
-                0x20000bb4                responseBuff
- COMMON         0x20000bb8      0x12c ..\obj\WebServerConfig.o
-                0x20000bb8                webResponse
- COMMON         0x20000ce4      0x46c ..\obj\esp8266.o
-                0x20000ce4                IPD_Processing_buf
-                0x20000ce8                queryString1
-                0x20000cec                commandToSend
-                0x20000d34                queryValue2
-                0x20000d38                queryValue1
-                0x20000d3c                URI
-                0x20000d40                closeConnectionBuffer
-                0x20000d50                ConnectNum
-                0x20000d54                ESP_IPD_DataBuffer
-                0x2000113c                queryString2
-                0x20001140                WaitForAnswer_cmd_Buffer
-                0x20001144                WaitForAnswer_ans_Buffer
-                0x20001148                dimmingString
-                0x2000114c                ESP_IPD_Data_Buffer_Pntr
-                0x20001150                . = ALIGN (0x4)
-                0x20001150                __bss_end__ = .
-                0x20001150                _ebss = __bss_end__
+ COMMON         0x20000538       0x18 ..\obj\USART3_Config.o
+                0x20000538                GPIOB_Config_USART3
+                0x2000053c                USART3_Config
+                0x2000054c                USART3_Interrupt_Config
+ COMMON         0x20000550      0x59b ..\obj\main.o
+                0x20000550                fanMode_Current
+                0x20000551                pumpMode_Current
+                0x20000552                fanHigh_Current
+                0x20000554                customRESTResponse
+                0x200006e4                currentIPD
+                0x20000700                USART3_RxBuffer
+                0x20000ae8                fanLow_Current
+                0x20000ae9                humid_Current
+                0x20000aea                temp_Current
+ *fill*         0x20000aeb        0x1 
+ COMMON         0x20000aec       0xd0 ..\obj\WebServer.o
+                0x20000aec                bodyLengthSizeString
+                0x20000af0                data
+                0x20000bb8                responseBuff
+ COMMON         0x20000bbc      0x12c ..\obj\WebServerConfig.o
+                0x20000bbc                webResponse
+ COMMON         0x20000ce8      0x858 ..\obj\esp8266.o
+                0x20000ce8                IPD_Processing_buf
+                0x20000cec                queryString1
+                0x20000cf0                commandToSend
+                0x20000d38                ESP_Ready_Buffer_Pntr
+                0x20000d3c                queryValue2
+                0x20000d40                queryValue1
+                0x20000d44                URI
+                0x20000d48                closeConnectionBuffer
+                0x20000d58                ConnectNum
+                0x20000d5c                ESP_IPD_DataBuffer
+                0x20001144                queryString2
+                0x20001148                WaitForAnswer_cmd_Buffer
+                0x2000114c                WaitForAnswer_ans_Buffer
+                0x20001150                dimmingString
+                0x20001154                ESP_Ready_Buffer
+                0x2000153c                ESP_IPD_Data_Buffer_Pntr
+                0x20001540                . = ALIGN (0x4)
+                0x20001540                __bss_end__ = .
+                0x20001540                _ebss = __bss_end__
 
-.heap           0x20001150        0x0
-                0x20001150                __end__ = .
-                0x20001150                _end = __end__
-                0x20001150                end = __end__
+.heap           0x20001540        0x0
+                0x20001540                __end__ = .
+                0x20001540                _end = __end__
+                0x20001540                end = __end__
  *(.heap*)
-                0x20001150                __HeapLimit = .
+                0x20001540                __HeapLimit = .
 
-.co_stack       0x20001150      0x400 load address 0x08004adc
-                0x20001150                . = ALIGN (0x8)
+.co_stack       0x20001540      0x400 load address 0x08004efc
+                0x20001540                . = ALIGN (0x8)
  *(.co_stack .co_stack.*)
- .co_stack      0x20001150      0x400 ..\obj\startup_stm32f10x_md.o
-                0x20001150                pulStack
+ .co_stack      0x20001540      0x400 ..\obj\startup_stm32f10x_md.o
+                0x20001540                pulStack
                 0x20005000                __StackTop = (ORIGIN (ram) + 0x5000)
                 0x20004c00                __StackLimit = (__StackTop - SIZEOF (.co_stack))
                 0x20005000                PROVIDE (__stack, __StackTop)
@@ -1448,24 +1456,24 @@ LOAD c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm
 END GROUP
 OUTPUT(SwampCooler Relay Controller.elf elf32-littlearm)
 
-.debug_info     0x00000000     0x68f3
+.debug_info     0x00000000     0x699e
  .debug_info    0x00000000      0x70e ..\obj\USART3_Config.o
  .debug_info    0x0000070e      0x479 ..\obj\system_stm32f10x.o
  .debug_info    0x00000b87       0xe9 ..\obj\startup_stm32f10x_md.o
  .debug_info    0x00000c70      0x6e7 ..\obj\stm32f10x_gpio.o
- .debug_info    0x00001357      0x57c ..\obj\main.o
- .debug_info    0x000018d3      0x540 ..\obj\WebServer.o
- .debug_info    0x00001e13      0x3eb ..\obj\swamp_functions.o
- .debug_info    0x000021fe      0xe38 ..\obj\printf.o
- .debug_info    0x00003036      0x88d ..\obj\stm32f10x_rcc.o
- .debug_info    0x000038c3      0x9e8 ..\obj\stm32f10x_usart.o
- .debug_info    0x000042ab      0x600 ..\obj\time.o
- .debug_info    0x000048ab      0x108 ..\obj\sh_cmd.o
- .debug_info    0x000049b3      0x7b1 ..\obj\stm32f10x_flash.o
- .debug_info    0x00005164      0x473 ..\obj\stm32f10x_dma.o
- .debug_info    0x000055d7      0x53d ..\obj\misc.o
- .debug_info    0x00005b14       0x76 ..\obj\WebServerConfig.o
- .debug_info    0x00005b8a      0xd69 ..\obj\esp8266.o
+ .debug_info    0x00001357      0x593 ..\obj\main.o
+ .debug_info    0x000018ea      0x546 ..\obj\WebServer.o
+ .debug_info    0x00001e30      0x3eb ..\obj\swamp_functions.o
+ .debug_info    0x0000221b      0xe38 ..\obj\printf.o
+ .debug_info    0x00003053      0x88d ..\obj\stm32f10x_rcc.o
+ .debug_info    0x000038e0      0x9e8 ..\obj\stm32f10x_usart.o
+ .debug_info    0x000042c8      0x600 ..\obj\time.o
+ .debug_info    0x000048c8      0x108 ..\obj\sh_cmd.o
+ .debug_info    0x000049d0      0x7b1 ..\obj\stm32f10x_flash.o
+ .debug_info    0x00005181      0x473 ..\obj\stm32f10x_dma.o
+ .debug_info    0x000055f4      0x53d ..\obj\misc.o
+ .debug_info    0x00005b31       0x76 ..\obj\WebServerConfig.o
+ .debug_info    0x00005ba7      0xdf7 ..\obj\esp8266.o
 
 .debug_abbrev   0x00000000     0x17f0
  .debug_abbrev  0x00000000      0x13b ..\obj\USART3_Config.o
@@ -1486,7 +1494,7 @@ OUTPUT(SwampCooler Relay Controller.elf elf32-littlearm)
  .debug_abbrev  0x000014da       0x55 ..\obj\WebServerConfig.o
  .debug_abbrev  0x0000152f      0x2c1 ..\obj\esp8266.o
 
-.debug_aranges  0x00000000      0x7c8
+.debug_aranges  0x00000000      0x7d0
  .debug_aranges
                 0x00000000       0x48 ..\obj\USART3_Config.o
  .debug_aranges
@@ -1520,9 +1528,9 @@ OUTPUT(SwampCooler Relay Controller.elf elf32-littlearm)
  .debug_aranges
                 0x00000700       0x18 ..\obj\WebServerConfig.o
  .debug_aranges
-                0x00000718       0xb0 ..\obj\esp8266.o
+                0x00000718       0xb8 ..\obj\esp8266.o
 
-.debug_ranges   0x00000000      0x6a0
+.debug_ranges   0x00000000      0x6a8
  .debug_ranges  0x00000000       0x38 ..\obj\USART3_Config.o
  .debug_ranges  0x00000038       0x28 ..\obj\system_stm32f10x.o
  .debug_ranges  0x00000060       0x18 ..\obj\startup_stm32f10x_md.o
@@ -1537,28 +1545,28 @@ OUTPUT(SwampCooler Relay Controller.elf elf32-littlearm)
  .debug_ranges  0x00000488       0xe8 ..\obj\stm32f10x_flash.o
  .debug_ranges  0x00000570       0x60 ..\obj\stm32f10x_dma.o
  .debug_ranges  0x000005d0       0x30 ..\obj\misc.o
- .debug_ranges  0x00000600       0xa0 ..\obj\esp8266.o
+ .debug_ranges  0x00000600       0xa8 ..\obj\esp8266.o
 
-.debug_line     0x00000000     0x3c8c
+.debug_line     0x00000000     0x3caa
  .debug_line    0x00000000      0x3f0 ..\obj\USART3_Config.o
  .debug_line    0x000003f0      0x271 ..\obj\system_stm32f10x.o
  .debug_line    0x00000661       0xcf ..\obj\startup_stm32f10x_md.o
  .debug_line    0x00000730      0x47b ..\obj\stm32f10x_gpio.o
- .debug_line    0x00000bab      0x47f ..\obj\main.o
- .debug_line    0x0000102a      0x315 ..\obj\WebServer.o
- .debug_line    0x0000133f      0x41c ..\obj\swamp_functions.o
- .debug_line    0x0000175b      0x3a2 ..\obj\printf.o
- .debug_line    0x00001afd      0x588 ..\obj\stm32f10x_rcc.o
- .debug_line    0x00002085      0x55e ..\obj\stm32f10x_usart.o
- .debug_line    0x000025e3      0x24e ..\obj\time.o
- .debug_line    0x00002831       0xac ..\obj\sh_cmd.o
- .debug_line    0x000028dd      0x596 ..\obj\stm32f10x_flash.o
- .debug_line    0x00002e73      0x3c8 ..\obj\stm32f10x_dma.o
- .debug_line    0x0000323b      0x309 ..\obj\misc.o
- .debug_line    0x00003544       0x8b ..\obj\WebServerConfig.o
- .debug_line    0x000035cf      0x6bd ..\obj\esp8266.o
+ .debug_line    0x00000bab      0x483 ..\obj\main.o
+ .debug_line    0x0000102e      0x315 ..\obj\WebServer.o
+ .debug_line    0x00001343      0x41c ..\obj\swamp_functions.o
+ .debug_line    0x0000175f      0x3a2 ..\obj\printf.o
+ .debug_line    0x00001b01      0x588 ..\obj\stm32f10x_rcc.o
+ .debug_line    0x00002089      0x55e ..\obj\stm32f10x_usart.o
+ .debug_line    0x000025e7      0x24e ..\obj\time.o
+ .debug_line    0x00002835       0xac ..\obj\sh_cmd.o
+ .debug_line    0x000028e1      0x596 ..\obj\stm32f10x_flash.o
+ .debug_line    0x00002e77      0x3c8 ..\obj\stm32f10x_dma.o
+ .debug_line    0x0000323f      0x309 ..\obj\misc.o
+ .debug_line    0x00003548       0x8b ..\obj\WebServerConfig.o
+ .debug_line    0x000035d3      0x6d7 ..\obj\esp8266.o
 
-.debug_str      0x00000000     0x2ff5
+.debug_str      0x00000000     0x3069
  .debug_str     0x00000000      0x893 ..\obj\USART3_Config.o
                                 0x8f3 (size before relaxing)
  .debug_str     0x00000893      0x19f ..\obj\system_stm32f10x.o
@@ -1567,30 +1575,30 @@ OUTPUT(SwampCooler Relay Controller.elf elf32-littlearm)
                                 0x174 (size before relaxing)
  .debug_str     0x00000b0f      0x2a8 ..\obj\stm32f10x_gpio.o
                                 0x55a (size before relaxing)
- .debug_str     0x00000db7      0x476 ..\obj\main.o
-                                0x732 (size before relaxing)
- .debug_str     0x0000122d      0x296 ..\obj\WebServer.o
-                                0x6c7 (size before relaxing)
- .debug_str     0x000014c3      0x139 ..\obj\swamp_functions.o
+ .debug_str     0x00000db7      0x49d ..\obj\main.o
+                                0x759 (size before relaxing)
+ .debug_str     0x00001254      0x296 ..\obj\WebServer.o
+                                0x6dd (size before relaxing)
+ .debug_str     0x000014ea      0x139 ..\obj\swamp_functions.o
                                 0x4b3 (size before relaxing)
- .debug_str     0x000015fc      0x4f2 ..\obj\printf.o
+ .debug_str     0x00001623      0x4f2 ..\obj\printf.o
                                 0x6ca (size before relaxing)
- .debug_str     0x00001aee      0x41b ..\obj\stm32f10x_rcc.o
+ .debug_str     0x00001b15      0x41b ..\obj\stm32f10x_rcc.o
                                 0x65b (size before relaxing)
- .debug_str     0x00001f09      0x3e2 ..\obj\stm32f10x_usart.o
+ .debug_str     0x00001f30      0x3e2 ..\obj\stm32f10x_usart.o
                                 0x6d1 (size before relaxing)
- .debug_str     0x000022eb      0x11d ..\obj\time.o
+ .debug_str     0x00002312      0x11d ..\obj\time.o
                                 0x5e1 (size before relaxing)
- .debug_str     0x00002408      0x440 ..\obj\stm32f10x_flash.o
+ .debug_str     0x0000242f      0x440 ..\obj\stm32f10x_flash.o
                                 0x629 (size before relaxing)
- .debug_str     0x00002848      0x178 ..\obj\stm32f10x_dma.o
+ .debug_str     0x0000286f      0x178 ..\obj\stm32f10x_dma.o
                                 0x3f8 (size before relaxing)
- .debug_str     0x000029c0      0x144 ..\obj\misc.o
+ .debug_str     0x000029e7      0x144 ..\obj\misc.o
                                 0x3ff (size before relaxing)
- .debug_str     0x00002b04       0x6b ..\obj\WebServerConfig.o
+ .debug_str     0x00002b2b       0x6b ..\obj\WebServerConfig.o
                                 0x113 (size before relaxing)
- .debug_str     0x00002b6f      0x486 ..\obj\esp8266.o
-                                0xbf4 (size before relaxing)
+ .debug_str     0x00002b96      0x4d3 ..\obj\esp8266.o
+                                0xc57 (size before relaxing)
 
 .comment        0x00000000       0x70
  .comment       0x00000000       0x70 ..\obj\USART3_Config.o
@@ -1674,7 +1682,7 @@ OUTPUT(SwampCooler Relay Controller.elf elf32-littlearm)
  .ARM.attributes
                 0x0000056d       0x2d c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memcmp.o)
 
-.debug_frame    0x00000000     0x21c8
+.debug_frame    0x00000000     0x21f0
  .debug_frame   0x00000000       0xd0 ..\obj\USART3_Config.o
  .debug_frame   0x000000d0       0x98 ..\obj\system_stm32f10x.o
  .debug_frame   0x00000168       0x4c ..\obj\startup_stm32f10x_md.o
@@ -1689,16 +1697,16 @@ OUTPUT(SwampCooler Relay Controller.elf elf32-littlearm)
  .debug_frame   0x000014a8      0x410 ..\obj\stm32f10x_flash.o
  .debug_frame   0x000018b8      0x1c8 ..\obj\stm32f10x_dma.o
  .debug_frame   0x00001a80       0xd8 ..\obj\misc.o
- .debug_frame   0x00001b58      0x2cc ..\obj\esp8266.o
- .debug_frame   0x00001e24       0x30 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-atoi.o)
- .debug_frame   0x00001e54       0xac c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memmem.o)
- .debug_frame   0x00001f00       0x34 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
- .debug_frame   0x00001f34       0x4c c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strchr.o)
- .debug_frame   0x00001f80       0x20 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strcpy.o)
- .debug_frame   0x00001fa0       0x20 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strlen.o)
- .debug_frame   0x00001fc0       0xd8 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strstr.o)
- .debug_frame   0x00002098       0x20 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strtok.o)
- .debug_frame   0x000020b8       0x48 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strtok_r.o)
- .debug_frame   0x00002100       0x54 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strtol.o)
- .debug_frame   0x00002154       0x3c c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memchr.o)
- .debug_frame   0x00002190       0x38 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memcmp.o)
+ .debug_frame   0x00001b58      0x2f4 ..\obj\esp8266.o
+ .debug_frame   0x00001e4c       0x30 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-atoi.o)
+ .debug_frame   0x00001e7c       0xac c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memmem.o)
+ .debug_frame   0x00001f28       0x34 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
+ .debug_frame   0x00001f5c       0x4c c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strchr.o)
+ .debug_frame   0x00001fa8       0x20 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strcpy.o)
+ .debug_frame   0x00001fc8       0x20 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strlen.o)
+ .debug_frame   0x00001fe8       0xd8 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strstr.o)
+ .debug_frame   0x000020c0       0x20 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strtok.o)
+ .debug_frame   0x000020e0       0x48 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strtok_r.o)
+ .debug_frame   0x00002128       0x54 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strtol.o)
+ .debug_frame   0x0000217c       0x3c c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memchr.o)
+ .debug_frame   0x000021b8       0x38 c:/program files (x86)/gnu tools arm embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memcmp.o)

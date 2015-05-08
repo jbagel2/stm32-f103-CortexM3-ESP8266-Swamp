@@ -46,7 +46,8 @@ typedef enum
 	WIFI_LIST_CONNECTED_DEVICES_inAPModeOnly,
 	WIFI_QUIT_CURRENT_AP,
 	WIFI_START_ACCESS_POINT,
-	WIFI_DISABLE_ECHO
+	WIFI_DISABLE_ECHO,
+	WIFI_CLOSE_CONNECTION
 }Wifi_Commands;
 
 typedef enum
@@ -84,6 +85,7 @@ void Wifi_CloseConnection(uint8_t connectionNum);
 void Wifi_SendCustomCommand(char *customMessage);
 void Wifi_SendCustomCommand_External_Wait(char *customMessage);
 void Wifi_SendCommand(Wifi_Commands command );
+uint8_t Wifi_CheckDMABuff_ForReady();
 IPD_Data Wifi_CheckDMABuff_ForIPDData();
 void ConnectToAP(char *apName, char *password);
 void StartLocalAP(char *SSID, char *password, uint8_t channel, Available_Encyption encypt);

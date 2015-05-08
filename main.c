@@ -56,6 +56,8 @@ IPD_Data currentIPD;
 uint32_t debounceCurrent = 0;
 uint32_t debounceTime_ms = 300;
 uint32_t lastDMABuffPoll = 0;
+uint32_t lastESPResetPoll = 0;
+#define ESP_RESET_CHECK_INTERVAL 120000 //2 minutes
 
 uint32_t mj = 0;
 
@@ -171,9 +173,20 @@ int main(void)
     					FanControl(fanMode_Current);
     					//Sends updated REST response with updated system status
     					SendRESTResponse(currentIPD.ConnectionNum, RESTResponse_Headers_Test_OK, customRESTResponse);
-
+    					//Wifi_CloseConnection(currentIPD.ConnectionNum);
     				}
     			}
+
+    	if((Millis() - lastESPResetPoll) >= ESP_RESET_CHECK_INTERVAL)
+    	{
+    		lastESPResetPoll = Millis();
+    		if(Wifi_CheckDMABuff_ForReady)
+    		{
+    			StartServer(1,80);
+    			Wifi_SendCommand(WIFI_GET_CURRENT_IP);
+    		}
+    	}
+    	//Check for existing connections to close
     }
 }
 
