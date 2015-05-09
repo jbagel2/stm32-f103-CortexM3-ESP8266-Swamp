@@ -70,6 +70,14 @@ typedef struct{
 	uint8_t Valid;
 }IPD_Data;
 
+typedef struct{
+ char *AccessPoint_IP;
+ char *AccessPoint_MAC;
+ char *Station_IP;
+ char *Station_MAC;
+
+}ESP_Status;
+
 extern const char *ATCommandsArray[18];
 
 #define WIFI_COMMAND(commandEnum) (ATCommandsArray[(commandEnum)])
