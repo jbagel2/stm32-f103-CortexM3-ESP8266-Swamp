@@ -38,6 +38,7 @@ void Swamp_Init();
 void Refresh_States();
 void PumpControl(On_Off mode);
 void FanControl(Fan_Mode mode);
+void Update_State_Variables(KeyValuePair_String_Uint16_t newStates);
 
 //May want to keep these private eventually
 void PumpOFF();

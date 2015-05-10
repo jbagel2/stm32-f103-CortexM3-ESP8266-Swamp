@@ -8,7 +8,7 @@ void RefreshCustomRESTResponseSwamp(char *IPWAN, char *IPLAN, uint8_t pumpState,
 #ifndef NODE_ID
 #error NODE_ID not defined, Please define NODE_ID as char*
 #endif
-snprintf(customRESTResponse, ARRAYSIZE(customRESTResponse),"{\"ID\":\"%s\",\"NodeStatus\":{\"pumpState\":\"%d\",\"fanState\":\"%d\",\"currentTemp\":\"%d\",\"currentHumid\":\"%d\",},\"GeneralStatus\":{\"CurrentIP_WAN\":\"%s\",\"currentIP_LAN\":\"%s\",\"self_check_result\":\"OK\"}} ",NODE_ID, pumpState, fanState, currentTemp, currentHumid, IPWAN, IPLAN);
+snprintf(customRESTResponse, ARRAYSIZE(customRESTResponse),"{\"ID\":\"%s\",\"NodeStatus\":{\"pumpState\":\"%d\",\"fanState\":\"%d\",\"currentTemp\":\"%d\",\"currentHumid\":\"%d\",},\"GeneralStatus\":{\"CurrentIP_WAN\":%s,\"currentIP_LAN\":%s,\"self_check_result\":\"OK\"}} ",NODE_ID, pumpState, fanState, currentTemp, currentHumid, IPWAN, IPLAN);
 }
 
 void RefreshCustomRESTResponse(char *IPWAN, char *IPLAN, char *nodeKeyName, char *nodeValue)

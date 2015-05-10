@@ -183,7 +183,7 @@ void Wifi_WaitForAnswer_SEND_OK(uint16_t cmdSize)
 		{
 			while(waitingForReponse == 1 && (Millis() - TxWaitForResponse_TimeStmp) < ESP_ResponseTimeout_ms)
 				{
-				if(WaitForAnswer_ans_Buffer = memmem(USART3_RxBuffer,strlen(USART3_RxBuffer),"SEND OK\r\n",9))
+				if((WaitForAnswer_ans_Buffer = memmem(USART3_RxBuffer,strlen(USART3_RxBuffer),"SEND OK\r\n",9)))
 				{
 					pointerRange = WaitForAnswer_cmd_Buffer - WaitForAnswer_ans_Buffer;
 					ClearArray_Size(WaitForAnswer_cmd_Buffer, cmdSize + 9);
@@ -344,6 +344,7 @@ char *APIP;
 char *APMAC;
 char *STAIP;
 char *STAMAC;
+extern ESP_Status currentESPStatus;
 
 void Wifi_CheckDMABuff_ForCIFSRData()
 {
@@ -359,17 +360,13 @@ void Wifi_CheckDMABuff_ForCIFSRData()
 		DMA_Initialize(USART3_RxBuffer, RxBuffSize);
 
 		strtok(ESP_Ready_Buffer, ","); //Discard the '+CIFSR:APIP'
-		APIP = strtok(NULL, "\r");
+		currentESPStatus.AccessPoint_IP = strtok(NULL, "\r");
 		strtok(NULL, ","); //Discard the '+CIFSR:APMAC'
-		APMAC = strtok(NULL, "\r");
+		currentESPStatus.AccessPoint_MAC = strtok(NULL, "\r");
 		strtok(NULL, ","); //Discard the '+CIFSR:STAIP'
-		STAIP = strtok(NULL, "\r");
+		currentESPStatus.Station_IP = strtok(NULL, "\r");
 		strtok(NULL, ","); //Discard the '+CIFSR:STAMAC'
-		STAMAC = strtok(NULL, "\r");
-		if(STAMAC != 0x0)
-		{
-
-		}
+		currentESPStatus.Station_MAC = strtok(NULL, "\r");
 	}
 
 }
@@ -378,213 +375,109 @@ void Wifi_CheckDMABuff_ForCIFSRData()
 IPD_Data Wifi_CheckDMABuff_ForIPDData()
 {
 	currentIPD.Valid = 0;
-	//if((Millis() - lastDMABuffPoll) >= DMA_Rx_Buff_Poll_Int_ms)
-	//		{
-				//Probably need to check for new client ({clientNum},CONNECT)
-				lastDMABuffPoll = Millis();
-				ESP_IPD_Data_Buffer_Pntr = memmem(USART3_RxBuffer,RxBuffSize,"+IPD",4);
-				if(ESP_IPD_Data_Buffer_Pntr)
+
+	//Probably need to check for new client ({clientNum},CONNECT)
+	lastDMABuffPoll = Millis();
+	ESP_IPD_Data_Buffer_Pntr = memmem(USART3_RxBuffer,RxBuffSize,"+IPD",4);
+	if(ESP_IPD_Data_Buffer_Pntr)
+	{
+		//position = DMA_GetCurrDataCounter(DMA1_Channel3);
+		//position = strlen(USART3_RxBuffer);
+		//Copy IPD message and data to its own buffer so DMA can go about its business
+		strcpy(ESP_IPD_DataBuffer,ESP_IPD_Data_Buffer_Pntr);
+		DMA_Cmd(DMA1_Channel3,DISABLE);
+
+		//Wipes the received message from the DMA buffer (using the pointer to the data)
+		//This makes sure the data doesn't get mistaken for a new request, on the next buffer polling.
+		ClearArray_Size(ESP_IPD_Data_Buffer_Pntr,strlen(ESP_IPD_Data_Buffer_Pntr));
+		DMA_Initialize(USART3_RxBuffer, RxBuffSize);
+
+
+		//now we process since DMA isn't going to stomp on us.
+		currentIPD = ProcessIPD_Data(ESP_IPD_DataBuffer);
+
+		Http_Method_Enum requestType = IsRequestType(currentIPD);
+
+		if(requestType == POST)
+		{
+			char *newStart = strchr(currentIPD.URI,'/');
+			if(newStart)
+			{
+				//If the URI starts with a '/' we get rid of it by moving the pointer up by one mem address
+				currentIPD.URI = newStart + 1;
+			}
+			//Make sure its actually a query
+			if(strstr(currentIPD.URI, "?"))
+			{
+			//Check for multiple query strings
+			uint8_t multiQuery = strstr(currentIPD.URI, "&");
+			if(multiQuery)
+			{
+				//TODO: Replace temp queryStringArray size of 4
+				KeyValuePair_String_Uint16_t queryStrings[4];
+				uint8_t qsc = 0;
+
+				//Get rid of the start '?' char
+				URI = strtok(currentIPD.URI,"?");
+				for(qsc; qsc < 4; qsc++)
 				{
-					//position = DMA_GetCurrDataCounter(DMA1_Channel3);
-					//position = strlen(USART3_RxBuffer);
-					//Copy IPD message and data to its own buffer so DMA can go about its business
-					strcpy(ESP_IPD_DataBuffer,ESP_IPD_Data_Buffer_Pntr);
-					DMA_Cmd(DMA1_Channel3,DISABLE);
-
-					//Wipes the received message from the DMA buffer (using the pointer to the data)
-					//This makes sure the data doesn't get mistaken for a new request, on the next buffer polling.
-					ClearArray_Size(ESP_IPD_Data_Buffer_Pntr,strlen(ESP_IPD_Data_Buffer_Pntr));
-					DMA_Initialize(USART3_RxBuffer, RxBuffSize);
-
-
-					//now we process since DMA isn't going to stomp on us.
-					currentIPD = ProcessIPD_Data(ESP_IPD_DataBuffer);
-
-					Http_Method_Enum requestType = IsRequestType(currentIPD);
-
-					if(requestType == POST)
+					KeyValuePair_String_Uint16_t thisQuery;
+					thisQuery.key = "\0";
+					thisQuery.value = -1;
+					if(qsc == 0)
+					{thisQuery.key = strtok(URI,"=");} else{ thisQuery.key = strtok(NULL,"=");}
+					if(thisQuery.key=="\0" || thisQuery.key == NULL)
 					{
-						char *newStart = strchr(currentIPD.URI,'/');
-						if(newStart)
+						if(qsc > 0)
 						{
-							//If the URI starts with a '/' we get rid of it by moving the pointer up by one mem address
-							currentIPD.URI = newStart + 1;
+							currentIPD.Valid = 1;
+							RefreshCustomRESTResponseSwamp(currentESPStatus.Station_IP, currentESPStatus.AccessPoint_IP, pumpMode_Current, fanMode_Current,temp_Current, humid_Current);
 						}
-						//Make sure its actually a query
-						if(strstr(currentIPD.URI, "?"))
-						{
-						//Check for multiple query strings
-						uint8_t multiQuery = strstr(currentIPD.URI, "&");
-						if(multiQuery)
-						{
-							//TODO: Replace temp queryStringArray size of 4
-							KeyValuePair_String_Uint16_t queryStrings[4];
-							uint8_t qsc = 0;
-
-							//Get rid of the start '?' char
-							URI = strtok(currentIPD.URI,"?");
-							for(qsc; qsc < 4; qsc++)
-							{
-								KeyValuePair_String_Uint16_t thisQuery;
-								thisQuery.key = "\0";
-								thisQuery.value = -1;
-								if(qsc == 0)
-								{thisQuery.key = strtok(URI,"=");} else{ thisQuery.key = strtok(NULL,"=");}
-								if(thisQuery.key=="\0" || thisQuery.key == NULL)
-								{
-									if(qsc > 0)
-									{
-										currentIPD.Valid = 1;
-										RefreshCustomRESTResponseSwamp("172.20.112.136", "192.168.4.1", pumpMode_Current, fanMode_Current,temp_Current, humid_Current);
-									}
-									return currentIPD;
-								}
-								else {
-									queryValue1 = strtok(NULL, "&");
-									thisQuery.value = atoi(queryValue1);
-									//TODO: Need to evaluate what are valid values.
-									if(thisQuery.value < 3)
-									{
-										Update_State_Variables(thisQuery);
-										currentIPD.Valid = 1;
-										queryStrings[qsc] = thisQuery;
-									}
-								}
-
-
-								RefreshCustomRESTResponseSwamp("172.20.112.136", "192.168.4.1", pumpMode_Current, fanMode_Current,temp_Current, humid_Current);
-							}
-
-						}
-						else {
-							KeyValuePair_String_Uint16_t thisQuery;
-							URI = strtok(currentIPD.URI,"?");
-							thisQuery.key = "\0";
-							thisQuery.value = -1;
-
-							thisQuery.key = strtok(URI,"=");
-							queryValue1 = strtok(NULL, "&");
-							thisQuery.value = atoi(queryValue1);
-							//TODO: Need to evaluate what are valid values.
-							if(thisQuery.value < 3)
-							{
-								Update_State_Variables(thisQuery);
-
-								currentIPD.Valid = 1;
-							}
-						}
-						RefreshCustomRESTResponseSwamp("172.20.112.136", "192.168.4.1", pumpMode_Current, fanMode_Current,temp_Current, humid_Current);
-
-						}
-
-
-					}
-					else if (requestType == GET)
-					{
-						//TODO: Still need to add parsing of start up ESP data (ip's, MAC, and ready flag )
-						RefreshCustomRESTResponseSwamp("172.20.112.136", "192.168.4.1", pumpMode_Current, fanMode_Current,temp_Current, humid_Current);
-						currentIPD.Valid = 1;
 						return currentIPD;
-
-
 					}
-
-
-
-					//BELOW IS ORIGINAL UNTOUCHED REQUEST PROCESSING
-						//TODO: Need to add a level of error detection/correction as data may be missing the
-					/*if(strstr(currentIPD.RequestType, HttpMethod(POST)))
-					{
-						//if URI contains swamp (the test for now)
-						if(strstr(currentIPD.URI, "pump"))
+					else {
+						queryValue1 = strtok(NULL, "&");
+						thisQuery.value = atoi(queryValue1);
+						//TODO: Need to evaluate what are valid values.
+						if(thisQuery.value < 3)
 						{
-							if(strstr(currentIPD.URI, "?"))//If query String is found
-							{
-								URI = strtok(currentIPD.URI, "?");
-								if(strstr(URI,"="))//If URI was sent prepended with a '/' this will be true
-								{
-									queryString1 = strtok(URI, "=");
-									queryValue1 = strtok(NULL, "&");
-
-
-									if(queryValue1 == '\0')
-									{
-										queryValue1 = strtok(NULL, "\0");
-									}
-									else
-									{
-										queryString2 = strtok(NULL, "=");
-										queryValue2 = strtok(NULL, "\0");
-										//if(queryString2 != '\0')
-										//{
-										//	queryValue2 = strtok(NULL, "\0");
-										//}
-									}
-
-
-								}
-								else
-								{
-								queryString1 = strtok(NULL, "=");
-								//if(strstr(currentIPD.URI, "&"))
-								//{
-								queryValue1 = strtok(NULL, "&");
-								//if(queryValue1 == '\0')
-								//{
-
-								queryString2 = strtok(NULL, "=");
-								if(queryString2 != '\0')
-								{
-									queryValue2 = strtok(NULL, "&");
-								}
-							}
+							Update_State_Variables(thisQuery);
 							currentIPD.Valid = 1;
+							queryStrings[qsc] = thisQuery;
 						}
-
-
-
-
-							pumpModeToValidate = atoi(queryValue1);
-							if(pumpModeToValidate == 0 || pumpModeToValidate == 1)
-							{
-
-								pumpMode_Current = pumpModeToValidate;
-
-
-							}
-							if(queryValue2)
-							{
-								fanModeToValidate = atoi(queryValue2);
-								switch (fanModeToValidate) {
-									case 2:
-										fanLow_Current = 1;
-										fanHigh_Current = 1;
-										fanMode_Current = 2;
-										break;
-									case 1:
-										fanLow_Current = 1;
-										fanHigh_Current = 0;
-										fanMode_Current = 1;
-										break;
-									case 0:
-										fanLow_Current = 0;
-										fanHigh_Current = 0;
-										fanMode_Current = 0;
-										break;
-									default:
-										break;
-								}
-							}
-
-
-							RefreshCustomRESTResponseSwamp("172.20.112.136", "192.168.4.1", pumpMode_Current, (fanLow_Current + fanHigh_Current),temp_Current, humid_Current);
-
-							currentIPD.Valid = 1;
-						}
-					}*/
-					//printf("Incoming webrequest\r\n");
+					}
+					RefreshCustomRESTResponseSwamp(currentESPStatus.Station_IP, currentESPStatus.AccessPoint_IP, pumpMode_Current, fanMode_Current,temp_Current, humid_Current);
 				}
+			}
+			else {
+				KeyValuePair_String_Uint16_t thisQuery;
+				URI = strtok(currentIPD.URI,"?");
+				thisQuery.key = "\0";
+				thisQuery.value = -1;
 
+				thisQuery.key = strtok(URI,"=");
+				queryValue1 = strtok(NULL, "&");
+				thisQuery.value = atoi(queryValue1);
+				//TODO: Need to evaluate what are valid values.
+				if(thisQuery.value < 3)
+				{
+					Update_State_Variables(thisQuery);
+
+					currentIPD.Valid = 1;
+				}
+			}
+			RefreshCustomRESTResponseSwamp(currentESPStatus.Station_IP, currentESPStatus.AccessPoint_IP, pumpMode_Current, fanMode_Current,temp_Current, humid_Current);
+
+			}
+		}
+		else if (requestType == GET)
+		{
+			//TODO: Still need to add parsing of start up ESP data (ip's, MAC, and ready flag )
+			RefreshCustomRESTResponseSwamp(currentESPStatus.Station_IP, currentESPStatus.AccessPoint_IP, pumpMode_Current, fanMode_Current,temp_Current, humid_Current);
+			currentIPD.Valid = 1;
+			return currentIPD;
+		}
+	}
 				return currentIPD;
 }
 

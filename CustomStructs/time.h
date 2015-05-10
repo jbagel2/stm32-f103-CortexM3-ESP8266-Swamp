@@ -15,7 +15,7 @@ typedef enum{
 }Time_Resolution;
 
 
-void Init_Time(Time_Resolution res);
+void Init_Time(Time_Resolution res, uint32_t clockMhz);
 
 void Delay(uint16_t milliseconds);
 

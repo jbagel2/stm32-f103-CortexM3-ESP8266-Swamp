@@ -7,6 +7,7 @@
 #include "esp8266/include/esp8266.h"
 #include "Server/WebServer.h"
 #include "swamp_controls/swamp_functions.h"
+#include "dht22.h"
 /*
  * Swamp Cooler Relay controller
  *
@@ -19,7 +20,7 @@
  * USART3 TX -> PB10
  * USART3 RX -> PB11
  *
- * DHT22 -> PB6
+ * DHT22 -> PB6 (leaf 16)
  *
  * DEBUG
  * SWDIO -> PA13
@@ -51,13 +52,17 @@ volatile char USART3_RxBuffer[RxBuffSize];
 extern char customRESTResponse[400];
 
 IPD_Data currentIPD;
+ESP_Status currentESPStatus;
 
 //uint32_t testTimeStamp = 0;
 uint32_t debounceCurrent = 0;
 uint32_t debounceTime_ms = 300;
 uint32_t lastDMABuffPoll = 0;
 uint32_t lastESPResetPoll = 0;
+uint32_t lastDHT22update = 0;
 #define ESP_RESET_CHECK_INTERVAL 20000 //20 seconds
+
+#define DHT_UPDATE_INTERVAL 10000 //10 seconds
 
 uint32_t mj = 0;
 
@@ -80,8 +85,6 @@ void Configure_HSI_Clock()
 	RCC_PCLK1Config(RCC_HCLK_Div1);
 	RCC_PCLK2Config(RCC_HCLK_Div1);
 	RCC_ADCCLKConfig(RCC_PCLK2_Div2);
-
-
 }
 
 
@@ -96,7 +99,6 @@ void SetSystemClockOut()
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
-
 	RCC_MCOConfig(RCC_MCO_PLLCLK_Div2);
 }
 
@@ -125,7 +127,7 @@ int main(void)
 {
 	Configure_HSI_Clock();
 	//Start SysTick and set to millisecond resolution
-	Init_Time(MILLISEC);
+	Init_Time(MILLISEC,64);
 
 	//Enable USART3 and attach DMA Circular buffer for Rx
 	Init_USART3_DMA(2000000,USART3_RxBuffer, RxBuffSize);
@@ -144,8 +146,12 @@ int main(void)
 	//SetSystemClockOut();
 	Wifi_ON();
 
+	uint16_t WaitForReady_TimeStmp = Millis();
+	while(!Wifi_CheckDMABuff_ForReady() && (Millis() - WaitForReady_TimeStmp) < ESP_ResponseTimeout_ms){}
+
+
 	//Just a static wait for now (Will add a DMA buffer parse for "ready"), for the ESP8266 boot-up
-	for (mj=0;mj<130500;mj++);
+	//for (mj=0;mj<130500;mj++);
 
 	//Connect to a given Wifi Network
 	Wifi_SendCommand(WIFI_JOIN_NONYA);
@@ -180,6 +186,12 @@ int main(void)
     					//Wifi_CloseConnection(currentIPD.ConnectionNum);
     				}
     			}
+
+    	if((Millis() - lastDHT22update) >= DHT_UPDATE_INTERVAL)
+    	{
+    		DHT22_Init();
+    		DHT22_Start_Read();
+    	}
 
     	if((Millis() - lastESPResetPoll) >= ESP_RESET_CHECK_INTERVAL)
     	{

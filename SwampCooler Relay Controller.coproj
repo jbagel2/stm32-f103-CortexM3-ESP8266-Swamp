@@ -81,42 +81,42 @@
     <File name="Std_Periph/source/stm32f10x_tim.c" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_tim.c" type="1"/>
     <File name="customStructs/time.c" path="CustomStructs/time.c" type="1"/>
     <File name="Std_Periph/include/misc.h" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/inc/misc.h" type="1"/>
-    <File name="esp8266/include/esp8266.h" path="esp8266/include/esp8266.h" type="1"/>
     <File name="cmsis_boot" path="" type="2"/>
+    <File name="esp8266/include/esp8266.h" path="esp8266/include/esp8266.h" type="1"/>
     <File name="customStructs/KeyValuePair.h" path="CustomStructs/KeyValuePair.h" type="1"/>
     <File name="Std_Periph/include/stm32f10x_gpio.h" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_gpio.h" type="1"/>
-    <File name="Std_Periph/include/stm32f10x_rtc.h" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_rtc.h" type="1"/>
-    <File name="Std_Periph/source/stm32f10x_exti.c" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_exti.c" type="1"/>
-    <File name="esp8266/include" path="" type="2"/>
     <File name="webserver/source/WebServerConfig.c" path="Server/WebServerConfig.c" type="1"/>
+    <File name="Std_Periph/include/stm32f10x_rtc.h" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_rtc.h" type="1"/>
+    <File name="esp8266/include" path="" type="2"/>
+    <File name="Std_Periph/source/stm32f10x_exti.c" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_exti.c" type="1"/>
     <File name="Std_Periph/source/stm32f10x_usart.c" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_usart.c" type="1"/>
     <File name="esp8266/source" path="" type="2"/>
     <File name="Std_Periph/source/stm32f10x_gpio.c" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c" type="1"/>
     <File name="semihosting/sh_cmd.s" path="semihosting/sh_cmd.s" type="1"/>
     <File name="cmsis_boot/startup" path="" type="2"/>
-    <File name="esp8266/source/esp8266.c" path="esp8266/source/esp8266.c" type="1"/>
     <File name="sensors/DHT22/dht22.h" path="sensors/DHT22/dht22.h" type="1"/>
+    <File name="esp8266/source/esp8266.c" path="esp8266/source/esp8266.c" type="1"/>
     <File name="cmsis/core_cmFunc.h" path="cmsis/core_cmFunc.h" type="1"/>
     <File name="semihosting/semihosting.c" path="semihosting/semihosting.c" type="1"/>
     <File name="Std_Periph/source/stm32f10x_rcc.c" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_rcc.c" type="1"/>
     <File name="cmsis_boot/stm32f10x.h" path="cmsis_boot/stm32f10x.h" type="1"/>
     <File name="cmsis_boot/stm32f10x_conf.h" path="cmsis_boot/stm32f10x_conf.h" type="1"/>
     <File name="Std_Periph/include/stm32f10x_sdio.h" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_sdio.h" type="1"/>
-    <File name="webserver/include" path="" type="2"/>
-    <File name="swamp_controls" path="" type="2"/>
-    <File name="webserver/source/WebServer.c" path="Server/WebServer.c" type="1"/>
     <File name="Std_Periph/include/stm32f10x_rcc.h" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_rcc.h" type="1"/>
+    <File name="swamp_controls" path="" type="2"/>
+    <File name="webserver/include" path="" type="2"/>
+    <File name="webserver/source/WebServer.c" path="Server/WebServer.c" type="1"/>
     <File name="sensors/DHT22" path="" type="2"/>
-    <File name="Std_Periph/source/stm32f10x_pwr.c" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c" type="1"/>
     <File name="Std_Periph/source/stm32f10x_rtc.c" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_rtc.c" type="1"/>
+    <File name="Std_Periph/source/stm32f10x_pwr.c" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c" type="1"/>
     <File name="esp8266" path="" type="2"/>
     <File name="webserver/include/WebServer.h" path="Server/WebServer.h" type="1"/>
     <File name="Std_Periph/include/stm32f10x_usart.h" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_usart.h" type="1"/>
     <File name="config/globalDefines.h" path="Config/globalDefines.h" type="1"/>
     <File name="Std_Periph/include" path="" type="2"/>
     <File name="swamp_controls/swamp_functions.c" path="swamp_controls/swamp_functions.c" type="1"/>
-    <File name="Std_Periph/include/stm32f10x_exti.h" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_exti.h" type="1"/>
     <File name="Std_Periph/source/stm32f10x_dma.c" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_dma.c" type="1"/>
+    <File name="Std_Periph/include/stm32f10x_exti.h" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_exti.h" type="1"/>
     <File name="json/json.h" path="json/json.h" type="1"/>
     <File name="stdio/printf.c" path="stdio/printf.c" type="1"/>
     <File name="cmsis_boot/startup/startup_stm32f10x_md.c" path="cmsis_boot/startup/startup_stm32f10x_md.c" type="1"/>
@@ -126,9 +126,9 @@
     <File name="cmsis/core_cmInstr.h" path="cmsis/core_cmInstr.h" type="1"/>
     <File name="sensors/DHT22/dht22.c" path="sensors/DHT22/dht22.c" type="1"/>
     <File name="Std_Periph/source/misc.c" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/src/misc.c" type="1"/>
-    <File name="webserver/include/WebServerConfig.h" path="Server/WebServerConfig.h" type="1"/>
-    <File name="sensors" path="" type="2"/>
     <File name="cmsis/core_cm3.h" path="cmsis/core_cm3.h" type="1"/>
+    <File name="sensors" path="" type="2"/>
+    <File name="webserver/include/WebServerConfig.h" path="Server/WebServerConfig.h" type="1"/>
     <File name="Std_Periph/include/stm32f10x_tim.h" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_tim.h" type="1"/>
     <File name="customStructs/GeneralMacros.h" path="CustomStructs/GeneralMacros.h" type="1"/>
     <File name="Std_Periph/source/stm32f10x_adc.c" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_adc.c" type="1"/>
