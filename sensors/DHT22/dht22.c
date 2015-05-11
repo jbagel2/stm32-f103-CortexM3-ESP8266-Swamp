@@ -16,7 +16,7 @@ volatile uint32_t upTimeStart = 0;
 volatile uint32_t upTimeEnd = 0;
 volatile uint32_t downTimeStart = 0;
 volatile uint32_t downTimeEnd = 0;
-volatile uint32_t DHT22_Bit_Time[42];
+volatile uint8_t DHT22_Bit_Time[42]; //testing as 8bit instead of 32 (to save memory)
 volatile uint8_t currentBit = 0;
 
 
@@ -114,6 +114,13 @@ void DHT22_Config_NVIC()
 	NVIC_Init(&DHT22_Interrupt);
 
 	NVIC_SetPriority(EXTI9_5_IRQn, NVIC_EncodePriority(4,15,0));
+}
+
+void DHT22_Times_To_Bits(uint8_t bitTimesArray[])
+{
+	
+	
+	
 }
 
 
