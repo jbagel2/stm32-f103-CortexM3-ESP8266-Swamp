@@ -11,12 +11,13 @@
 
 GPIO_InitTypeDef DHT22_Pin_GPIO_Config;
 
-volatile uint8_t DHT22_Buffer[5]; //5 byte array, to hold the 40 bits
+volatile uint8_t DHT22_Buffer[6]; //5 byte array, to hold the 40 bits
+volatile uint16_t DHT22_Buffer16[3];
 volatile uint32_t upTimeStart = 0;
 volatile uint32_t upTimeEnd = 0;
 volatile uint32_t downTimeStart = 0;
 volatile uint32_t downTimeEnd = 0;
-volatile uint8_t DHT22_Bit_Time[42]; //testing as 8bit instead of 32 (to save memory)
+volatile uint8_t DHT22_Bit_Time[45]; //testing as 8bit instead of 32 (to save memory)
 volatile uint8_t currentBit = 0;
 
 
@@ -45,8 +46,12 @@ void DHT22_Start_Read()
 	DHT22_Config_GPIO_INPUT(); //Ready for incoming data
 	//DHT22_Config_EXTInterrupt_Enable();
 	dhtTimeStamp = Millis();
-	while((Millis() - dhtTimeStamp) < 3000){}
+	while((Millis() - dhtTimeStamp) < 1000){}
+	DHT22_Times_To_Bits16(DHT22_Bit_Time, 45);
+	DHT_Value_Checksum();
+	//DHT22_Buffer16[3] = DHT22_Buffer16[3]| DHT22_Buffer16[3]>>8;
 	dhtTimeStamp = Millis();
+
 	//Do something to check for data transmission completion
 
 //Pull line low for at least 1ms
@@ -116,11 +121,75 @@ void DHT22_Config_NVIC()
 	NVIC_SetPriority(EXTI9_5_IRQn, NVIC_EncodePriority(4,15,0));
 }
 
-void DHT22_Times_To_Bits(uint8_t bitTimesArray[])
+void DHT22_Times_To_Bits(uint8_t bitTimesArray[], uint8_t arraySize)
 {
-	
-	
-	
+	uint8_t count;
+	uint8_t toValidate;
+	uint8_t bitCount = 7;
+	uint8_t byteNumber = 0;
+	for(count = 0; count < arraySize; count++)
+	{
+		toValidate = bitTimesArray[count];
+		if(toValidate < 55)
+		{
+			DHT22_Buffer[byteNumber] = DHT22_Buffer[byteNumber] | 0<<bitCount;
+		}
+		else {
+			DHT22_Buffer[byteNumber] = DHT22_Buffer[byteNumber] | 1<<bitCount;
+		}
+		if(bitCount != 0)
+		{
+			bitCount--;
+		}
+		else
+		{
+			bitCount = 7;
+			byteNumber++;
+		}
+	}
+}
+
+
+void DHT22_Times_To_Bits16(uint8_t bitTimesArray[], uint8_t arraySize)
+{
+	uint8_t count;
+	uint8_t toValidate;
+	uint8_t bitCount = 15;
+	uint8_t byteNumber = 0;
+	for(count = 2; count < arraySize; count++)
+	{
+		toValidate = bitTimesArray[count];
+		if(toValidate < 55)
+		{
+			DHT22_Buffer16[byteNumber] = DHT22_Buffer16[byteNumber] | 0<<bitCount;
+		}
+		else {
+			DHT22_Buffer16[byteNumber] = DHT22_Buffer16[byteNumber] | 1<<bitCount;
+		}
+		if(bitCount != 0)
+		{
+			bitCount--;
+		}
+		else
+		{
+			bitCount = 15;
+			byteNumber++;
+		}
+	}
+}
+
+
+
+void DHT_Value_Checksum()
+{
+	uint8_t count;
+	uint8_t buffCount = 0;
+	for(count =0; count < 3; count++)
+	{
+		DHT22_Buffer[buffCount++] = DHT22_Buffer16[count] & 0xff;
+		DHT22_Buffer[buffCount++] = (DHT22_Buffer16[count] >> 8) & 0xff;
+	}
+
 }
 
 

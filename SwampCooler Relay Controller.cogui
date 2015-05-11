@@ -21,7 +21,7 @@
 </presentation>
 </folder>
 </info>
-<info part="DefaultEditorWorkbook" ratio="0.4120735" ratioLeft="314" ratioRight="448" relationship="2" relative="org.eclipse.ui.internal.EditorStack@1c23a11">
+<info part="DefaultEditorWorkbook" ratio="0.3363554" ratioLeft="371" ratioRight="732" relationship="2" relative="org.eclipse.ui.internal.EditorStack@1c23a11">
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
@@ -64,7 +64,7 @@
 </editor>
 <editor focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="dht22.h" partName="dht22.h" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/sensors/DHT22/dht22.h" title="dht22.h" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/sensors/DHT22/dht22.h" workbook="org.eclipse.ui.internal.EditorStack@1c23a11">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/sensors/DHT22/dht22.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="293" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="21" selectionOffset="473" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="esp8266.c" partName="esp8266.c" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/esp8266/source/esp8266.c" title="esp8266.c" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/esp8266/source/esp8266.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/esp8266/source/esp8266.c"/>
@@ -100,15 +100,15 @@
 </editor>
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="dht22.c" partName="dht22.c" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/sensors/DHT22/dht22.c" title="dht22.c" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/sensors/DHT22/dht22.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/sensors/DHT22/dht22.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1155" selectionTopPixel="294"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4618" selectionTopPixel="3077"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/main.c" title="main.c" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4995" selectionTopPixel="3026"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4995" selectionTopPixel="3077"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f10x_md.c" partName="startup_stm32f10x_md.c" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/cmsis_boot/startup/startup_stm32f10x_md.c" title="startup_stm32f10x_md.c" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/cmsis_boot/startup/startup_stm32f10x_md.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/cmsis_boot/startup/startup_stm32f10x_md.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10032" selectionTopPixel="2873"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10032" selectionTopPixel="2941"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="USART3_Config.c" partName="USART3_Config.c" path="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/Config/USART3_Config.c" title="USART3_Config.c" tooltip="C:/ARMDevelopment/STM32 Projects/F103/stm32-f103-CortexM3-ESP8266-SwampController/Config/USART3_Config.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SwampCooler Relay Controller/config/USART3_Config.c"/>
@@ -124,6 +124,37 @@
 </editor>
 </editors>
 <views>
+<view id="org.eclipse.debug.ui.MemoryView" partName="Memory">
+<viewState/>
+</view>
+<view id="org.eclipse.search.ui.views.SearchView" partName="Search">
+<viewState isPinned="false">
+<view IMemento.internal.id="org.eclipse.cdt.ui.pdomSearchViewPage" definitionColumnWidth="150" locationColumnWidth="300" matchColumnWidth="300" org.eclipse.search.lastActivation="1" org.eclipse.search.resultpage.layout="2" showEnclosingDefinitions="true"/>
+<view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
+</viewState>
+</view>
+<view id="org.coocox.codebugger.trace.ui.traceview" partName="Semihosting">
+<viewState/>
+</view>
+<view id="org.eclipse.debug.ui.DebugView" partName="Debug">
+<viewState/>
+</view>
+<view id="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" partName="Memory Browser">
+<viewState>
+<MemoryBroser ComboItemsValue="0x20000c2c;0x20000bf0;" FocuseTabIndex="0" TabsValue="" TextValue="0x20000bf0" horizontalPosition="0" verticalPosition="0"/>
+</viewState>
+</view>
+<view id="org.coocox.coassistant.view.CoAssistantView_debug" partName="Peripherals">
+<viewState horizontalPosition="0" verticalPosition="0">
+<selection>
+<element name="GPIOB"/>
+</selection>
+<registerValues baseAddress="Base Address: 0x40010C00" description="Description:  General Purpose I/O B"/>
+</viewState>
+</view>
+<view id="org.eclipse.debug.ui.VariableView" partName="Variables">
+<viewState/>
+</view>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
 <viewState CommonNavigator.LINKING_ENABLED="1" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="32">
 <expanded>
@@ -153,19 +184,7 @@
 </selection>
 </viewState>
 </view>
-<view id="org.eclipse.search.ui.views.SearchView" partName="Search">
-<viewState isPinned="false">
-<view IMemento.internal.id="org.eclipse.cdt.ui.pdomSearchViewPage" definitionColumnWidth="150" locationColumnWidth="300" matchColumnWidth="300" org.eclipse.search.lastActivation="1" org.eclipse.search.resultpage.layout="2" showEnclosingDefinitions="true"/>
-<view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
-</viewState>
-</view>
 <view id="org.eclipse.debug.ui.RegisterView" partName="Registers">
-<viewState/>
-</view>
-<view id="org.coocox.codebugger.trace.ui.traceview" partName="Semihosting">
-<viewState/>
-</view>
-<view id="org.eclipse.debug.ui.DebugView" partName="Debug">
 <viewState/>
 </view>
 <view id="org.eclipse.cdt.ui.callHierarchy" partName="Call Hierarchy">
@@ -174,27 +193,11 @@
 <view id="org.eclipse.ui.console.ConsoleView" partName="Console">
 <viewState/>
 </view>
-<view id="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" partName="Memory Browser">
-<viewState>
-<MemoryBroser ComboItemsValue=";" FocuseTabIndex="0" TabsValue="" TextValue="" horizontalPosition="0" verticalPosition="0"/>
-</viewState>
-</view>
-<view id="org.coocox.coassistant.view.CoAssistantView_debug" partName="Peripherals">
-<viewState horizontalPosition="0" verticalPosition="0">
-<selection>
-<element name="GPIOB"/>
-</selection>
-<registerValues baseAddress="Base Address: 0x40010C00" description="Description:  General Purpose I/O B"/>
-</viewState>
-</view>
-<view id="org.eclipse.debug.ui.VariableView" partName="Variables">
-<viewState/>
-</view>
 <view id="org.eclipse.cdt.dsf.debug.ui.disassembly.view" partName="Disassembly">
 <viewState disassembly.syncActiveContext="true" disassembly.trackExpression="false"/>
 </view>
 <view id="org.coocox.coassistant.view.CoAssistantView" partName="Peripherals">
-<viewState horizontalPosition="0" verticalPosition="0">
+<viewState horizontalPosition="0" verticalPosition="7">
 <selection>
 <element name="EXTI"/>
 </selection>
@@ -260,7 +263,7 @@
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@d0af7a" ratio="0.5773318" ratioLeft="489" ratioRight="358" relationship="4" relative="org.eclipse.ui.internal.ViewStack@5e18b">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@d0af7a" ratio="0.7540603" ratioLeft="650" ratioRight="212" relationship="4" relative="org.eclipse.ui.internal.ViewStack@5e18b">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.cdt.ui.callHierarchy" label="Call Hierarchy"/>
@@ -336,13 +339,14 @@
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <hide_toolbar_item_id id="org.coocox.builder.ui.build"/>
 <hide_toolbar_item_id id="org.coocox.welcome.ui.action.welcome"/>
-<hide_toolbar_item_id id="org.coocox.codebugger.configuration.coideProgramDownloadAction"/>
 <hide_toolbar_item_id id="org.coocox.component.ui.ShowRepositoryAction"/>
+<hide_toolbar_item_id id="org.coocox.codebugger.configuration.coideProgramDownloadAction"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.debug.ui.DebugView"/>
 <view id="org.coocox.codebugger.trace.ui.traceview"/>
 <view id="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser"/>
 <view id="org.eclipse.cdt.ui.callHierarchy"/>
+<view id="org.eclipse.debug.ui.MemoryView"/>
 <view id="org.eclipse.debug.ui.RegisterView"/>
 <view id="org.coocox.coassistant.view.CoAssistantView_debug"/>
 <view id="org.eclipse.cdt.dsf.debug.ui.disassembly.view"/>
@@ -366,8 +370,8 @@
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@4353c3" ratio="0.8427332" ratioLeft="777" ratioRight="145" relationship="4" relative="org.eclipse.ui.internal.ViewStack@b979aa">
-<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@4353c3" ratio="0.73549885" ratioLeft="634" ratioRight="228" relationship="4" relative="org.eclipse.ui.internal.ViewStack@b979aa">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
@@ -378,16 +382,17 @@
 </folder>
 </info>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@112d38a" ratio="0.43837085" ratioLeft="409" ratioRight="524" relationship="2" relative="org.eclipse.ui.internal.ViewStack@4353c3">
-<folder activePageID="org.coocox.codebugger.trace.ui.traceview" appearance="2" expanded="2">
+<folder activePageID="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" appearance="2" expanded="2">
 <page content="org.coocox.codebugger.trace.ui.traceview" label="Semihosting"/>
 <page content="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" label="Memory Browser"/>
 <page content="org.eclipse.cdt.ui.callHierarchy" label="Call Hierarchy"/>
-<page content="org.eclipse.debug.ui.MemoryView" label="LabelNotFound"/>
+<page content="org.eclipse.debug.ui.MemoryView" label="Memory"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
 <part id="2"/>
+<part id="3"/>
 </presentation>
 </folder>
 </info>
@@ -412,7 +417,7 @@
 </presentation>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.342312" ratioLeft="305" ratioRight="586" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1c496c2"/>
+<info part="org.eclipse.ui.editorss" ratio="0.26959023" ratioLeft="375" ratioRight="1016" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1c496c2"/>
 </mainWindow>
 </layout>
 </perspective>
@@ -421,158 +426,158 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SwampCooler Relay Controller/sensors/DHT22/dht22.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SwampCooler Relay Controller/main.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SwampCooler Relay Controller/cmsis_boot/startup/startup_stm32f10x_md.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SwampCooler Relay Controller/main.c"/>
 </editors>
 <item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="3288" y="0"/>
+<position info="not_deleted" x="1241" y="0"/>
 </item>
 <item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="513" y="0"/>
+<position info="not_deleted" x="3920" y="0"/>
 </item>
-<item historyLabel="startup_stm32f10x_md.c" index="2">
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="4618" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="1375" y="0"/>
+</item>
+<item historyLabel="main.c" index="2">
+<position info="not_deleted" x="4995" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="1241" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="3920" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="4618" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="1375" y="0"/>
+</item>
+<item historyLabel="main.c" index="2">
+<position info="not_deleted" x="4995" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="1241" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="3920" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="4618" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="1375" y="0"/>
+</item>
+<item historyLabel="main.c" index="2">
+<position info="not_deleted" x="4995" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="1241" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="3920" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="4618" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="1375" y="0"/>
+</item>
+<item historyLabel="main.c" index="2">
+<position info="not_deleted" x="4995" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="1241" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="3920" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="1308" y="0"/>
+</item>
+<item historyLabel="startup_stm32f10x_md.c" index="1">
 <position info="not_deleted" x="10032" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
+<item historyLabel="main.c" index="2">
 <position info="not_deleted" x="2742" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
+<item historyLabel="main.c" index="2">
 <position info="not_deleted" x="4995" y="0"/>
 </item>
 <item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="1155" y="0"/>
+<position info="not_deleted" x="1241" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="3920" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="4618" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="1375" y="0"/>
+</item>
+<item historyLabel="main.c" index="2">
 <position info="not_deleted" x="4995" y="0"/>
 </item>
 <item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="1155" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="4995" y="0"/>
+<position info="not_deleted" x="1241" y="0"/>
 </item>
 <item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="3514" y="0"/>
+<position info="not_deleted" x="3920" y="0"/>
 </item>
-<item historyLabel="startup_stm32f10x_md.c" index="2">
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="4610" y="0"/>
+</item>
+<item historyLabel="startup_stm32f10x_md.c" index="1">
 <position info="not_deleted" x="10032" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
+<item historyLabel="main.c" index="2">
 <position info="not_deleted" x="2742" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
+<item historyLabel="main.c" index="2">
 <position info="not_deleted" x="4995" y="0"/>
 </item>
 <item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="1155" y="0"/>
+<position info="not_deleted" x="1241" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="3920" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="4618" y="0"/>
+</item>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="1375" y="0"/>
+</item>
+<item historyLabel="main.c" index="2">
 <position info="not_deleted" x="4995" y="0"/>
 </item>
 <item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="3288" y="0"/>
+<position info="not_deleted" x="1241" y="0"/>
 </item>
 <item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="3650" y="0"/>
+<position info="not_deleted" x="3920" y="0"/>
 </item>
-<item historyLabel="startup_stm32f10x_md.c" index="2">
-<position info="not_deleted" x="10032" y="0"/>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="4618" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="2742" y="0"/>
+<item historyLabel="dht22.c" index="0">
+<position info="not_deleted" x="1375" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
+<item historyLabel="main.c" index="2">
 <position info="not_deleted" x="4995" y="0"/>
 </item>
 <item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="1155" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="4995" y="0"/>
+<position info="not_deleted" x="1241" y="0"/>
 </item>
 <item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="814" y="0"/>
-</item>
-<item historyLabel="startup_stm32f10x_md.c" index="2">
-<position info="not_deleted" x="10032" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="2742" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="4995" y="0"/>
-</item>
-<item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="946" y="0"/>
-</item>
-<item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="1155" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="4995" y="0"/>
-</item>
-<item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="1155" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="4995" y="0"/>
-</item>
-<item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="3349" y="0"/>
-</item>
-<item historyLabel="startup_stm32f10x_md.c" index="2">
-<position info="not_deleted" x="10032" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="2742" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="4995" y="0"/>
-</item>
-<item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="1155" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="4995" y="0"/>
-</item>
-<item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="3462" y="0"/>
-</item>
-<item historyLabel="startup_stm32f10x_md.c" index="2">
-<position info="not_deleted" x="10032" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="2742" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="4995" y="0"/>
-</item>
-<item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="1155" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="4995" y="0"/>
-</item>
-<item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="3356" y="0"/>
-</item>
-<item historyLabel="startup_stm32f10x_md.c" index="2">
-<position info="not_deleted" x="10032" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="2742" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="4995" y="0"/>
-</item>
-<item historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="1155" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="4995" y="0"/>
+<position info="not_deleted" x="3920" y="0"/>
 </item>
 <item active="true" historyLabel="dht22.c" index="0">
-<position info="not_deleted" x="1155" y="0"/>
+<position info="not_deleted" x="4618" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>

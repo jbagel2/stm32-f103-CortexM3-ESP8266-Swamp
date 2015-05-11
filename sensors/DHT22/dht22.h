@@ -21,6 +21,7 @@ void DHT22_Config_GPIO_OUTPUT();
 void DHT22_Config_EXTInterrupt_Enable();
 void DHT22_Config_EXTInterrupt_Disable();
 void DHT22_Config_NVIC();
+void DHT_Value_Checksum();
 
 
 #endif
