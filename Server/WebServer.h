@@ -13,6 +13,7 @@
 #include "WebServerConfig.h"
 #include "esp8266.h"
 #include "CustomStructs/GeneralMacros.h"
+#include "dht22.h"
 
 
 char customRESTResponse[400];

@@ -18,9 +18,9 @@
  
 
 /*----------Stack Configuration-----------------------------------------------*/  
-#define STACK_SIZE       0x00000100      /*!< The Stack size suggest using even number     */
+#define STACK_SIZE       0x00000300      /*!< The Stack size suggest using even number     */
 __attribute__ ((section(".co_stack")))
-unsigned long pulStack[STACK_SIZE];      
+unsigned long pulStack[STACK_SIZE];
 
 
 /*----------Macro definition--------------------------------------------------*/  

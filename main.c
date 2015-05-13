@@ -53,6 +53,7 @@ extern char customRESTResponse[400];
 
 IPD_Data currentIPD;
 ESP_Status currentESPStatus;
+DHT22_Data Current_DHT22_Reading;
 
 //uint32_t testTimeStamp = 0;
 uint32_t debounceCurrent = 0;
@@ -163,7 +164,7 @@ int main(void)
 	Wifi_SendCommand(WIFI_GET_CURRENT_IP);
 
 	uint8_t readyFound = 0;
-
+	DHT22_Init();
     while(1)
     {
 
@@ -173,7 +174,7 @@ int main(void)
     			{
     				lastDMABuffPoll = Millis();
     				//If IPD data is found it is converted to a IPD_Data object (basically an HTTP Request object)
-    				currentIPD = Wifi_CheckDMABuff_ForIPDData();
+    				currentIPD = Wifi_CheckDMABuff_ForIPDData(&Current_DHT22_Reading);
     				//If it is valid (if it passed the object complete validation)
     				if(currentIPD.Valid == 1)
     				{
@@ -189,8 +190,8 @@ int main(void)
 
     	if((Millis() - lastDHT22update) >= DHT_UPDATE_INTERVAL)
     	{
-    		DHT22_Init();
-    		DHT22_Start_Read();
+    		lastDHT22update = Millis();
+    		DHT22_Start_Read(&Current_DHT22_Reading);
     	}
 
     	if((Millis() - lastESPResetPoll) >= ESP_RESET_CHECK_INTERVAL)

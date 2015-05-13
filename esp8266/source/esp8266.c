@@ -8,6 +8,7 @@
 #include "esp8266.h"
 #include "WebServer.h"
 #include "swamp_controls/swamp_functions.h"
+#include "dht22.h"
 
 
 char *ESP_IPD_Data_Buffer_Pntr;
@@ -24,6 +25,7 @@ volatile uint8_t ERRORFound = 0;
 volatile uint32_t TxWaitForResponse_TimeStmp = 0;
 //extern volatile char USART3_RxBuffer_Buffer[RxBuffSize];
 extern volatile char USART3_RxBuffer[RxBuffSize];
+//extern DHT22_Data Current_DHT22_Reading;
 
 uint8_t pumpModeToValidate = -1; //Just a starting value that is outside the allowed
 uint8_t fanModeToValidate = -1;
@@ -372,7 +374,7 @@ void Wifi_CheckDMABuff_ForCIFSRData()
 }
 
 
-IPD_Data Wifi_CheckDMABuff_ForIPDData()
+IPD_Data Wifi_CheckDMABuff_ForIPDData(DHT22_Data *Current_DHT22_Reading)
 {
 	currentIPD.Valid = 0;
 
@@ -431,7 +433,7 @@ IPD_Data Wifi_CheckDMABuff_ForIPDData()
 						if(qsc > 0)
 						{
 							currentIPD.Valid = 1;
-							RefreshCustomRESTResponseSwamp(currentESPStatus.Station_IP, currentESPStatus.AccessPoint_IP, pumpMode_Current, fanMode_Current,temp_Current, humid_Current);
+							RefreshCustomRESTResponseSwamp(currentESPStatus.Station_IP, currentESPStatus.AccessPoint_IP, pumpMode_Current, fanMode_Current,Current_DHT22_Reading);
 						}
 						return currentIPD;
 					}
@@ -446,7 +448,7 @@ IPD_Data Wifi_CheckDMABuff_ForIPDData()
 							queryStrings[qsc] = thisQuery;
 						}
 					}
-					RefreshCustomRESTResponseSwamp(currentESPStatus.Station_IP, currentESPStatus.AccessPoint_IP, pumpMode_Current, fanMode_Current,temp_Current, humid_Current);
+					RefreshCustomRESTResponseSwamp(currentESPStatus.Station_IP, currentESPStatus.AccessPoint_IP, pumpMode_Current, fanMode_Current,Current_DHT22_Reading);
 				}
 			}
 			else {
@@ -466,14 +468,14 @@ IPD_Data Wifi_CheckDMABuff_ForIPDData()
 					currentIPD.Valid = 1;
 				}
 			}
-			RefreshCustomRESTResponseSwamp(currentESPStatus.Station_IP, currentESPStatus.AccessPoint_IP, pumpMode_Current, fanMode_Current,temp_Current, humid_Current);
+			RefreshCustomRESTResponseSwamp(currentESPStatus.Station_IP, currentESPStatus.AccessPoint_IP, pumpMode_Current, fanMode_Current,Current_DHT22_Reading);
 
 			}
 		}
 		else if (requestType == GET)
 		{
 			//TODO: Still need to add parsing of start up ESP data (ip's, MAC, and ready flag )
-			RefreshCustomRESTResponseSwamp(currentESPStatus.Station_IP, currentESPStatus.AccessPoint_IP, pumpMode_Current, fanMode_Current,temp_Current, humid_Current);
+			RefreshCustomRESTResponseSwamp(currentESPStatus.Station_IP, currentESPStatus.AccessPoint_IP, pumpMode_Current, fanMode_Current,Current_DHT22_Reading);
 			currentIPD.Valid = 1;
 			return currentIPD;
 		}

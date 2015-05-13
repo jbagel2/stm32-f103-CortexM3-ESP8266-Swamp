@@ -31,7 +31,9 @@ void DHT22_Init()
 
 
 uint32_t dhtTimeStamp = 0;
-void DHT22_Start_Read()
+uint16_t tempTemp;
+uint16_t humidTemp;
+void DHT22_Start_Read(DHT22_Data *tempAndHumid)
 {
 	currentBit =0;
 	upTimeStart = 0;
@@ -39,7 +41,14 @@ void DHT22_Start_Read()
 	downTimeStart = 0;
 	downTimeEnd = 0;
 
+	//tempAndHumid->Humid = 0.0;
+	//tempAndHumid->Temp = 0.0;
+	DHT22_Buffer16[0] = 0;
+	DHT22_Buffer16[1] = 0;
+	DHT22_Buffer16[2] = 0;
+
 	dhtTimeStamp = Micros();
+	DHT22_Config_GPIO_OUTPUT();
 	GPIOB->BRR = DHT22_Pin; //Pull pin LOW
 	while((Micros() - dhtTimeStamp) < 1100){}
 	GPIOB->BSRR = DHT22_Pin; //Pull pin HIGH
@@ -48,7 +57,23 @@ void DHT22_Start_Read()
 	dhtTimeStamp = Millis();
 	while((Millis() - dhtTimeStamp) < 1000){}
 	DHT22_Times_To_Bits16(DHT22_Bit_Time, 45);
-	DHT_Value_Checksum();
+	if(DHT22_Buffer16[0] < 999)
+	{
+		humidTemp = DHT22_Buffer16[0];
+		tempAndHumid->Humid = humidTemp/10.0;
+
+	}
+
+	if(DHT22_Buffer16[1] < 999)
+	{
+		tempTemp = DHT22_Buffer16[1];
+		tempAndHumid->Temp = tempTemp/10.0;
+
+	}
+
+
+
+	//DHT_Value_Checksum();
 	//DHT22_Buffer16[3] = DHT22_Buffer16[3]| DHT22_Buffer16[3]>>8;
 	dhtTimeStamp = Millis();
 
