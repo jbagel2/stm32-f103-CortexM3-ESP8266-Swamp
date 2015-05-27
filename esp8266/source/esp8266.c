@@ -62,7 +62,7 @@ const char *ATCommandsArray[18] = {
 	"AT+GMR",
 	"AT+CWMODE?",
 	"AT+CWMODE=3",
-	"AT+CWJAP=\"Nonya\",\"porsche911\"",
+	"AT+CWJAP=\"NonyaMobile\",\"porsche911\"",
 	"AT+CWJAP?",
 	"AT+RST",
 	"AT+CIPMUX=1",

@@ -146,6 +146,7 @@ int main(void)
 	Swamp_Init();
 	//SetSystemClockOut();
 	Wifi_ON();
+	for (mj=0;mj<1305000;mj++);
 
 	uint16_t WaitForReady_TimeStmp = Millis();
 	while(!Wifi_CheckDMABuff_ForReady() && (Millis() - WaitForReady_TimeStmp) < ESP_ResponseTimeout_ms){}
@@ -164,7 +165,7 @@ int main(void)
 	Wifi_SendCommand(WIFI_GET_CURRENT_IP);
 
 	uint8_t readyFound = 0;
-	DHT22_Init();
+	//DHT22_Init();
     while(1)
     {
 
