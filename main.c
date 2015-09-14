@@ -154,6 +154,7 @@ int main(void)
 
 	//Just a static wait for now (Will add a DMA buffer parse for "ready"), for the ESP8266 boot-up
 	//for (mj=0;mj<130500;mj++);
+	Wifi_SendCommand(WIFI_CLIENT_ONLY);
 
 	//Connect to a given Wifi Network
 	Wifi_SendCommand(WIFI_JOIN_NONYA);

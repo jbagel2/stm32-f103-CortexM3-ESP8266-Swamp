@@ -48,7 +48,8 @@ typedef enum
 	WIFI_QUIT_CURRENT_AP,
 	WIFI_START_ACCESS_POINT,
 	WIFI_DISABLE_ECHO,
-	WIFI_CLOSE_CONNECTION
+	WIFI_CLOSE_CONNECTION,
+	WIFI_CLIENT_ONLY //No AP
 }Wifi_Commands;
 
 typedef enum
@@ -79,7 +80,7 @@ typedef struct{
 
 }ESP_Status;
 
-extern const char *ATCommandsArray[18];
+extern const char *ATCommandsArray[20];
 
 #define WIFI_COMMAND(commandEnum) (ATCommandsArray[(commandEnum)])
 

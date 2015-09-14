@@ -55,14 +55,14 @@ IPD_Data ProcessIPD_Data(char *IPD_Buffer);
 
 
 
-const char *ATCommandsArray[18] = {
+const char *ATCommandsArray[20] = {
 	"AT",
 	"AT+CIPSTATUS",
 	"AT+CWLAP",
 	"AT+GMR",
 	"AT+CWMODE?",
 	"AT+CWMODE=3",
-	"AT+CWJAP=\"NonyaMobile\",\"porsche911\"",
+	"AT+CWJAP=\"Nonya\",\"porsche911\"",
 	"AT+CWJAP?",
 	"AT+RST",
 	"AT+CIPMUX=1",
@@ -74,7 +74,8 @@ const char *ATCommandsArray[18] = {
 	"AT+CWQAP",
 	"AT+CWSAP=",
 	"ATE0",
-	"AT+CIPCLOSE="};
+	"AT+CIPCLOSE=",
+	"AT+CWMODE=1"};
 
 
 const char *ESP_Responses[10] =

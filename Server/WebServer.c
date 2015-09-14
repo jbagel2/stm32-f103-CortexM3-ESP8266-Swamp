@@ -45,8 +45,8 @@ const char *RESTResponse_Headers_Test_OK = //Just here for testing as this is ju
 		// Needs to include Content-Length:XX
 		// Calculated and appended based on body
 
-const char *RESTResponse_Body_TEST_JSON =
-		"{\"ID\":\"dim01\",\"Status\":{\"CurrentIP_WAN\":\"0.0.0.0\",\"currentip_lan\":\"192.168.4.1\",\"self_check_result\":\"OK\"}} \0";
+//const char *RESTResponse_Body_TEST_JSON =
+//		"{\"ID\":\"dim01\",\"Status\":{\"CurrentIP_WAN\":\"0.0.0.0\",\"currentip_lan\":\"192.168.4.1\",\"self_check_result\":\"OK\"}} \0";
 
 
 const char DimmingInputPage[] = "  <html><head><meta charset=\"UTF-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>Dimming Module Control Page</title></head><form action=\"dimming_form.asp\">Dimming Value: <input type=\"text\" name=\"dimvalue\"><br>"
