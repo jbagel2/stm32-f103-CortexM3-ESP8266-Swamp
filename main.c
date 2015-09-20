@@ -1,3 +1,7 @@
+
+
+
+
 #include "globalDefines.h"
 #include "time.h"
 #include "USART3_Config.h"
@@ -49,11 +53,12 @@
 
 
 volatile char USART3_RxBuffer[RxBuffSize];
-extern char customRESTResponse[400];
+extern char customRESTResponse[450];
 
 IPD_Data currentIPD;
 ESP_Status currentESPStatus;
 DHT22_Data Current_DHT22_Reading;
+DHT22_Data Previous_DHT22_Reading;
 
 //uint32_t testTimeStamp = 0;
 uint32_t debounceCurrent = 0;
@@ -61,9 +66,11 @@ uint32_t debounceTime_ms = 300;
 uint32_t lastDMABuffPoll = 0;
 uint32_t lastESPResetPoll = 0;
 uint32_t lastDHT22update = 0;
+
+
 #define ESP_RESET_CHECK_INTERVAL 20000 //20 seconds
 
-#define DHT_UPDATE_INTERVAL 10000 //10 seconds
+#define DHT_UPDATE_INTERVAL 6000 //10 seconds
 
 uint32_t mj = 0;
 
@@ -151,7 +158,7 @@ int main(void)
 	uint16_t WaitForReady_TimeStmp = Millis();
 	while(!Wifi_CheckDMABuff_ForReady() && (Millis() - WaitForReady_TimeStmp) < ESP_ResponseTimeout_ms){}
 
-
+	currentESPStatus.LastResetTime = Millis();
 	//Just a static wait for now (Will add a DMA buffer parse for "ready"), for the ESP8266 boot-up
 	//for (mj=0;mj<130500;mj++);
 	Wifi_SendCommand(WIFI_CLIENT_ONLY);
@@ -166,7 +173,7 @@ int main(void)
 	Wifi_SendCommand(WIFI_GET_CURRENT_IP);
 
 	uint8_t readyFound = 0;
-	//DHT22_Init();
+	DHT22_Init();
     while(1)
     {
 
@@ -188,21 +195,27 @@ int main(void)
     					SendRESTResponse(currentIPD.ConnectionNum, RESTResponse_Headers_Test_OK, customRESTResponse);
     					//Wifi_CloseConnection(currentIPD.ConnectionNum);
     				}
+    				else {
+
+					}
     			}
 
     	if((Millis() - lastDHT22update) >= DHT_UPDATE_INTERVAL)
     	{
     		lastDHT22update = Millis();
-    		DHT22_Start_Read(&Current_DHT22_Reading);
+    		DHT22_Start_Read(&Current_DHT22_Reading, &Previous_DHT22_Reading);
     	}
 
     	if((Millis() - lastESPResetPoll) >= ESP_RESET_CHECK_INTERVAL)
     	{
+
     		lastESPResetPoll = Millis();
     		readyFound = Wifi_CheckDMABuff_ForReady();
 
     		if(readyFound)
     		{
+    			currentESPStatus.ResetCount++;
+    			currentESPStatus.LastResetTime = Millis();
     			StartServer(1,80);
     			Wifi_SendCommand(WIFI_GET_CURRENT_IP);
     		}

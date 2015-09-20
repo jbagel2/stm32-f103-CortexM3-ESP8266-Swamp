@@ -77,6 +77,8 @@ typedef struct{
  char *AccessPoint_MAC;
  char *Station_IP;
  char *Station_MAC;
+ uint16_t ResetCount;
+ uint32_t LastResetTime;
 
 }ESP_Status;
 

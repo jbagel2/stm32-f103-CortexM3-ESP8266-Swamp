@@ -6,6 +6,7 @@
 #include "dht22.h"
 #include "time.h"
 
+
 #define DHT22_Pin GPIO_Pin_6
 
 
@@ -24,7 +25,7 @@ volatile uint8_t currentBit = 0;
 void DHT22_Init()
 {
 	DHT22_Config_CLK();
-	DHT22_Config_GPIO_OUTPUT();//output for pulse start
+	//DHT22_Config_GPIO_OUTPUT();//output for pulse start
 	DHT22_Config_EXTInterrupt_Enable();
 	DHT22_Config_NVIC();
 }
@@ -33,7 +34,7 @@ void DHT22_Init()
 uint32_t dhtTimeStamp = 0;
 uint16_t tempTemp;
 uint16_t humidTemp;
-void DHT22_Start_Read(DHT22_Data *tempAndHumid)
+void DHT22_Start_Read(DHT22_Data *tempAndHumid, DHT22_Data *previous_tempAndHumid)
 {
 	currentBit =0;
 	upTimeStart = 0;
@@ -57,20 +58,39 @@ void DHT22_Start_Read(DHT22_Data *tempAndHumid)
 	dhtTimeStamp = Millis();
 	while((Millis() - dhtTimeStamp) < 1000){}
 	DHT22_Times_To_Bits16(DHT22_Bit_Time, 45);
-	if(DHT22_Buffer16[0] < 999)
+	DHT22_Times_To_Bits(DHT22_Bit_Time, 45);
+	if(DHT22_Buffer[5] == DHT22_Buffer[4])
 	{
+		tempAndHumid->CheckSumPass++;
+	//if(DHT22_Buffer16[0] < 999)
+	//{
 		humidTemp = DHT22_Buffer16[0];
 		tempAndHumid->Humid = humidTemp/10.0;
 
-	}
+	//}
 
-	if(DHT22_Buffer16[1] < 999)
-	{
+	//if(DHT22_Buffer16[1] < 999)
+	//{
 		tempTemp = DHT22_Buffer16[1];
+//		if (previous_tempAndHumid)
+//		{
+//			float newTemp = tempTemp/10.0;
+//			float diff = fabsf(newTemp - previous_tempAndHumid->Temp);
+//			if (diff > 5)
+//			{
+//				tempAndHumid->Temp = previous_tempAndHumid->Temp;
+//			}
+//		}
+//		else {
+//			previous_tempAndHumid = tempAndHumid;
+//		}
 		tempAndHumid->Temp = tempTemp/10.0;
 
+	//}
 	}
-
+	else {
+		tempAndHumid->CheckSumErrors++;
+	}
 
 
 	//DHT_Value_Checksum();
@@ -148,11 +168,17 @@ void DHT22_Config_NVIC()
 
 void DHT22_Times_To_Bits(uint8_t bitTimesArray[], uint8_t arraySize)
 {
+	DHT22_Buffer[0] = 0;
+	DHT22_Buffer[1] = 0;
+	DHT22_Buffer[2] = 0;
+	DHT22_Buffer[3] = 0;
+	DHT22_Buffer[4] = 0;
+	DHT22_Buffer[5] = 0;
 	uint8_t count;
 	uint8_t toValidate;
 	uint8_t bitCount = 7;
 	uint8_t byteNumber = 0;
-	for(count = 0; count < arraySize; count++)
+	for(count = 2; count < arraySize; count++)
 	{
 		toValidate = bitTimesArray[count];
 		if(toValidate < 55)
@@ -172,6 +198,9 @@ void DHT22_Times_To_Bits(uint8_t bitTimesArray[], uint8_t arraySize)
 			byteNumber++;
 		}
 	}
+
+	DHT22_Buffer[5] = (DHT22_Buffer[0] + DHT22_Buffer[1] + DHT22_Buffer[2] + DHT22_Buffer[3]);
+
 }
 
 
@@ -201,6 +230,7 @@ void DHT22_Times_To_Bits16(uint8_t bitTimesArray[], uint8_t arraySize)
 			byteNumber++;
 		}
 	}
+	DHT22_Buffer16[2] = DHT22_Buffer16[2] >>= 8;
 }
 
 
@@ -217,16 +247,17 @@ void DHT_Value_Checksum()
 
 }
 
-
 void EXTI9_5_IRQHandler(void)
 {
 if(EXTI_GetITStatus(EXTI_Line6) != RESET)
   {
+
 	if(GPIO_ReadInputDataBit(GPIOB,DHT22_Pin)) //If pin high
 	{
 		//currentBit++;
 		upTimeStart = Micros();
-		downTimeEnd = Micros();
+		//downTimeEnd = Micros();
+		downTimeEnd = upTimeStart;
 		//if(downTimeStart != 0)
 		//{
 			//DHT22_Bit_Time[currentBit] = downTimeEnd - downTimeStart;
@@ -236,7 +267,8 @@ if(EXTI_GetITStatus(EXTI_Line6) != RESET)
 	{
 
 		downTimeStart = Micros();
-		upTimeEnd = Micros();
+		//upTimeEnd = Micros();
+		upTimeEnd = downTimeStart;
 		if(upTimeStart != 0)
 		{
 			DHT22_Bit_Time[currentBit] = upTimeEnd - upTimeStart;

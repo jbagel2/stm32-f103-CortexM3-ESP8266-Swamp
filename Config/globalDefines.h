@@ -10,6 +10,7 @@
  */
 
 #define NODE_ID "SWAMP_RELAY"
+#define FIRMWARE_VERSION "0.1.8"
 #define ESP_ResponseTimeout_ms 10000
 #define ESP_USART USART3
 #define ESP_CHPD_Control_GPIO GPIOB

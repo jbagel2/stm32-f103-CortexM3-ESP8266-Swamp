@@ -88,8 +88,8 @@
     <File name="esp8266/include" path="" type="2"/>
     <File name="Std_Periph/source/stm32f10x_exti.c" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_exti.c" type="1"/>
     <File name="Std_Periph/include/stm32f10x_rtc.h" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_rtc.h" type="1"/>
-    <File name="auto_logic/calc.h" path="auto_logic/calc.h" type="1"/>
     <File name="esp8266/source" path="" type="2"/>
+    <File name="auto_logic/calc.h" path="auto_logic/calc.h" type="1"/>
     <File name="Std_Periph/source/stm32f10x_usart.c" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_usart.c" type="1"/>
     <File name="Std_Periph/source/stm32f10x_gpio.c" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c" type="1"/>
     <File name="cmsis_boot/startup" path="" type="2"/>
@@ -100,10 +100,10 @@
     <File name="cmsis_boot/stm32f10x.h" path="cmsis_boot/stm32f10x.h" type="1"/>
     <File name="cmsis_boot/stm32f10x_conf.h" path="cmsis_boot/stm32f10x_conf.h" type="1"/>
     <File name="Std_Periph/include/stm32f10x_sdio.h" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_sdio.h" type="1"/>
-    <File name="Std_Periph/include/stm32f10x_rcc.h" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_rcc.h" type="1"/>
-    <File name="webserver/source/WebServer.c" path="Server/WebServer.c" type="1"/>
-    <File name="swamp_controls" path="" type="2"/>
     <File name="webserver/include" path="" type="2"/>
+    <File name="webserver/source/WebServer.c" path="Server/WebServer.c" type="1"/>
+    <File name="Std_Periph/include/stm32f10x_rcc.h" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_rcc.h" type="1"/>
+    <File name="swamp_controls" path="" type="2"/>
     <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
     <File name="sensors/DHT22" path="" type="2"/>
     <File name="Std_Periph/source/stm32f10x_pwr.c" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c" type="1"/>
@@ -112,8 +112,8 @@
     <File name="esp8266" path="" type="2"/>
     <File name="webserver/include/WebServer.h" path="Server/WebServer.h" type="1"/>
     <File name="Std_Periph/include/stm32f10x_usart.h" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_usart.h" type="1"/>
-    <File name="config/globalDefines.h" path="Config/globalDefines.h" type="1"/>
     <File name="Std_Periph/include" path="" type="2"/>
+    <File name="config/globalDefines.h" path="Config/globalDefines.h" type="1"/>
     <File name="swamp_controls/swamp_functions.c" path="swamp_controls/swamp_functions.c" type="1"/>
     <File name="Std_Periph/source/stm32f10x_dma.c" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_dma.c" type="1"/>
     <File name="Std_Periph/include/stm32f10x_exti.h" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_exti.h" type="1"/>
@@ -137,8 +137,8 @@
     <File name="customStructs" path="" type="2"/>
     <File name="config/USART3_Config.c" path="Config/USART3_Config.c" type="1"/>
     <File name="cmsis" path="" type="2"/>
-    <File name="json" path="" type="2"/>
     <File name="auto_logic" path="" type="2"/>
+    <File name="json" path="" type="2"/>
     <File name="Std_Periph/include/stm32f10x_pwr.h" path="../../../STM32 Libraries/STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_pwr.h" type="1"/>
     <File name="cmsis_boot/system_stm32f10x.h" path="cmsis_boot/system_stm32f10x.h" type="1"/>
     <File name="Std_Periph" path="" type="2"/>

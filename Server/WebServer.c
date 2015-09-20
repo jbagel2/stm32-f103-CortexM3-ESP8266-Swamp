@@ -3,13 +3,30 @@
 #include "WebServer.h"
 
 
-void RefreshCustomRESTResponseSwamp(char *IPWAN, char *IPLAN, uint8_t pumpState, uint8_t fanState, DHT22_Data *tempAndHumid)
+void RefreshCustomRESTResponseSwamp(ESP_Status *espStatus, uint8_t pumpState, uint8_t fanState, DHT22_Data *tempAndHumid, Boolean includeDiag)
 {
 #ifndef NODE_ID
 #error NODE_ID not defined, Please define NODE_ID as char*
 #endif
-snprintf(customRESTResponse, ARRAYSIZE(customRESTResponse),"{\"ID\":\"%s\",\"NodeStatus\":{\"pumpState\":\"%d\",\"fanState\":\"%d\",\"currentTemp\":\"%.2f\",\"currentHumid\":\"%.2f\"},\"GeneralStatus\":{\"CurrentIP_WAN\":%s,\"currentIP_LAN\":%s,\"self_check_result\":\"OK\"}} ",NODE_ID, pumpState, fanState, tempAndHumid->Temp, tempAndHumid->Humid, IPWAN, IPLAN);
+	if(includeDiag)
+	{
+		CustomRESTResponseDiag(tempAndHumid, espStatus);
+	}
+	else
+	{
+		ClearArray_Size(diagRESTResponse, ARRAYSIZE(diagRESTResponse));
+	}
+
+snprintf(customRESTResponse, ARRAYSIZE(customRESTResponse),"{\"ID\":\"%s\", \"NodeStatus\": {\"pumpState\":%d, \"fanState\":%d, \"currentTemp\":\"%.2f\", \"currentHumid\":\"%.2f\" }, \"GeneralStatus\":{\"CurrentIP_WAN\":%s, \"currentIP_LAN\":%s, \"diag\":{%s}, \"self_check_result\":\"OK\"}} ",NODE_ID, pumpState, fanState, tempAndHumid->Temp, tempAndHumid->Humid, espStatus->Station_IP, espStatus->AccessPoint_IP, diagRESTResponse);
 }
+
+void CustomRESTResponseDiag(DHT22_Data *data, ESP_Status *espStatus)
+{
+
+	snprintf(diagRESTResponse, ARRAYSIZE(diagRESTResponse),"\"firmware_ver\":\"%s\", \"espDiag\":{\"resets\":%d, \"sinceReset\":%d}, \"dhtDiag\":{\"checksumFails\":%d, \"checksumPasses\":%d}",FIRMWARE_VERSION, espStatus->ResetCount, (Millis() - espStatus->LastResetTime),data->CheckSumErrors, data->CheckSumPass);
+}
+
+
 
 void RefreshCustomRESTResponse(char *IPWAN, char *IPLAN, char *nodeKeyName, char *nodeValue)
 {
@@ -37,13 +54,14 @@ void buildHeader(Header *newHeaderOut, RequestHeaders_Types type, char *headerVa
 	//sprintf(newHeaderOut,"%s%s",RequestHeaders_Array[type],headerValue);
 }
 
+const char *RESTResponse_Headers_Not_Found =
+		"HTTP/1.1 404 NOT_FOUND\r\n"
+		"Connection: close\r\n";
 
 const char *RESTResponse_Headers_Test_OK = //Just here for testing as this is just a static OK 200 response
 		"HTTP/1.1 200 OK\r\n"
 		"Content-Type: application/json\r\n"
 		"Connection: close\r\n";
-		// Needs to include Content-Length:XX
-		// Calculated and appended based on body
 
 //const char *RESTResponse_Body_TEST_JSON =
 //		"{\"ID\":\"dim01\",\"Status\":{\"CurrentIP_WAN\":\"0.0.0.0\",\"currentip_lan\":\"192.168.4.1\",\"self_check_result\":\"OK\"}} \0";

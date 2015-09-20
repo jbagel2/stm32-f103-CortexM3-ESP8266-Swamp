@@ -62,7 +62,7 @@ const char *ATCommandsArray[20] = {
 	"AT+GMR",
 	"AT+CWMODE?",
 	"AT+CWMODE=3",
-	"AT+CWJAP=\"Nonya\",\"porsche911\"",
+	"AT+CWJAP=\"SSID\",\"PASSWORD\"",
 	"AT+CWJAP?",
 	"AT+RST",
 	"AT+CIPMUX=1",
@@ -372,6 +372,24 @@ void Wifi_CheckDMABuff_ForCIFSRData()
 		currentESPStatus.Station_MAC = strtok(NULL, "\r");
 	}
 
+	ESP_Ready_Buffer_Pntr = memmem(USART3_RxBuffer,RxBuffSize,"+CIFSR:STAIP",11);
+		if(ESP_Ready_Buffer_Pntr){
+			strcpy(ESP_Ready_Buffer,ESP_Ready_Buffer_Pntr);
+			DMA_Cmd(DMA1_Channel3,DISABLE);
+
+			//Wipes the received message from the DMA buffer (using the pointer to the data)
+			//This makes sure the data doesn't get mistaken for a new request, on the next buffer polling.
+			ClearArray_Size(ESP_Ready_Buffer_Pntr,strlen(ESP_Ready_Buffer_Pntr));
+			DMA_Initialize(USART3_RxBuffer, RxBuffSize);
+
+			strtok(ESP_Ready_Buffer, ","); //Discard the '+CIFSR:STAIP'
+			currentESPStatus.Station_IP = strtok(NULL, "\r");
+			strtok(NULL, ","); //Discard the '+CIFSR:APMAC'
+			currentESPStatus.Station_MAC = strtok(NULL, "\r");
+			currentESPStatus.AccessPoint_IP = "\"NA\"";
+			currentESPStatus.AccessPoint_MAC = "\"NA\"";
+		}
+
 }
 
 
@@ -434,7 +452,7 @@ IPD_Data Wifi_CheckDMABuff_ForIPDData(DHT22_Data *Current_DHT22_Reading)
 						if(qsc > 0)
 						{
 							currentIPD.Valid = 1;
-							RefreshCustomRESTResponseSwamp(currentESPStatus.Station_IP, currentESPStatus.AccessPoint_IP, pumpMode_Current, fanMode_Current,Current_DHT22_Reading);
+							RefreshCustomRESTResponseSwamp(&currentESPStatus, pumpMode_Current, fanMode_Current,Current_DHT22_Reading, False);
 						}
 						return currentIPD;
 					}
@@ -449,7 +467,7 @@ IPD_Data Wifi_CheckDMABuff_ForIPDData(DHT22_Data *Current_DHT22_Reading)
 							queryStrings[qsc] = thisQuery;
 						}
 					}
-					RefreshCustomRESTResponseSwamp(currentESPStatus.Station_IP, currentESPStatus.AccessPoint_IP, pumpMode_Current, fanMode_Current,Current_DHT22_Reading);
+					RefreshCustomRESTResponseSwamp(&currentESPStatus, pumpMode_Current, fanMode_Current,Current_DHT22_Reading, False);
 				}
 			}
 			else {
@@ -469,16 +487,31 @@ IPD_Data Wifi_CheckDMABuff_ForIPDData(DHT22_Data *Current_DHT22_Reading)
 					currentIPD.Valid = 1;
 				}
 			}
-			RefreshCustomRESTResponseSwamp(currentESPStatus.Station_IP, currentESPStatus.AccessPoint_IP, pumpMode_Current, fanMode_Current,Current_DHT22_Reading);
+			RefreshCustomRESTResponseSwamp(&currentESPStatus, pumpMode_Current, fanMode_Current,Current_DHT22_Reading, False);
 
+			}
+			else {
+				SendRESTResponse(currentIPD.ConnectionNum, RESTResponse_Headers_Not_Found, "");
 			}
 		}
 		else if (requestType == GET)
 		{
-			//TODO: Still need to add parsing of start up ESP data (ip's, MAC, and ready flag )
-			RefreshCustomRESTResponseSwamp(currentESPStatus.Station_IP, currentESPStatus.AccessPoint_IP, pumpMode_Current, fanMode_Current,Current_DHT22_Reading);
+			if(!strstr(currentIPD.URI, "favicon.ico"))
+			{
+				if(strstr(currentIPD.URI, "diag"))
+				{
+					RefreshCustomRESTResponseSwamp(&currentESPStatus, pumpMode_Current, fanMode_Current,Current_DHT22_Reading, True);
+				}
+				else {
+					RefreshCustomRESTResponseSwamp(&currentESPStatus, pumpMode_Current, fanMode_Current,Current_DHT22_Reading, False);
+				}
 			currentIPD.Valid = 1;
 			return currentIPD;
+			}
+			else //Reject favicon request with 404
+			{
+				SendRESTResponse(currentIPD.ConnectionNum, RESTResponse_Headers_Not_Found, "");
+			}
 		}
 	}
 				return currentIPD;

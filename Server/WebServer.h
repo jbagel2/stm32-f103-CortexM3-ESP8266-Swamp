@@ -8,6 +8,8 @@
 #ifndef _WEBSERVER_H_
 #define _WEBSERVER_H_
 
+#define USE_BOOL
+
 //#include "CustomStructs/KeyValuePair.h"
 #include "json/json.h"
 #include "WebServerConfig.h"
@@ -16,7 +18,8 @@
 #include "dht22.h"
 
 
-char customRESTResponse[400];
+char customRESTResponse[450];
+char diagRESTResponse[150];
 
 typedef KeyValuePair_String_String Header;
 
@@ -48,7 +51,7 @@ typedef struct // Response object that will be transmitted back
 
 }HTTPRequest;
 
-
+void RefreshCustomRESTResponseSwamp(ESP_Status *espStatus, uint8_t pumpState, uint8_t fanState, DHT22_Data *tempAndHumid, Boolean includeDiag);
 
 void buildHeader(Header *newHeaderOut, RequestHeaders_Types type, char *headerValue);
 void SendRESTResponse(uint8_t connectionNum, const char *responseHeaders, const char *responseBody);
@@ -63,7 +66,7 @@ void SendWebRequestResponse(uint8_t connectionNum);
  */
 
 const char *RESTResponse_Headers_Test_OK; //Just here for testing as this is just a static OK 200 response
-
+const char *RESTResponse_Headers_Not_Found;
 
 const char *RESTResponse_Body_TEST_JSON;
 
